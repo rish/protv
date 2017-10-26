@@ -1,12 +1,21 @@
 <template>
   <div id="app">
+    <AppHeader/>
     <router-view/>
+    <AppFooter/>
   </div>
 </template>
 
 <script>
+import AppHeader from '@/components/Header'
+import AppFooter from '@/components/Footer'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    AppHeader,
+    AppFooter
+  }
 }
 </script>
 
