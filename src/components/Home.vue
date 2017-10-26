@@ -17,8 +17,9 @@
           </div>
         </div>
       </div>
+      <!-- /video content -->
       <div
-        v-if="content.itype === 'section'"
+        v-if="content.itype === 'section' && !content.hasOwnProperty('box')"
         :style="[content.hasOwnProperty('background') ? { 'background-image': 'url(' + content.background + ')' } : null]"
         :class="{ 'background-wide': content.hasOwnProperty('background') }"
       >
@@ -31,38 +32,54 @@
             {{ content.title }}
           </h3>
           <div class="row">
-          <div class="carousel slide" :id="'carousel-' + content.id" data-interval="false">
-            <div class="carousel-inner">
-              <div class="item" v-for="i in Math.ceil(content.items.length / 3)" :class="{ active: (i === 1) }">
-                <div v-for="item in content.items.slice((i - 1) * 3, i * 3)">
-                  <div class="col-md-4">
-                  <div
-                    class="thumb"
-                    :style="{ 'background-image': 'url(' + item.poster + ')' }"
-                  >
+            <div class="carousel slide" :id="'carousel-' + content.id" data-interval="false">
+              <div class="carousel-inner">
+                <div class="item" v-for="i in Math.ceil(content.items.length / 3)" :class="{ active: (i === 1) }">
+                  <div v-for="item in content.items.slice((i - 1) * 3, i * 3)">
+                    <div class="col-md-4">
+                    <div
+                      class="thumb"
+                      :style="{ 'background-image': 'url(' + item.poster + ')' }"
+                    >
+                    </div>
+
+                    <div class="pull-right">
+                      <span>{{ item.views }} views</span>
+                    </div>
+                    <h5>{{ item.title }}</h5>
+                    <h5>{{ item.synopsis }}</h5>
+                    </div>
                   </div>
 
-                  <div class="pull-right">
-                    <span>{{ item.views }} views</span>
-                  </div>
-                  <h5>{{ item.title }}</h5>
-                  <h5>{{ item.synopsis }}</h5>
-                  </div>
                 </div>
-
               </div>
+              <nav class="carousel-controls">
+                <ul class="control-box pager">
+                  <li class="pull-left"><a data-slide="prev" :href="'#carousel-' + content.id" v-on:click.prevent><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+                  <li class="pull-right"><a data-slide="next" :href="'#carousel-' + content.id" v-on:click.prevent><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                </ul>
+              </nav>
             </div>
-            <nav class="carousel-controls">
-            <ul class="control-box pager">
-              <li class="pull-left"><a data-slide="prev" :href="'#carousel-' + content.id" v-on:click.prevent><i class="glyphicon glyphicon-chevron-left"></i></a></li>
-              <li class="pull-right"><a data-slide="next" :href="'#carousel-' + content.id" v-on:click.prevent><i class="glyphicon glyphicon-chevron-right"></i></a></li>
-            </ul>
-            </nav>
           </div>
         </div>
+      </div>
+      <!-- /section -->
+      <div
+        v-if="content.box && content.box === 'articles'"
+        class="articles-container"
+      >
+        <div class="container">
+          <div v-for="i in Math.ceil(content.items.length / 3)" class="row">
+            <div class="article-block" v-for="item in content.items.slice((i - 1) * 3, i *3)">
+              <img :src="item.poster" width="300">
+              <h3 v-html="item.title"></h3>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- /articles -->
     </div>
+    <!-- /contents -->
   </div>
 </template>
 
@@ -143,7 +160,6 @@ a {
 }
 
 .thumb {
-  outline: 1px solid red;
   width: 100%;
   height: 200px;
   background-size: cover;
@@ -179,5 +195,29 @@ a {
 .background-wide {
   background-repeat: no-repeat;
   background-size: 100%;
+}
+.articles-container {
+  background: #131313;
+  overflow: auto;
+}
+
+.articles-container {
+  text-align: center;
+}
+.article-block {
+  background: black;
+  width: 23.3%;
+  margin: 2%;
+  display: inline-block;
+}
+
+.article-block img {
+  width: 100%;
+}
+.article-block h3 {
+  display: inline-block;
+  padding: 10px;
+  font-size: 15px;
+  text-align: left;
 }
 </style>
