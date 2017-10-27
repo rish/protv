@@ -130,23 +130,32 @@ export default {
 
 ul h1 {
   font-size: 22px;
+  margin-bottom: 5px;
 }
 
+.container {
+  width: 830px;
+}
 .container div {
-  width: 150px;
+  padding: 20px 0;
+  width: 200px;
   float: left;
-  margin: 5%;
 }
 
 .container div ul {
-  padding-bottom: 40px;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 5px;
 }
 
 ul li {
   list-style-type: none;
+  padding-bottom: 5px;
 }
 
 ul a {
   color: #ababab;
+  font-size: 15px;
+  line-height: 22px;
 }
 </style>
