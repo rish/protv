@@ -156,6 +156,7 @@ export default {
 .bottom .shows {
   margin-bottom: 10px;
   margin-left: -20px;
+  padding-top: 10px;
 }
 
 .bottom .shows li {
