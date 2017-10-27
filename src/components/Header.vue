@@ -22,9 +22,17 @@
     <div class="bottom">
       <div class="container" :class="{ 'container-wide': activeMenu === 0 }">
         <ul class="shows" v-if="activeMenu === 1">
-          <li v-for="link in context.header.selectors[activeMenu].links"><a :href="link.page">{{ link.title }}</a></li>
-          <li v-for="link in context.header.selectors[activeMenu].links.reverse()"><a :href="link.page">{{ link.title }}</a></li>
-          <li v-for="link in context.header.selectors[activeMenu].links.reverse().slice(0,1)"><a :href="link.page">{{ link.title }}</a></li>
+          <li><a href="#">Romanii au Telent</a></li>
+          <li><a href="#">Vocea Romaniei</a></li>
+          <li><a href="#">Vocea Romaniei Junior</a></li>
+          <li><a href="#">Gospodar fara pereche</a></li>
+          <li><a href="#">Masterchef</a></li>
+          <li><a href="#">Ferma Vedetelor</a></li>
+          <li><a href="#">Pe bunu?</a></li>
+          <li><a href="#">Fort Boyard</a></li>
+          <li><a href="#">Ce spin romanii?</a></li>
+          <li><a href="#">Visuri la cheie</a></li>
+          <li><a href="#">Jocuri de celebritate</a></li>
         </ul>
         <ul v-else>
           <li>
