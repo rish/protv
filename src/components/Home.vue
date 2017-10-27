@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="content in contents">
+    <div v-for="(content, index) in contents">
       <div
         v-if="content.aclass === 'video'"
         >
@@ -50,16 +50,20 @@
         v-if="content.box && content.box === 'articles'"
         class="articles-container"
       >
-        <div class="container">
-          <div v-for="i in Math.ceil(content.items.length / 3)" class="row">
-            <div class="article-block" v-for="item in content.items.slice((i - 1) * 3, i *3)">
+        <div class="container articles-masonry">
+          <article>
+            <section v-for="item in content.items">
               <img :src="item.poster" width="300">
               <h3 v-html="item.title"></h3>
-            </div>
-          </div>
+            </section>
+          </article>
+          <a href="#" class="articles-btn">Mai multe stiri</a>
         </div>
       </div>
       <!-- /articles -->
+      <div class="b1 bpad" v-if="index === 8">
+        <img src="../assets/temp/b-horizontal.png">
+      </div>
     </div>
     <!-- /contents -->
   </div>
@@ -232,11 +236,36 @@ a {
 .articles-container {
   background: #131313;
   overflow: auto;
+  padding: 70px 0;
 }
 
 .articles-container {
   text-align: center;
 }
+
+.articles-masonry {
+  width: 966px;
+}
+.articles-masonry article {
+  column-width: 300px;
+  column-gap: 10px;
+}
+
+.articles-masonry section {
+  display: inline-block;
+  margin: 20px 0;
+  width:  300px;
+  background: black;
+}
+
+.articles-masonry section h3 {
+  display: inline-block;
+  padding: 10px;
+  font-size: 18px;
+  text-align: left;
+  margin-top: 10px;
+}
+
 .article-block {
   background: black;
   width: 23.3%;
@@ -253,4 +282,20 @@ a {
   font-size: 15px;
   text-align: left;
 }
+
+.articles-btn {
+  opacity:0.7;
+  padding:13px;
+  background: #1e55d5;
+  max-width:120px;
+  font-size:12px;
+  font-weight:300;
+  color:white;
+  text-align:center;
+}
+
+.bpad {
+  padding-top: 80px;
+}
+
 </style>
