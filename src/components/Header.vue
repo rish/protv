@@ -18,6 +18,9 @@
           <img src="../assets/icons/profile.png">
         </div>
       </div>
+      <div class="bottom">
+        <p>sub menu goes here</p>
+      </div>
     </div>
   </div>
 </template>
@@ -47,7 +50,7 @@ export default {
 <style scoped>
 .container {
   width: 925px;
-  outline: 1px solid green;
+  padding: 0;
 }
 #header {
   background: #1446cb url('../assets/menu-bg.png') no-repeat;
@@ -70,6 +73,16 @@ export default {
   margin-top: 23px;
   padding-bottom: 23px;
   height: 60px;
+}
+
+.bottom {
+  clear: both;
+  outline: 1px solid white;
+}
+
+.bottom p {
+  margin: 0;
+  padding: 0;
 }
 
 .search input {
@@ -97,7 +110,6 @@ export default {
 }
 
 .drop-down-menus {
-  outline: 1px solid red;
   position: relative;
   top: -29px;
 }
@@ -106,16 +118,17 @@ export default {
   display: inline-block;
   margin: 0;
   padding: 0;
+  margin-bottom: -56px;
 }
 
 .drop-down-menus ul > li {
   list-style-type: none;
   margin: 0;
-  padding: 35px 20px;
+  padding: 40px 32px 26px;
 }
 
 .drop-down-menus ul > li i {
-  margin-left: 10px;
+  font-size: 8px;
 }
 
 .drop-down-menus ul ul {
@@ -127,7 +140,7 @@ export default {
 }
 
 .drop-down-menus ul > li:hover {
-  background: red;
+  background: rgba(0,0,0,0.3);
   cursor: pointer;
 }
 
@@ -140,6 +153,6 @@ a {
 }
 
 .social img {
-  margin: 5px;
+  margin: 5px 7.5px;
 }
 </style>
