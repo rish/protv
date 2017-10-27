@@ -70,7 +70,7 @@ export default {
 <style scoped>
 
 .row {
-  padding-left: 70px;
+  padding-left: 40px;
   padding-right: 30px;
 }
 
@@ -85,7 +85,13 @@ export default {
 
 .carousel-controls {
   position: relative;
-  top: -150px;
+  top: -140px;
+}
+
+.carousel-controls ul {
+  height: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 .carousel-controls .left, .carousel-controls .right {
@@ -97,7 +103,7 @@ export default {
 }
 
 .carousel-controls .right {
-  right: 50px;
+  right: 70px;
 }
 
 .thumb {

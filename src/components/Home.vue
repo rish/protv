@@ -22,6 +22,9 @@
         <div class="epg">
           <div class="container">
             <ProCarousel :items="content.items" id="epg" :grid="content.grid" :cols="4"/>
+            <div class="b1">
+              <img src="../assets/temp/b-horizontal.png">
+            </div>
           </div>
         </div>
       </div>
@@ -158,12 +161,15 @@ a {
 
 .backdrop {
   background: url('../assets/temp/banners-backdrop.jpg') no-repeat;
+  background-size: contain;
+  width: 1240px;
 }
 
 .video-container {
   min-height: 600px;
   background-repeat: no-repeat;
   margin: 126px 42px 0 111px;
+  width: 988px;
 }
 
 .video-container .overlay {
@@ -185,6 +191,11 @@ a {
   text-transform: uppercase;
   font-weight:300;
   padding-top:20px
+}
+
+.b1 {
+  text-align: center;
+  padding: 30px 0 40px;
 }
 
 .video-container .subheading {
@@ -231,7 +242,7 @@ a {
 }
 
 .epg {
-  padding-top: 30px;
+  padding-top: 80px;
 }
 
 .thumb {
