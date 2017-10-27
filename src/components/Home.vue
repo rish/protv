@@ -50,15 +50,7 @@
         v-if="content.box && content.box === 'articles'"
         class="articles-container"
       >
-        <div class="container articles-masonry">
-          <article>
-            <section v-for="item in content.items">
-              <img :src="item.poster" width="300">
-              <h3 v-html="item.title"></h3>
-            </section>
-          </article>
-          <a href="#" class="articles-btn">Mai multe stiri</a>
-        </div>
+        <Articles :articles="content.items"/>
       </div>
       <!-- /articles -->
       <div class="b1 bpad" v-if="index === 8">
@@ -71,11 +63,13 @@
 
 <script>
 import ProCarousel from '@/components/ProCarousel'
+import Articles from '@/components/Articles'
 /* global axios */
 export default {
   name: 'Home',
   components: {
-    ProCarousel
+    ProCarousel,
+    Articles
   },
   data () {
     return {
@@ -233,65 +227,11 @@ a {
   background-repeat: no-repeat;
   background-size: 100%;
 }
+
 .articles-container {
   background: #131313;
   overflow: auto;
-  padding: 70px 0;
-}
-
-.articles-container {
-  text-align: center;
-}
-
-.articles-masonry {
-  width: 966px;
-}
-.articles-masonry article {
-  column-width: 300px;
-  column-gap: 10px;
-}
-
-.articles-masonry section {
-  display: inline-block;
-  margin: 20px 0;
-  width:  300px;
-  background: black;
-}
-
-.articles-masonry section h3 {
-  display: inline-block;
-  padding: 10px;
-  font-size: 18px;
-  text-align: left;
-  margin-top: 10px;
-}
-
-.article-block {
-  background: black;
-  width: 23.3%;
-  margin: 2%;
-  display: inline-block;
-}
-
-.article-block img {
-  width: 100%;
-}
-.article-block h3 {
-  display: inline-block;
-  padding: 10px;
-  font-size: 15px;
-  text-align: left;
-}
-
-.articles-btn {
-  opacity:0.7;
-  padding:13px;
-  background: #1e55d5;
-  max-width:120px;
-  font-size:12px;
-  font-weight:300;
-  color:white;
-  text-align:center;
+  padding: 50px 0;
 }
 
 .bpad {
