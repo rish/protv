@@ -4,14 +4,14 @@
       <div
         v-if="content.aclass === 'video'"
         >
-        <div class="container"
-          v-bind:style="{ 'background-image': 'url(' + content.items[0].backdrop + ')' }"
-        >
+        <div class="container backdrop">
           <div class="video-container" :style="{ 'background-image': 'url(' + content.items[0].poster + ')' }">
-            <div class="row">
-              <div class="col-md-offset-8 col-md-4">
-                <h2 class="title">{{ content.items[0].title }}</h2>
-                <p>{{ content.items[0].description }}</p>
+            <div class="overlay">
+              <div class="row">
+                <div class="col-md-offset-8 col-md-4">
+                  <h2 class="title">{{ content.items[0].title }}</h2>
+                  <p>{{ content.items[0].description }}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -143,11 +143,26 @@ a {
 
 .container {
 }
+
+.backdrop {
+  background: url('../assets/temp/banners-backdrop.jpg');
+}
+
 .video-container {
   min-height: 500px;
   background-repeat: no-repeat;
-  outline: 5px solid black;
-  margin: 50px;
+  margin: 126px 42px 0 111px;
+}
+
+.video-container .overlay {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  min-height: 500px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
 }
 
 .video-container .title {
@@ -155,6 +170,9 @@ a {
   border-bottom: 1px solid white;
   padding: 0 10px 10px 0;
   margin-right: 20px;
+  text-transform: uppercase;
+  font-weight:300;
+  padding-top:20px
 }
 
 .video-container p {
