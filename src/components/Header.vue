@@ -91,6 +91,9 @@ export default {
 #header {
   background: #1446cb url('../assets/bg2.jpg') no-repeat;
   background-size: cover;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
 }
 
 .logo {
@@ -120,6 +123,7 @@ export default {
   width: 1024px;
   position: relative;
   left: -5px;
+  height: 66px;
 }
 
 .bottom p {
@@ -162,6 +166,7 @@ export default {
   display: inline-block;
   width: 230px;
   padding: 5px 15px;
+  font-weight: 300;
 }
 
 .bottom .shows li:hover {
