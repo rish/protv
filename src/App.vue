@@ -31,6 +31,6 @@ export default {
   background: black;
 }
 #content {
-  padding-top: 200px;
+  padding-top: 150px;
 }
 </style>
