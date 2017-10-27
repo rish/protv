@@ -141,6 +141,8 @@ a {
   color: #42b983;
 }
 
+.container {
+}
 .video-container {
   min-height: 500px;
   background-repeat: no-repeat;

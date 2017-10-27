@@ -5,16 +5,11 @@
         <i class="glyphicon glyphicon-menu-hamburger pull-left"></i>
         <img class="logo pull-left" src="../assets/logo.png">
         <div class="search pull-left">
-          <input type="text">
+          <input type="text" placeholder="Search">
         </div>
         <div class="drop-down-menus pull-left">
           <ul v-for="menus in context.header.selectors">
             <li>{{ menus.title }} <i class="glyphicon glyphicon-menu-down"></i></li>
-            <ul>
-              <li v-for="item in menus.links">
-                <a :href="item.link">{{ item.title }}</a>
-              </li>
-            </ul>
           </ul>
         </div>
         <div class="social pull-right">
@@ -22,15 +17,6 @@
           <img src="../assets/icons/twitter.png">
           <img src="../assets/icons/profile.png">
         </div>
-      </div>
-    </div>
-    <div class="main-menu">
-      <div class="container">
-        <ul>
-          <li v-for="item in context.main_menu">
-            <a :href="item.link">{{ item.title }}</a>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
@@ -59,21 +45,46 @@ export default {
 }
 </script>
 <style scoped>
+.container {
+  width: 925px;
+  outline: 1px solid green;
+}
 #header {
-  background: #1446cb;
+  background: #1446cb url('../assets/menu-bg.png') no-repeat;
+  background-size: cover;
   padding: 10px 0 0;
 }
 
 .logo {
-  margin-left: 10px;
+  margin-right: 58px;
+}
+
+.glyphicon-menu-hamburger {
+  font-size: 20px;
+  position: relative;
+  top: 3px;
+  margin-right: 40px;
+  margin-left: -5px;
 }
 
 .top {
-  padding-bottom: 10px;
+  margin-top: 23px;
+  padding-bottom: 23px;
+  height: 60px;
 }
 
-.search {
-  width: 150px;
+.search input {
+  width: 350px;
+  height: 28px;
+  padding-left: 40px;
+  background-image: url('../assets/icons/search.png');
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  color: black;
+}
+
+.search input::placeholder {
+  font-style: italic;
 }
 
 .main-menu {
@@ -86,12 +97,26 @@ export default {
   display: inline-block;
 }
 
-.drop-down-menus ul {
-  display: inline-block;
+.drop-down-menus {
+  outline: 1px solid red;
+  position: relative;
+  top: -29px;
 }
 
-.drop-down-menus li {
+.drop-down-menus ul {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.drop-down-menus ul > li {
   list-style-type: none;
+  margin: 0;
+  padding: 35px 20px;
+}
+
+.drop-down-menus ul > li i {
+  margin-left: 10px;
 }
 
 .drop-down-menus ul ul {
@@ -100,7 +125,6 @@ export default {
 
 .drop-down-menus ul > li {
   font-size: 15px;
-  padding: 20px;
 }
 
 .drop-down-menus ul > li:hover {
