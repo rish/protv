@@ -23,14 +23,27 @@
                 </div>
               </div>
               <div :class="widthClass">
-                <h5>{{ item.title }}</h5>
+                <div v-if="meta" class="meta row">
+                  <div class="remind pull-left">
+                    <img src="../assets/icons/remind.png">
+                  </div>
+                  <div class="views pull-right">
+                    <img src="../assets/icons/views.png">
+                    {{ item.views }} views
+                  </div>
+                </div>
+                <h5 class="title clearfix">{{ item.title }}</h5>
+                <div v-if="synopsis">
+                  <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }} ...</p>
+                </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <nav class="carousel-controls">
+      <nav class="carousel-controls" :class="{ tall: columns === '3' }">
         <ul class="control-box pager">
           <li class="left pull-left"><a data-slide="prev" :href="carouselIdRef" v-on:click.prevent><img src="../assets/left-arrow.png"></a></li>
           <li class="right pull-right"><a data-slide="next" :href="carouselIdRef" v-on:click.prevent><img src="../assets/right-arrow.png"></a></li>
@@ -43,7 +56,7 @@
 <script>
 export default {
   name: 'ProCarousel',
-  props: ['items', 'id', 'grid', 'cols'],
+  props: ['items', 'id', 'grid', 'cols', 'meta', 'playIcon', 'synopsis'],
   data () {
     const gridConfig = this.grid.split('_')
     const carouselId = 'carousel-' + this.id
@@ -58,11 +71,26 @@ export default {
   },
   mounted () {
     console.log('ProCarousel mounted', this)
-    console.log(typeof this.items)
   },
   computed: {
     widthClass () {
       return this.columns % 3 === 0 ? 'wide' : 'narrow'
+    },
+    truncate (text, length) {
+      return text.substring(0, length) + ' ...'
+    }
+  },
+  filters: {
+    truncateOnWord (str, limit) {
+      console.log(typeof str)
+      var trimmable = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u2028\u2029\u3000\uFEFF'
+      var reg = new RegExp('(?=[' + trimmable + '])')
+      var words = str.split(reg)
+      var count = 0
+      return words.filter(function (word) {
+        count += word.length
+        return count <= limit
+      }).join('')
     }
   }
 }
@@ -70,7 +98,7 @@ export default {
 <style scoped>
 
 .row {
-  padding-left: 40px;
+  padding-left: 30px;
   padding-right: 30px;
 }
 
@@ -88,6 +116,11 @@ export default {
   top: -140px;
 }
 
+.carousel-controls.tall {
+  position: relative;
+  top: -300px;
+}
+
 .carousel-controls ul {
   height: 10px;
   margin: 0;
@@ -103,7 +136,7 @@ export default {
 }
 
 .carousel-controls .right {
-  right: 70px;
+  right: 60px;
 }
 
 .thumb {
@@ -124,6 +157,11 @@ export default {
   width: 267px;
 }
 
+.wide .title {
+  font-size: 23px;
+  font-weight: 400;
+}
+
 .timestamp {
   position: absolute;
   bottom: 0;
@@ -137,6 +175,27 @@ export default {
   position: relative;
   left: -3px;
   top: -1px;
+}
+
+.meta.row {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.views {
+  font-size: 11px;
+  padding-top: 3px;
+}
+
+.views img {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.synopsis {
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 300;
 }
 
 </style>

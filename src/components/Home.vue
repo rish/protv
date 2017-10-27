@@ -31,7 +31,7 @@
       <!-- /video content -->
       <div
         v-if="content.itype === 'section' && !content.hasOwnProperty('box')"
-        :style="[content.hasOwnProperty('background') ? { 'background-image': 'url(' + content.background + ')' } : null]"
+        :style="[content.hasOwnProperty('background') ? { 'background-image': 'url(' + require('../assets/bg2.jpg') + ')' } : null]"
         :class="{ 'background-wide': content.hasOwnProperty('background') }"
       >
         <div class="container">
@@ -42,36 +42,7 @@
             <img class="title-icon" v-if="content.icon" :src="content.icon">
             {{ content.title }}
           </h3>
-          <div class="row">
-            <div class="carousel slide" :id="'carousel-' + content.id" data-interval="false">
-              <div class="carousel-inner">
-                <div class="item" v-for="i in Math.ceil(content.items.length / 3)" :class="{ active: (i === 1) }">
-                  <div v-for="item in content.items.slice((i - 1) * 3, i * 3)">
-                    <div class="col-md-4">
-                    <div
-                      class="thumb"
-                      :style="{ 'background-image': 'url(' + item.poster + ')' }"
-                    >
-                    </div>
-
-                    <div class="pull-right">
-                      <span>{{ item.views }} views</span>
-                    </div>
-                    <h5>{{ item.title }}</h5>
-                    <h5>{{ item.synopsis }}</h5>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-              <nav class="carousel-controls">
-                <ul class="control-box pager">
-                  <li class="pull-left"><a data-slide="prev" :href="'#carousel-' + content.id" v-on:click.prevent><i class="glyphicon glyphicon-chevron-left"></i></a></li>
-                  <li class="pull-right"><a data-slide="next" :href="'#carousel-' + content.id" v-on:click.prevent><i class="glyphicon glyphicon-chevron-right"></i></a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
+          <ProCarousel :items="content.items" :id="content.id" :grid="content.grid" meta="true" synopsis="true" playIcon="true" />
         </div>
       </div>
       <!-- /section -->
@@ -245,35 +216,11 @@ a {
   padding-top: 80px;
 }
 
-.thumb {
-  width: 100%;
-  height: 200px;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-}
-.control-box.pager {
-}
-
-.carousel-inner .item {
-  padding: 0 10%;
-}
-.carousel-controls {
-  position: absolute;
-  top: 30%;
-  width: 100%;
-}
-.pager li>a, .pager li>span {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 50px;
-}
 .section.title {
   font-size: 45px;
-  font-weight: 300;
+  font-weight: 200;
   text-transform: uppercase;
-  padding: 0 10%;
+  padding: 20px 10% 30px 13%;
 }
 .title-icon {
   height: 35px;
