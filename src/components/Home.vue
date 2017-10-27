@@ -19,6 +19,11 @@
             </div>
           </div>
         </div>
+        <div class="epg">
+          <div class="container">
+            <ProCarousel :items="content.items" id="epg" :grid="content.grid" :cols="4"/>
+          </div>
+        </div>
       </div>
       <!-- /video content -->
       <div
@@ -87,9 +92,13 @@
 </template>
 
 <script>
+import ProCarousel from '@/components/ProCarousel'
 /* global axios */
 export default {
   name: 'Home',
+  components: {
+    ProCarousel
+  },
   data () {
     return {
       contents: []
@@ -219,6 +228,10 @@ a {
 .video-container .play-btn:hover {
   cursor: pointer;
   opacity: 1;
+}
+
+.epg {
+  padding-top: 30px;
 }
 
 .thumb {
