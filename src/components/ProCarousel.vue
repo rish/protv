@@ -32,9 +32,9 @@
                     {{ item.views }} views
                   </div>
                 </div>
-                <h5 class="title clearfix">{{ item.title }}</h5>
-                <div v-if="synopsis">
-                  <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }} ...</p>
+                <h5 class="title clearfix">{{ item.title | truncateOnWord(19) }}</h5>
+                <div v-if="synopsis" class="synopsis-container">
+                  <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }}</p>
                 </div>
 
               </div>
@@ -87,10 +87,14 @@ export default {
       var reg = new RegExp('(?=[' + trimmable + '])')
       var words = str.split(reg)
       var count = 0
-      return words.filter(function (word) {
+      var returnWords = words.filter(function (word) {
         count += word.length
         return count <= limit
       }).join('')
+      if (str.length > limit) {
+        returnWords = returnWords + ' ...'
+      }
+      return returnWords
     }
   }
 }
@@ -158,7 +162,7 @@ export default {
 }
 
 .wide .title {
-  font-size: 23px;
+  font-size: 22px;
   font-weight: 400;
 }
 
@@ -190,6 +194,10 @@ export default {
 .views img {
   display: inline-block;
   margin-right: 5px;
+}
+
+.synopsis-container {
+  height: 30px;
 }
 
 .synopsis {
