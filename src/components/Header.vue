@@ -52,7 +52,6 @@ export default {
 #header {
   background: #1446cb url('../assets/menu-bg.png') no-repeat;
   background-size: cover;
-  padding: 10px 0 0;
 }
 
 .logo {
