@@ -8,8 +8,8 @@
           <input type="text" placeholder="Search">
         </div>
         <div class="drop-down-menus pull-left">
-          <ul v-for="menus in context.header.selectors">
-            <li>{{ menus.title }} <i class="glyphicon glyphicon-menu-down"></i></li>
+          <ul v-for="(menus, index) in context.header.selectors">
+            <li v-on:mouseover="setActiveMenu(index)">{{ menus.title }} <i class="glyphicon glyphicon-menu-down"></i></li>
           </ul>
         </div>
         <div class="social pull-right">
@@ -18,8 +18,31 @@
           <img src="../assets/icons/profile.png">
         </div>
       </div>
-      <div class="bottom">
-        <p>sub menu goes here</p>
+    </div>
+    <div class="bottom">
+      <div class="container" :class="{ 'container-wide': activeMenu === 0 }">
+        <ul class="shows" v-if="activeMenu === 1">
+          <li v-for="link in context.header.selectors[activeMenu].links"><a :href="link.page">{{ link.title }}</a></li>
+          <li v-for="link in context.header.selectors[activeMenu].links.reverse()"><a :href="link.page">{{ link.title }}</a></li>
+          <li v-for="link in context.header.selectors[activeMenu].links.reverse().slice(0,1)"><a :href="link.page">{{ link.title }}</a></li>
+        </ul>
+        <ul v-else>
+          <li>
+            <a href="#"><img src="../assets/logos/pro-tv.png"></a>
+          </li>
+          <li>
+            <a href="#"><img src="../assets/logos/pro-2.png"></a>
+          </li>
+          <li>
+            <a href="#"><img src="../assets/logos/pro-x.png"></a>
+          </li>
+          <li>
+            <a href="#"><img src="../assets/logos/pro-gold.png"></a>
+          </li>
+          <li>
+            <a href="#"><img src="../assets/logos/pro-cinema.png"></a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -30,7 +53,8 @@ export default {
   name: 'Header',
   data () {
     return {
-      context: {}
+      context: {},
+      activeMenu: 0
     }
   },
   mounted () {
@@ -43,6 +67,10 @@ export default {
         console.log(JSON.parse(JSON.stringify(response.data)))
         this.context = response.data.context
       })
+    },
+    setActiveMenu (id) {
+      console.log('setting', id, 'active')
+      this.activeMenu = id
     }
   }
 }
@@ -53,7 +81,7 @@ export default {
   padding: 0;
 }
 #header {
-  background: #1446cb url('../assets/menu-bg.png') no-repeat;
+  background: #1446cb url('../assets/bg2.jpg') no-repeat;
   background-size: cover;
 }
 
@@ -70,19 +98,72 @@ export default {
 }
 
 .top {
-  margin-top: 23px;
-  padding-bottom: 23px;
+  margin-top: 25px;
+  padding-bottom: 21px;
   height: 60px;
 }
 
 .bottom {
   clear: both;
-  outline: 1px solid white;
+  background: rgba(0,0,0,0.5);
+}
+
+.bottom .container-wide {
+  width: 1024px;
+  position: relative;
+  left: -5px;
 }
 
 .bottom p {
   margin: 0;
   padding: 0;
+}
+
+.bottom ul {
+  margin: 0;
+  padding: 0;
+}
+
+.bottom li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0;
+}
+
+.bottom li a {
+  display: inline-block;
+  padding: 20px 52px;
+  margin: 0;
+  font-size: 18px;
+}
+
+.bottom li:hover {
+  background: #f22061;
+}
+
+.bottom .shows {
+  margin-bottom: 10px;
+  margin-left: -20px;
+}
+
+.bottom .shows li {
+  height: 40px;
+  padding: 2px 0;
+}
+.bottom .shows li a {
+  display: inline-block;
+  width: 230px;
+  padding: 5px 15px;
+}
+
+.bottom .shows li:hover {
+  background: none;
+}
+
+.bottom li a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+  /* border-bottom: 2px solid white; */
 }
 
 .search input {
@@ -112,19 +193,20 @@ export default {
 .drop-down-menus {
   position: relative;
   top: -29px;
+  left: 25px;
 }
 
 .drop-down-menus ul {
   display: inline-block;
   margin: 0;
   padding: 0;
-  margin-bottom: -56px;
+  margin-bottom: -65px;
 }
 
 .drop-down-menus ul > li {
   list-style-type: none;
   margin: 0;
-  padding: 40px 32px 26px;
+  padding: 35px 22px 33px;
 }
 
 .drop-down-menus ul > li i {
@@ -140,7 +222,7 @@ export default {
 }
 
 .drop-down-menus ul > li:hover {
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.5);
   cursor: pointer;
 }
 
@@ -153,6 +235,6 @@ a {
 }
 
 .social img {
-  margin: 5px 7.5px;
+  margin: 0px 7.5px;
 }
 </style>
