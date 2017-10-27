@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <AppHeader/>
-    <router-view/>
+    <div id="content">
+      <router-view/>
+    </div>
     <AppFooter/>
   </div>
 </template>
@@ -27,5 +29,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: white;
   background: black;
+}
+#content {
+  padding-top: 200px;
 }
 </style>
