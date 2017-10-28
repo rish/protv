@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="home">
     <div v-for="(content, index) in contents">
       <div
         v-if="content.aclass === 'video'"
@@ -30,7 +30,7 @@
       </div>
       <!-- /video content -->
       <div
-        v-if="content.itype === 'section' && !content.hasOwnProperty('box')"
+        v-if="content.itype === 'section' && !content.hasOwnProperty('box') && index !== 9 && index !== 10"
         :style="[content.hasOwnProperty('background') ? { 'background-image': 'url(' + require('../assets/bg2.jpg') + ')' } : null]"
         :class="{ 'background-wide': content.hasOwnProperty('background') }"
       >
@@ -62,6 +62,14 @@
       <div class="b1 bpad" v-if="index === 8">
         <img src="../assets/temp/b-horizontal.png">
       </div>
+
+      <div class="b1 bpad" v-if="index === 6">
+        <img src="../assets/temp/b-large.jpg">
+      </div>
+
+      <div class="plugs-container" v-if="index === 9 || index === 10">
+        <Plugs :plugs="content"/>
+      </div>
     </div>
     <!-- /contents -->
   </div>
@@ -70,12 +78,14 @@
 <script>
 import ProCarousel from '@/components/ProCarousel'
 import Articles from '@/components/Articles'
+import Plugs from '@/components/Plugs'
 /* global axios */
 export default {
   name: 'Home',
   components: {
     ProCarousel,
-    Articles
+    Articles,
+    Plugs
   },
   data () {
     return {
@@ -132,6 +142,10 @@ a {
 }
 
 .container {
+}
+
+#home {
+  padding-bottom: 50px;
 }
 
 .backdrop {
@@ -230,6 +244,7 @@ a {
 
 .carousel-holder {
   position: relative;
+  padding-bottom: 30px;
 }
 
 .section.title {
@@ -263,15 +278,19 @@ a {
 .articles-container {
   background: #131313;
   overflow: auto;
-  padding: 50px 0;
+  padding: 60px 0;
 }
 
 .bpad {
-  padding-top: 80px;
+  padding-top: 44px;
 }
 
 .b-vertical {
   margin-top: -75px;
+}
+
+.plugs-container {
+  padding-bottom: 30px;
 }
 
 </style>
