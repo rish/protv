@@ -34,15 +34,21 @@
         :style="[content.hasOwnProperty('background') ? { 'background-image': 'url(' + require('../assets/bg2.jpg') + ')' } : null]"
         :class="{ 'background-wide': content.hasOwnProperty('background') }"
       >
-        <div class="container">
+        <div class="container carousel-holder">
           <h3
             class="section title"
             :style="[content.hasOwnProperty('title_color') ? { 'color': content.title_color } : null]"
           >
-            <img class="title-icon" v-if="content.icon" :src="content.icon">
             {{ content.title }}
           </h3>
-          <ProCarousel :items="content.items" :id="content.id" :grid="content.grid" meta="true" synopsis="true" playIcon="true" />
+          <img class="title-icon" v-if="content.icon" src="../assets/temp/logo-special.png">
+          <a v-if="content.icon" class="special-btn" href="#">Vezi mai multe &raquo;</a>
+          <div :class="{'pull-left': index === 4}">
+            <ProCarousel :items="content.items" :id="content.id" :grid="content.grid" meta="true" synopsis="true" playIcon="true" />
+          </div>
+          <div class="b-vertical" v-if="index === 4">
+            <img src="../assets/temp/b-vertical.jpg">
+          </div>
         </div>
       </div>
       <!-- /section -->
@@ -222,15 +228,33 @@ a {
   padding-top: 80px;
 }
 
+.carousel-holder {
+  position: relative;
+}
+
 .section.title {
   font-size: 45px;
   font-weight: 200;
   text-transform: uppercase;
   padding: 20px 10% 30px 140px;
 }
+
 .title-icon {
-  height: 35px;
+  height: 50px;
+  position: absolute;
+  top: 43px;
+  left: 100px;
 }
+
+.special-btn {
+  position: absolute;
+  top: 43px;
+  right: 150px;
+  background: #bc0d0d;
+  color: white;
+  padding: 5px 10px;
+}
+
 .background-wide {
   background-repeat: no-repeat;
   background-size: 100%;
@@ -244,6 +268,10 @@ a {
 
 .bpad {
   padding-top: 80px;
+}
+
+.b-vertical {
+  margin-top: -75px;
 }
 
 </style>

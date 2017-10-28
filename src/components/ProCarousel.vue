@@ -1,18 +1,19 @@
 <template>
-  <div class="row component-container">
+  <div class="row component-container" :class="{'grid-carousel': rows === '2'}">
     <div class="carousel slide" :id="carouselId" data-interval="false">
       <div class="carousel-inner">
-        <div class="item" v-for="i in Math.ceil(items.length / columns)" :class="{ active: (i === 1) }">
-          <div v-for="item in items.slice((i - 1) * columns, i * columns)">
+        <div class="item" v-for="i in Math.ceil(items.length / (columns * rows))" :class="{ active: (i === 1) }">
+          <div v-for="item in items.slice((i - 1) * (columns * rows), i * (columns * rows))">
             <div :class="{
               'col-md-4': columns % 3 === 0,
-              'col-md-3': columns % 4 === 0
+              'col-md-3': columns % 4 === 0,
+              'grid-thumbs': rows ==='2'
               }">
               <div class="thumb"
                 :style="{
                 'background-image': 'url(' + item.poster + ')',
-                'height': columns % 3 === 0 ? '150px' : '96px',
-                'width': columns % 3 === 0 ? '267px' : '170px'
+                'height': (columns === '3' || rows === '2') ? '150px' : '96px',
+                'width': (columns === '3' || rows === '2') ? '267px' : '170px'
                 }"
                 >
                 <div v-if="columns === 4">
@@ -37,7 +38,7 @@
                     {{ item.views }} views
                   </div>
                 </div>
-                <div v-if="columns === '3'">
+                <div v-if="columns === '3' || rows === '2'">
                   <h5 class="title clearfix">{{ item.title | truncateOnWord(20) }}</h5>
                 </div>
                 <div v-else>
@@ -69,6 +70,7 @@ export default {
   props: ['items', 'id', 'grid', 'cols', 'meta', 'playIcon', 'synopsis'],
   data () {
     const gridConfig = this.grid.split('_')
+    console.log(gridConfig)
     const carouselId = 'carousel-' + this.id
     return {
       carouselId: carouselId,
@@ -84,7 +86,7 @@ export default {
   },
   computed: {
     widthClass () {
-      return this.columns % 3 === 0 ? 'wide' : 'narrow'
+      return this.columns % 3 === 0 || this.rows === '2' ? 'wide' : 'narrow'
     },
     truncate (text, length) {
       return text.substring(0, length) + ' ...'
@@ -117,6 +119,25 @@ export default {
 
 .row.component-container {
   padding-bottom: 30px;
+}
+
+.grid-carousel {
+  width: 800px;
+  padding: 0;
+  padding-left: 70px;
+}
+.grid-thumbs {
+  width: 280px;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.grid-carousel .carousel-controls .left {
+  left: 10px;
+}
+
+.grid-carousel .carousel-controls {
+  top: 180px;
 }
 
 .carousel-inner .item {
