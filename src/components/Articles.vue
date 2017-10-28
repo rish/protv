@@ -1,8 +1,11 @@
 <template>
   <div class="container">
     <article>
-      <div v-for="(item, index) in items">
-        <div class="section-container">
+      <div class="section-wrapper" v-for="(item, index) in items">
+        <div class="section-container" :class="{
+          'shadow-large': item.highlight,
+          'shadow-small': !item.highlight && item.featured
+          }">
           <section
           :class="{
             highlight: item.highlight,
@@ -79,10 +82,26 @@ article {
   column-gap: 20px;
 }
 
+.section-wrapper {
+  padding-top: 15px;
+}
+
+.b {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
 .section-container {
   width: 300px;
+  margin-bottom: 5px;
+}
+
+.shadow-large {
+  box-shadow: 0px 2px 30px rgba(0,0,0,0.5);
+}
+
+.shadow-small {
   box-shadow: 0px 2px 3px rgba(0,0,0,0.5);
-  margin-bottom: 15px;
 }
 
 section {
@@ -95,6 +114,7 @@ section .title {
   font-size: 15px;
   padding: 10px;
   margin: 0;
+  line-height: 22px;
 }
 
 .highlight {
@@ -105,7 +125,7 @@ section .title {
   background-size: cover;
   background-repeat: no-repeat;
   width: 300px;
-  height: 165px;
+  height: 164px;
 }
 
 .featured .thumb {
@@ -117,6 +137,7 @@ section .title {
   font-size: 27px;
   line-height: 33px;
   padding: 20px;
+  font-weight: 400;
 }
 
 .extra {
@@ -124,10 +145,11 @@ section .title {
   font-weight: 300;
   padding: 10px;
   background: #131313;
+  width: 300px;
+  height: 78px;
 }
 
 .b {
-  margin-bottom: 15px;
 }
 
 .articles-btn {
