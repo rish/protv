@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row component-container">
     <div class="carousel slide" :id="carouselId" data-interval="false">
       <div class="carousel-inner">
         <div class="item" v-for="i in Math.ceil(items.length / columns)" :class="{ active: (i === 1) }">
@@ -32,7 +32,12 @@
                     {{ item.views }} views
                   </div>
                 </div>
-                <h5 class="title clearfix">{{ item.title | truncateOnWord(19) }}</h5>
+                <div v-if="columns === '3'">
+                  <h5 class="title clearfix">{{ item.title | truncateOnWord(20) }}</h5>
+                </div>
+                <div v-else>
+                  <h5 class="title clearfix">{{ item.title | truncateOnWord(40) }}</h5>
+                </div>
                 <div v-if="synopsis" class="synopsis-container">
                   <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }}</p>
                 </div>
@@ -105,6 +110,10 @@ export default {
   padding-right: 30px;
 }
 
+.row.component-container {
+  padding-bottom: 30px;
+}
+
 .carousel-inner .item {
   padding: 0 10%;
 }
@@ -115,13 +124,13 @@ export default {
 }
 
 .carousel-controls {
-  position: relative;
-  top: -140px;
+  position: absolute;
+  top: 25px;
+  width: 100%;
 }
 
 .carousel-controls.tall {
-  position: relative;
-  top: -300px;
+  top: 30px;
 }
 
 .carousel-controls ul {
@@ -131,7 +140,7 @@ export default {
 }
 
 .carousel-controls .left, .carousel-controls .right {
-  position: relative;
+  position: absolute;
 }
 
 .carousel-controls .left {
@@ -139,14 +148,14 @@ export default {
 }
 
 .carousel-controls .right {
-  right: 60px;
+  right: 50px;
 }
 
 .thumb {
   width: 100%;
   height: 150px;
   background-size: cover;
-  background-position: 0% 0%;
+  background-position: 50% 25%;
   background-repeat: no-repeat;
   position: relative;
 }
