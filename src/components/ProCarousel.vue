@@ -1,6 +1,6 @@
 <template>
   <div class="row component-container" :class="{'grid-carousel': rows === '2'}">
-    <div class="carousel slide" :id="carouselId" data-interval="false">
+    <div class="carousel slide" :id="carouselId" data-ride="carousel" data-interval="5000">
       <div class="carousel-inner">
         <div class="item" v-for="i in Math.ceil(items.length / (columns * rows))" :class="{ active: (i === 1) }">
           <div v-for="item in items.slice((i - 1) * (columns * rows), i * (columns * rows))">
@@ -65,6 +65,7 @@
   </div>
 </template>
 <script>
+/* globals $ */
 export default {
   name: 'ProCarousel',
   props: ['items', 'id', 'grid', 'cols', 'meta', 'playIcon', 'synopsis'],
@@ -83,6 +84,7 @@ export default {
   },
   mounted () {
     // console.log('ProCarousel mounted', this)
+    $(this.carouselIdRef).carousel()
   },
   computed: {
     widthClass () {
