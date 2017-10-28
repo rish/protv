@@ -21,6 +21,11 @@
                     <span>1:23</span>
                   </div>
                 </div>
+                <div v-else>
+                  <div class="play-icon">
+                    <img src="../assets/icons/thumbnail-play.png">
+                  </div>
+                </div>
               </div>
               <div :class="widthClass">
                 <div v-if="meta" class="meta row">
@@ -158,6 +163,16 @@ export default {
   background-position: 50% 25%;
   background-repeat: no-repeat;
   position: relative;
+}
+
+.play-icon {
+  position: absolute;
+  top: 35%;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
 .narrow {
