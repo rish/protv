@@ -8,7 +8,7 @@
           <div class="video-container" :style="{ 'background-image': 'url(' + content.items[0].poster + ')' }">
             <div class="overlay">
               <div class="row">
-                <div class="col-md-offset-8 col-md-4">
+                <div class="content">
                   <h2 class="title">{{ content.items[0].title }}</h2>
                   <h3 class="subheading">Emisiunea Fort Boyard vine la ProTV.</h3>
                   <p>{{ content.items[0].description }}</p>
@@ -152,13 +152,19 @@ a {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
 }
 
+.video-container .content {
+  width: 250px;
+  float: right;
+  margin-right: 50px;
+}
+
 .video-container .title {
   font-size: 20px;
   border-bottom: 1px solid white;
   padding: 0 10px 10px 0;
   margin-right: 20px;
   text-transform: uppercase;
-  font-weight:300;
+  font-weight: 200;
   padding-top:20px
 }
 
@@ -168,14 +174,16 @@ a {
 }
 
 .video-container .subheading {
-  font-size: 25px; font-weight: 400;
+  font-size: 25px;
+  font-weight: 400;
 }
 
 .video-container p {
   font-size: 15px;
   margin: 0 20px 0 0;
   text-align: justify;
-  font-weight: 300;
+  font-weight: 400;
+  line-height: 17px;
 }
 
 .video-container .more-videos-btn {
@@ -218,7 +226,7 @@ a {
   font-size: 45px;
   font-weight: 200;
   text-transform: uppercase;
-  padding: 20px 10% 30px 13%;
+  padding: 20px 10% 30px 140px;
 }
 .title-icon {
   height: 35px;
