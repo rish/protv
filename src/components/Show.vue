@@ -9,6 +9,9 @@
         :tags="tags"
         />
       </div>
+      <div class="container">
+        <Banner type="horizontal" padding="50"/>
+      </div>
     </div>
   </div>
 </template>
@@ -16,6 +19,7 @@
 import Home from './Home'
 import ShowHeader from './ShowHeader'
 import MediaPlayer from './MediaPlayer'
+import Banner from './Banner'
 
 export default {
 /* global axios */
@@ -24,7 +28,8 @@ export default {
   components: {
     ShowHeader,
     MediaPlayer,
-    Home
+    Home,
+    Banner
   },
   data () {
     return {
@@ -78,6 +83,7 @@ export default {
 #show > .container {
   margin-bottom: 10px;
   width: 1238px;
+  padding: 0;
 }
 
 #related {
@@ -89,6 +95,6 @@ export default {
 }
 
 .media-player-container {
-  margin: 0 auto;
+  margin: -80px auto 10px;
 }
 </style>
