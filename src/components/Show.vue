@@ -12,6 +12,43 @@
       <div class="container">
         <Banner type="horizontal" padding="50"/>
       </div>
+
+      <div class="container" v-if="home.length">
+        <ProCarousel title="Exclusive Online" :items="home[3].items" id="exclusive-online" :grid="home[3].grid" meta="true" synopsis="true"/>
+      </div>
+
+      <div class="container" v-if="home.length">
+        <ProCarousel title="Newest Uploads" :items="home[3].items" id="newest-uploads" :grid="home[3].grid" meta="true" synopsis="true"/>
+      </div>
+
+      <div class="container">
+        <Banner type="horizontal" padding="50"/>
+      </div>
+
+    </div>
+
+    <div class="fluid-container"
+      :style="{'background-image': 'url(' + require('../assets/temp/show-bg-wide.jpg') + ')'}"
+      >
+      <div class="container" v-if="home.length">
+        <ProCarousel title="Recommended For You" :items="home[6].items" id="recommended" :grid="home[6].grid" meta="true" synopsis="true"/>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="container">
+        <Banner type="large" padding="70"/>
+      </div>
+
+      <div class="container" v-if="home.length">
+        <ProCarousel title="Full Episodes" :items="home[6].items" id="full-episodes" :grid="home[6].grid" meta="true" synopsis="true"/>
+      </div>
+    </div>
+
+    <div class="articles">
+      <Articles :articles="home[8].items"/>
+    </div>
     </div>
   </div>
 </template>
@@ -20,6 +57,8 @@ import Home from './Home'
 import ShowHeader from './ShowHeader'
 import MediaPlayer from './MediaPlayer'
 import Banner from './Banner'
+import ProCarousel from '@/components/ProCarousel'
+import Articles from '@/components/Articles'
 
 export default {
 /* global axios */
@@ -29,7 +68,9 @@ export default {
     ShowHeader,
     MediaPlayer,
     Home,
-    Banner
+    Banner,
+    ProCarousel,
+    Articles
   },
   data () {
     return {
@@ -44,7 +85,8 @@ export default {
         'Country of Pro.',
         'Available in..',
         'Available for..'
-      ]
+      ],
+      home: []
     }
   },
   mounted () {
@@ -53,6 +95,9 @@ export default {
   methods: {
     getData () {
       const url = 'http://protv.vidnt.com/page/' + this.$route.params.name + '/'
+      const home = 'http://protv.vidnt.com/page/home/'
+
+      // Get show context
       axios.get(url).then((response) => {
         // console.log('Show', JSON.parse(JSON.stringify(response.data)))
         this.content = response.data.content.areas[0]
@@ -62,6 +107,12 @@ export default {
         this.video = this.content.items[0]
 
         this.getContext()
+      })
+
+      // Get home context
+      axios.get(home).then((response) => {
+        console.log('Phone home', response)
+        this.home = response.data.content.areas
       })
     },
     getContext () {
@@ -96,5 +147,9 @@ export default {
 
 .media-player-container {
   margin: -80px auto 10px;
+}
+
+.articles {
+  margin-bottom: 90px;
 }
 </style>

@@ -1,4 +1,5 @@
 <template>
+<div class="articles-container">
   <div class="container">
     <article>
       <div class="section-wrapper" v-for="(item, index) in items">
@@ -30,6 +31,7 @@
       <a href="#" class="articles-btn">Mai multe stiri</a>
     </div>
   </div>
+</div>
 </template>
 <script>
 export default {
@@ -73,6 +75,13 @@ export default {
 }
 </script>
 <style scoped>
+
+.articles-container {
+  background: #131313;
+  overflow: auto;
+  padding: 60px 0;
+}
+
 .container {
   width: 976px;
 }

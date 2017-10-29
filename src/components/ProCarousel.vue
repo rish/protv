@@ -1,5 +1,8 @@
 <template>
   <div class="row component-container" :class="{'grid-carousel': rows === '2'}">
+    <div v-if="title">
+      <h2 class="section-title">{{ title }}</h2>
+    </div>
     <div class="carousel slide" :id="carouselId" data-ride="carousel" data-interval="5000">
       <div class="carousel-inner">
         <div class="item" v-for="i in Math.ceil(items.length / (columns * rows))" :class="{ active: (i === 1) }">
@@ -68,7 +71,7 @@
 /* globals $ */
 export default {
   name: 'ProCarousel',
-  props: ['items', 'id', 'grid', 'cols', 'meta', 'playIcon', 'synopsis'],
+  props: ['title', 'items', 'id', 'grid', 'cols', 'meta', 'playIcon', 'synopsis'],
   data () {
     const gridConfig = this.grid.split('_')
     console.log(gridConfig)
@@ -113,6 +116,13 @@ export default {
 }
 </script>
 <style scoped>
+
+.section-title {
+  font-size: 45px;
+  font-weight: 200;
+  text-transform: uppercase;
+  padding: 20px 10% 30px 123px;
+}
 
 .row {
   padding-left: 30px;
