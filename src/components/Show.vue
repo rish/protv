@@ -3,7 +3,11 @@
     <div class="container">
       <ShowHeader v-if="header.hasOwnProperty('head')" :poster="header.head.poster"/>
       <div class="media-player-container">
-        <MediaPlayer :items="items" related-count="5" />
+        <MediaPlayer
+        :items="items"
+        related-count="5"
+        :tags="tags"
+        />
       </div>
     </div>
   </div>
@@ -28,7 +32,14 @@ export default {
       items: [],
       head: {},
       header: {},
-      video: {}
+      video: {},
+      tags: [
+        'Genre',
+        'Ap..Violence',
+        'Country of Pro.',
+        'Available in..',
+        'Available for..'
+      ]
     }
   },
   mounted () {
