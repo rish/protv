@@ -3,7 +3,9 @@
     <div class="container">
       <div class="top">
         <i class="glyphicon glyphicon-menu-hamburger pull-left"></i>
-        <img class="logo pull-left" src="../assets/logo.png">
+        <router-link to="/">
+          <img class="logo pull-left" src="../assets/logo.png">
+        </router-link>
         <div class="search pull-left">
           <input type="text" placeholder="Search">
         </div>
