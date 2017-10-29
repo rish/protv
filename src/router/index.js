@@ -6,6 +6,7 @@ import ShowExtended from '@/components/ShowExtended'
 import Channel from '@/components/Channel'
 import Episodes from '@/components/Episodes'
 import ShowPanel from '@/components/ShowPanel'
+import ShowNews from '@/components/ShowNews'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/show/:name/panel',
       name: 'ShowPanel',
       component: ShowPanel
+    },
+    {
+      path: '/show/:name/news',
+      name: 'ShowNews',
+      component: ShowNews
     }
   ]
 })
