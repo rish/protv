@@ -24,17 +24,17 @@
     <div class="bottom">
       <div class="container" :class="{ 'container-wide': activeMenu === 0 }">
         <ul class="shows" v-if="activeMenu === 1">
-          <li><a href="#">Romanii au Telent</a></li>
-          <li><a href="#">Vocea Romaniei</a></li>
-          <li><a href="#">Vocea Romaniei Junior</a></li>
-          <li><a href="#">Gospodar fara pereche</a></li>
-          <li><a href="#">Masterchef</a></li>
-          <li><a href="#">Ferma Vedetelor</a></li>
-          <li><a href="#">Pe bunu?</a></li>
-          <li><a href="#">Fort Boyard</a></li>
-          <li><a href="#">Ce spin romanii?</a></li>
-          <li><a href="#">Visuri la cheie</a></li>
-          <li><a href="#">Jocuri de celebritate</a></li>
+          <li><router-link to="/show/voice_home">Romanii au Telent</router-link></li>
+          <li><router-link to="/show/voice_home">Vocea Romaniei</router-link></li>
+          <li><router-link to="/show/voice_home">Vocea Romaniei Junior</router-link></li>
+          <li><router-link to="/show/voice_home">Gospodar fara pereche</router-link></li>
+          <li><router-link to="/show/voice_home">Masterchef</router-link></li>
+          <li><router-link to="/show/voice_home">Ferma Vedetelor</router-link></li>
+          <li><router-link to="/show/voice_home">Pe bunu?</router-link></li>
+          <li><router-link to="/show/voice_home">Fort Boyard</router-link></li>
+          <li><router-link to="/show/voice_home">Ce spin romanii?</router-link></li>
+          <li><router-link to="/show/voice_home">Visuri la cheie</router-link></li>
+          <li><router-link to="/show/voice_home">Jocuri de celebritate</router-link></li>
         </ul>
         <ul v-else>
           <li>
