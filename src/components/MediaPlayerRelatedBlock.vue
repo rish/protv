@@ -23,7 +23,7 @@ export default {
 <style scoped>
 .block {
   clear: both;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
 }
 .active {

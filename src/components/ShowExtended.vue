@@ -1,56 +1,42 @@
 <template>
-  <div id="show">
-    <div class="container">
-      <ShowHeader v-if="header.hasOwnProperty('head')" :poster="header.head.poster"/>
+<div id="show">
+
+  <div class="container">
+    <div class="backdrop-container">
       <div class="media-player-container">
         <MediaPlayer
         :items="items"
-        related-count="5"
+        :related-count=12
         :tags="tags"
+        showSponsored="false"
         />
       </div>
-      <div class="container">
-        <Banner type="horizontal" padding="50"/>
-      </div>
-
-      <div class="container" v-if="home.length">
-        <ProCarousel title="Exclusive Online" :items="home[3].items" id="exclusive-online" :grid="home[3].grid" meta="true" synopsis="true"/>
-      </div>
-
-      <div class="container" v-if="home.length">
-        <ProCarousel title="Newest Uploads" :items="home[3].items" id="newest-uploads" :grid="home[3].grid" meta="true" synopsis="true"/>
-      </div>
-
-      <div class="container">
-        <Banner type="horizontal" padding="50"/>
-      </div>
-
-    </div>
-
-    <div class="fluid-container"
-      :style="{'background-image': 'url(' + require('../assets/temp/show-bg-wide.jpg') + ')'}"
-      >
-      <div class="container" v-if="home.length">
-        <ProCarousel title="Recommended For You" :items="home[6].items" id="recommended" :grid="home[6].grid" meta="true" synopsis="true"/>
-      </div>
-    </div>
-
-    <div class="container">
-
-      <div class="container">
-        <Banner type="large" padding="70"/>
-      </div>
-
-      <div class="container" v-if="home.length">
-        <ProCarousel title="Full Episodes" :items="home[6].items" id="full-episodes" :grid="home[6].grid" meta="true" synopsis="true"/>
-      </div>
-    </div>
-
-    <div class="articles" v-if="home.length">
-      <Articles :articles="home[8].items"/>
-    </div>
     </div>
   </div>
+
+  <div class="container">
+    <Banner type="horizontal" padding="50"/>
+  </div>
+
+  <div class="container" v-if="home.length">
+    <ProCarousel title="Top Viewed" :items="home[3].items" id="top-viewed" :grid="home[3].grid" meta="true" synopsis="true"/>
+
+    <ProCarousel title="Related" :items="home[3].items" id="related" :grid="home[3].grid" meta="true" synopsis="true"/>
+  </div>
+
+  <div class="container">
+    <Banner type="horizontal" padding="50"/>
+  </div>
+
+  <div class="fluid-container"
+    :style="{'background-image': 'url(' + require('../assets/bg2.jpg') + ')'}"
+    >
+    <div class="container" v-if="home.length">
+      <ProCarousel title="Recommended For You" :items="home[6].items" id="recommended" :grid="home[6].grid" meta="true" synopsis="true"/>
+    </div>
+  </div>
+
+</div>
 </template>
 <script>
 import Home from './Home'
@@ -63,7 +49,7 @@ import Articles from '@/components/Articles'
 export default {
 /* global axios */
 
-  name: 'Show',
+  name: 'ShowExtended',
   components: {
     ShowHeader,
     MediaPlayer,
@@ -122,6 +108,10 @@ export default {
         this.header = response.data
         // console.log('HEADER', this)
       })
+    },
+    doubleUp (arr) {
+      arr = arr.push(arr)
+      return arr
     }
   }
 }
@@ -137,6 +127,13 @@ export default {
   padding: 0;
 }
 
+.backdrop-container {
+  background: url('../assets/temp/banners-backdrop.jpg') no-repeat;
+  background-size: contain;
+  width: 1240px;
+  height: 800px;
+}
+
 #related {
   height: 500px;
   background: white;
@@ -146,10 +143,11 @@ export default {
 }
 
 .media-player-container {
-  margin: -80px auto 10px;
+  margin-top: -20px;
+  padding-top: 150px;
 }
 
-.articles {
-  margin-bottom: 90px;
+.fluid-container {
+  margin-bottom: 30px;
 }
 </style>

@@ -32,9 +32,9 @@
           <li><router-link to="/show/voice_home">Ferma Vedetelor</router-link></li>
           <li><router-link to="/show/voice_home">Pe bunu?</router-link></li>
           <li><router-link to="/show/voice_home">Fort Boyard</router-link></li>
-          <li><router-link to="/show/voice_home">Ce spin romanii?</router-link></li>
-          <li><router-link to="/show/voice_home">Visuri la cheie</router-link></li>
-          <li><router-link to="/show/voice_home">Jocuri de celebritate</router-link></li>
+          <li><router-link to="/show-extended/voice_home">Ce spin romanii?</router-link></li>
+          <li><router-link to="/show-extended/voice_home">Visuri la cheie</router-link></li>
+          <li><router-link to="/show-extended/voice_home">Jocuri de celebritate</router-link></li>
         </ul>
         <ul v-else>
           <li>
