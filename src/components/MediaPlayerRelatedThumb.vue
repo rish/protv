@@ -49,6 +49,7 @@ export default {
 
 .duration {
   background: #7f7f7f;
+  color: white;
 }
 
 .active {

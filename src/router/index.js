@@ -8,6 +8,7 @@ import Episodes from '@/components/Episodes'
 import ShowPanel from '@/components/ShowPanel'
 import ShowNews from '@/components/ShowNews'
 import Search from '@/components/Search'
+import Article from '@/components/Article'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/article',
+      name: 'Article',
+      component: Article
     }
   ]
 })

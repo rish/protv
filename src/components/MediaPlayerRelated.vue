@@ -1,7 +1,7 @@
 <template>
   <div id="related">
-    <div v-for="item in items.slice(0,limit+1)">
-      <MediaPlayerRelatedBlock :item="item"/>
+    <div v-for="item in items.slice(0,limitCount())">
+      <MediaPlayerRelatedBlock :item="item" :barebones="barebones"/>
     </div>
   </div>
 </template>
@@ -20,9 +20,11 @@ export default {
   },
   props: [
     'videoItems',
-    'limit'
+    'limit',
+    'barebones'
   ],
   mounted () {
+    console.log('related', this.videoItems)
     this.processData()
   },
   watch: {
@@ -36,9 +38,15 @@ export default {
       // Populate some vm data here for now
       if (this.videoItems.length) {
         this.items = this.items.filter(item => item.thumbnail)
-        this.items[0].active = true
-        this.items[3].sponsored = true
+        if (!this.barebones) {
+          this.items[0].active = true
+          this.items[3].sponsored = true
+        }
       }
+    },
+    limitCount () {
+      let limitCount = this.barebones ? this.limit : this.limit + 1
+      return limitCount
     }
   }
 }

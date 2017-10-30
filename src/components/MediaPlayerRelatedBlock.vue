@@ -1,8 +1,12 @@
 <template>
-  <div class="block" :class="{active: item.active, sponsored: item.sponsored}">
+  <div v-if="!barebones" class="block" :class="{active: item.active, sponsored: item.sponsored}">
     <MediaPlayerRelatedThumb :image="item.thumbnail" :item="item" :active="item.active" />
     <MediaPlayerRelatedTitle :title="item.title" :active="item.active"/>
     <img v-if="item.sponsored" class="logo" src="../assets/temp/sponsored-logo.png">
+  </div>
+  <div v-else class="block">
+    <MediaPlayerRelatedThumb :image="item.thumbnail" :item="item" />
+    <MediaPlayerRelatedTitle :title="item.title"/>
   </div>
 </template>
 <script>
@@ -16,7 +20,8 @@ export default {
     MediaPlayerRelatedTitle
   },
   props: [
-    'item'
+    'item',
+    'barebones'
   ]
 }
 </script>
