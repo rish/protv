@@ -45,6 +45,7 @@ export default {
   padding: 3px;
   font-size: 8px;
   font-weight: 500;
+  color: white;
 }
 
 .duration {

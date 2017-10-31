@@ -23,6 +23,11 @@ export default {
   font-weight: 300;
   padding-right: 10px;
 }
+
+.title:hover {
+  color: black;
+  text-decoration: none;
+}
 .active {
   color: white;
   font-weight: 500;

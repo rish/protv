@@ -1,13 +1,17 @@
 <template>
-  <div v-if="!barebones" class="block" :class="{active: item.active, sponsored: item.sponsored}">
+<div v-if="!barebones" class="block" :class="{active: item.active, sponsored: item.sponsored}">
+  <router-link to="/show-extended/voice_home">
     <MediaPlayerRelatedThumb :image="item.thumbnail" :item="item" :active="item.active" />
     <MediaPlayerRelatedTitle :title="item.title" :active="item.active"/>
     <img v-if="item.sponsored" class="logo" src="../assets/temp/sponsored-logo.png">
-  </div>
-  <div v-else class="block">
+  </router-link>
+</div>
+<div v-else class="block">
+  <router-link to="/show-extended/voice_home">
     <MediaPlayerRelatedThumb :image="item.thumbnail" :item="item" />
     <MediaPlayerRelatedTitle :title="item.title"/>
-  </div>
+  </router-link>
+</div>
 </template>
 <script>
 import MediaPlayerRelatedThumb from './MediaPlayerRelatedThumb'
@@ -26,12 +30,18 @@ export default {
 }
 </script>
 <style scoped>
+a:hover {
+  text-decoration: none;
+}
 .block {
   clear: both;
   overflow: auto;
   position: relative;
 }
-.active {
+.block:hover {
+  background: #efefef;
+}
+.active, .active:hover {
   background: #001968;
 }
 
