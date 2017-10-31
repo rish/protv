@@ -3,6 +3,7 @@
   <div class="container">
     <article>
       <div class="section-wrapper" v-for="(item, index) in items">
+        <router-link to="/show/voice_home/news">
         <div class="section-container" :class="{
           'shadow-large': item.highlight,
           'shadow-small': !item.highlight && item.featured
@@ -22,6 +23,7 @@
             <p v-html="$options.filters.truncateOnWord(item.synopsis, 70)"></p>
           </div>
         </div>
+        </router-link>
         <section class="b" v-if="index === 3">
           <img src="../assets/temp/b-square.jpg">
         </section>
@@ -127,6 +129,7 @@ section .title {
   font-size: 15px;
   padding: 10px;
   margin: 0;
+  height: 95px;
   line-height: 22px;
 }
 
@@ -151,6 +154,7 @@ section .title {
   line-height: 33px;
   padding: 20px;
   font-weight: 400;
+  height: 205px;
 }
 
 .extra {
@@ -175,6 +179,11 @@ section .title {
   text-align:center;
   display: inline-block;
   margin-top: 50px;
+}
+
+a, a:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 </style>

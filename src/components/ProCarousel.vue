@@ -7,6 +7,7 @@
       <div class="carousel-inner">
         <div class="item" v-for="i in Math.ceil(items.length / (columns * rows))" :class="{ active: (i === 1) }">
           <div v-for="item in items.slice((i - 1) * (columns * rows), i * (columns * rows))">
+            <router-link class="link" to="/show-extended/voice_home">
             <div :class="{
               'col-md-4': columns % 3 === 0,
               'col-md-3': columns % 4 === 0,
@@ -53,6 +54,7 @@
 
               </div>
             </div>
+            </router-link>
           </div>
         </div>
       </div>
@@ -263,6 +265,11 @@ export default {
   font-size: 12px;
   line-height: 14px;
   font-weight: 300;
+}
+
+.link, .link:hover {
+  color: inherit;
+  text-decoration: none;
 }
 
 </style>
