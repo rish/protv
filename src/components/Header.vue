@@ -11,7 +11,7 @@
         </div>
         <div class="drop-down-menus pull-left">
           <ul v-for="(menus, index) in context.header.selectors">
-            <li v-on:mouseover="setActiveMenu(index)">{{ menus.title }} <i class="glyphicon glyphicon-menu-down"></i></li>
+            <li v-on:click="setActiveMenu(index)">{{ menus.title }} <i class="glyphicon glyphicon-menu-down"></i></li>
           </ul>
         </div>
         <div class="social pull-right">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="bottom">
+    <div class="bottom" :class="{active: displayMenu }">
       <div class="container" :class="{ 'container-wide': activeMenu === 0 }">
         <ul class="shows" v-if="activeMenu === 1">
           <li><router-link to="/show/voice_home">Romanii au Telent</router-link></li>
@@ -64,7 +64,8 @@ export default {
   data () {
     return {
       context: {},
-      activeMenu: 0
+      activeMenu: 0,
+      displayMenu: false
     }
   },
   mounted () {
@@ -79,8 +80,15 @@ export default {
       })
     },
     setActiveMenu (id) {
-      console.log('setting', id, 'active')
+      // console.log('setting', id, 'active')
       this.activeMenu = id
+      this.displayMenu = true
+
+      // Disable hiding menu delay for now
+      // let _this = this
+      // setTimeout(function () {
+      //   _this.displayMenu = false
+      // }, 5000)
     }
   }
 }
@@ -119,6 +127,11 @@ export default {
 .bottom {
   clear: both;
   background: rgba(0,0,0,0.5);
+  display: none;
+}
+
+.bottom.active {
+  display: block;
 }
 
 .bottom .container-wide {
