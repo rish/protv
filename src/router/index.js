@@ -55,7 +55,7 @@ export default new Router({
       component: Search
     },
     {
-      path: '/article',
+      path: '/article/:id',
       name: 'Article',
       component: Article
     }

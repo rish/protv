@@ -3,7 +3,7 @@
   <div class="container">
     <article>
       <div class="section-wrapper" v-for="(item, index) in items">
-        <router-link to="/show/voice_home/news">
+        <router-link :to="'/article/' + item.id">
         <div class="section-container" :class="{
           'shadow-large': item.highlight,
           'shadow-small': !item.highlight && item.featured
