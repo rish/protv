@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     processData (items) {
-      items = items.slice(0, 6)
+      items = items.slice(1, 7)
       items[1].featured = true
       items[2].featured = true
       items[2].highlight = true
@@ -103,6 +103,10 @@ article {
 .section-container {
   width: 300px;
   margin-bottom: 5px;
+}
+
+.section-wrapper:nth-child(2) {
+  padding-bottom: 20px;
 }
 
 .shadow-large {
