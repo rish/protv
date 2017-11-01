@@ -17,7 +17,7 @@
               :style="{'background-image': 'url(' + item.poster + ')' }"
               >
             </div>
-            <h3 class="title" v-html="item.title"></h3>
+            <h3 class="title" v-html="$options.filters.truncateOnWord(item.title, 100)"></h3>
           </section>
           <div v-if="item.featured" class="extra">
             <p v-html="$options.filters.truncateOnWord(item.synopsis, 70)"></p>
@@ -95,6 +95,7 @@ article {
 
 .section-wrapper {
   padding-top: 15px;
+  max-height: 530px;
 }
 
 .b {
@@ -163,7 +164,7 @@ section .title {
   padding: 10px;
   background: #131313;
   width: 300px;
-  height: 78px;
+  height: 68px;
 }
 
 .b {
