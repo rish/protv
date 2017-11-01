@@ -46,11 +46,14 @@ export default {
   },
   methods: {
     processData (items) {
-      items = items.slice(1, 7)
-      items[1].featured = true
-      items[2].featured = true
-      items[2].highlight = true
-      return items
+      let itemsOrder = items.slice(0, 6)
+      itemsOrder = [items[1], items[0], items[3], items[2], items[5], items[6]]
+      console.log('Items unordered', items)
+      console.log('Items ordered', items)
+      itemsOrder[1].featured = true
+      itemsOrder[2].featured = true
+      itemsOrder[2].highlight = true
+      return itemsOrder
     }
   },
   mounted () {
