@@ -49,7 +49,7 @@
           </li>
           <li>
             <router-link to="/channel">
-              <img src="../assets/logos/pro-x.png">
+              <img src="../assets/logos/pro-x-yellow.png">
             </router-link>
           </li>
           <li>
