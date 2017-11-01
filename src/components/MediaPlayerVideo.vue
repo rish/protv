@@ -55,6 +55,7 @@ export default {
 .video-player {
   width: 630px;
   height: 720px;
+  border: 0;
 }
 
 </style>
