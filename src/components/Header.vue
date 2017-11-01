@@ -1,5 +1,5 @@
 <template>
-  <div id="header" v-if="context.header" v-on:mouseleave="displayMenu = true">
+  <div id="header" v-if="context.header" v-on:mouseleave="displayMenu = false">
     <div class="container">
       <div class="top">
         <i class="glyphicon glyphicon-menu-hamburger pull-left"></i>
@@ -75,7 +75,7 @@ export default {
     return {
       context: {},
       activeMenu: 0,
-      displayMenu: true
+      displayMenu: false
     }
   },
   mounted () {
