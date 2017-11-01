@@ -88,6 +88,7 @@ export default {
 .text p {
   padding: 10px;
   font-size: 18px;
+  height: 80px;
 }
 
 </style>
