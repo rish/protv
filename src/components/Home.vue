@@ -5,10 +5,10 @@
         v-if="content.aclass === 'video'"
         >
         <div class="container backdrop">
-          <div class="video-container" :style="{ 'background-image': 'url(' + content.items[0].poster + ')' }">
+          <div class="video-container" :style="{ 'background-image': displayVideo ? null : 'url(' + content.items[0].poster + ')' }">
             <div class="overlay">
               <div class="row">
-                <div class="content">
+                <div class="content" v-if="!displayVideo">
                   <h2 class="title">{{ content.items[0].title }}</h2>
                   <h3 class="subheading">Emisiunea Fort Boyard vine la ProTV.</h3>
                   <p>{{ content.items[0].description | truncateOnWord(200) }}</p>
@@ -16,14 +16,15 @@
                     <a class="more-videos-btn" href="#">Mai multe video-uri</a>
                   </router-link>
                 </div>
-                <router-link :to="'/video/' + content.items[0].id">
-                  <div class="play-btn"></div>
-                </router-link>
+                <div class="play-btn" v-on:click="displayVideo = true" v-if="!displayVideo"></div>
+                <div class="main-video" v-if="displayVideo">
+                  <iframe class="video-player" src="http://st-rr-d.vidnt.com/player/?account=ipbc&width=100%&font_size=10&fullScreen=false&showEmbedded&qualityChange=true&&autoplay=true&playerType=videojs&videojsVersion=0.4.1.4&playback_url=http%3A%2F%2Fprotvstgmms.vidnt.com%2Fcontent%2Fprotvstg-SJ25C1-LO.1264-854x480.mp4"></iframe>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="epg">
+        <div class="epg" :style="{ 'padding-top': displayVideo ? 0 : inherit }">
           <div class="container">
             <ProCarousel :items="content.items" id="epg" :grid="content.grid" :cols="4"/>
             <div class="b1">
@@ -94,7 +95,8 @@ export default {
   },
   data () {
     return {
-      contents: []
+      contents: [],
+      displayVideo: false
     }
   },
   filters: {
@@ -295,6 +297,20 @@ a {
 
 .b-vertical {
   margin-top: -75px;
+}
+
+.main-video {
+  position: relative;
+  top: 0;
+  left: 11px;
+  height: 580px;
+  overflow: hidden;
+}
+
+.video-player {
+  border: 0;
+  width: 992px;
+  height: 1100px;
 }
 
 .plugs-container {
