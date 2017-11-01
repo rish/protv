@@ -7,7 +7,7 @@
       <div class="carousel-inner">
         <div class="item" v-for="i in Math.ceil(items.length / (columns * rows))" :class="{ active: (i === 1) }">
           <div v-for="item in items.slice((i - 1) * (columns * rows), i * (columns * rows))">
-            <router-link class="link" to="/show-extended/voice_home">
+            <router-link class="link" :to="'/video/' + item.id">
             <div :class="{
               'col-md-4': columns % 3 === 0,
               'col-md-3': columns % 4 === 0,

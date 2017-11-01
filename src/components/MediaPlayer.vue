@@ -84,7 +84,7 @@ export default {
   padding: 10px 0;
   margin-bottom: 10px;
   border-bottom: 1px solid white;
-  width: 99%;
+  width: 620px;
 }
 
 .rating {

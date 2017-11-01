@@ -39,8 +39,9 @@ export default {
       if (this.videoItems.length) {
         this.items = this.items.filter(item => item.thumbnail)
         if (!this.barebones) {
+          this.items.shift()
           this.items[0].active = true
-          this.items[3].sponsored = true
+          // this.items[3].sponsored = true
         }
       }
     },

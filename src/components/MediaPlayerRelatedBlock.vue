@@ -1,6 +1,6 @@
 <template>
 <div v-if="!barebones" class="block" :class="{active: item.active, sponsored: item.sponsored}">
-  <router-link to="/show-extended/voice_home">
+  <router-link :to="'/video/' + item.id">
     <MediaPlayerRelatedThumb :image="item.thumbnail" :item="item" :active="item.active" />
     <MediaPlayerRelatedTitle :title="item.title" :active="item.active"/>
     <img v-if="item.sponsored" class="logo" src="../assets/temp/sponsored-logo.png">
@@ -30,8 +30,13 @@ export default {
 }
 </script>
 <style scoped>
-a:hover {
+a:hover, a:active {
   text-decoration: none;
+}
+.block a {
+  overflow: auto;
+  display: block;
+  height: 100%;
 }
 .block {
   clear: both;

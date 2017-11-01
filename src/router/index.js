@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import Show from '@/components/Show'
-import ShowExtended from '@/components/ShowExtended'
+import Video from '@/components/Video'
 import Channel from '@/components/Channel'
 import Episodes from '@/components/Episodes'
 import ShowPanel from '@/components/ShowPanel'
@@ -25,9 +25,9 @@ export default new Router({
       component: Show
     },
     {
-      path: '/show-extended/:name',
-      name: 'ShowExtended',
-      component: ShowExtended
+      path: '/video/:id',
+      name: 'Video',
+      component: Video
     },
     {
       path: '/channel',

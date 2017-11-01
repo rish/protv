@@ -1,5 +1,5 @@
 <template>
-<div id="show">
+<div id="video">
 
   <div class="container">
     <div class="backdrop-container">
@@ -49,7 +49,7 @@ import Articles from '@/components/Articles'
 export default {
 /* global axios */
 
-  name: 'ShowExtended',
+  name: 'Video',
   components: {
     ShowHeader,
     MediaPlayer,
@@ -78,14 +78,21 @@ export default {
   mounted () {
     this.getData()
   },
+  watch: {
+    '$route' (to, from) {
+      this.getData()
+      window.scrollTo(0, 0)
+    }
+  },
   methods: {
     getData () {
-      const url = 'http://protv.vidnt.com/page/' + this.$route.params.name + '/'
+      console.log(this)
+      const url = 'http://protv.vidnt.com/itempage/video/' + this.$route.params.id + '/'
       const home = 'http://protv.vidnt.com/page/home/'
 
       // Get show context
       axios.get(url).then((response) => {
-        // console.log('Show', JSON.parse(JSON.stringify(response.data)))
+        console.log('Video', JSON.parse(JSON.stringify(response.data)))
         this.content = response.data.content.areas[0]
         this.items = this.content.items
         // console.log('Show content', this.content)
@@ -117,11 +124,11 @@ export default {
 }
 </script>
 <style scoped>
-#show {
+#video {
   padding-top: 20px;
 }
 
-#show > .container {
+#video > .container {
   margin-bottom: 10px;
   width: 1238px;
   padding: 0;
