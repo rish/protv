@@ -59,5 +59,8 @@ export default new Router({
       name: 'Article',
       component: ShowNews
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
