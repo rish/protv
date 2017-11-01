@@ -23,6 +23,9 @@
             <img src="../assets/icons/star-off.png">
           </div>
         </div>
+        <div v-if="extended" class="comments-box">
+          <img width="595" src="../assets/temp/comment-mock.png">
+        </div>
       </div>
     </div>
     <div class="sidebar">
@@ -47,7 +50,8 @@ export default {
   props: [
     'items',
     'related-count',
-    'tags'
+    'tags',
+    'extended'
   ],
   data () {
     return {

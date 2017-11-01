@@ -37,7 +37,7 @@ export default {
       this.items = this.videoItems
       // Populate some vm data here for now
       if (this.videoItems.length) {
-        this.items = this.items.filter(item => item.thumbnail)
+        this.items = this.items.filter(item => item.poster)
         if (!this.barebones) {
           this.items.shift()
           this.items[0].active = true

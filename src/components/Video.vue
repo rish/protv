@@ -9,6 +9,7 @@
         :related-count=12
         :tags="tags"
         showSponsored="false"
+        :extended="true"
         />
       </div>
     </div>
