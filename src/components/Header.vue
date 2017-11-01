@@ -95,10 +95,10 @@ export default {
       this.displayMenu = true
 
       // Disable hiding menu delay for now
-      // let _this = this
-      // setTimeout(function () {
-      //   _this.displayMenu = false
-      // }, 5000)
+      let _this = this
+      setTimeout(function () {
+        _this.displayMenu = false
+      }, 15000)
     }
   }
 }
