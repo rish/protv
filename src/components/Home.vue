@@ -25,7 +25,7 @@
         </div>
         <div class="epg">
           <div class="container">
-            <ProCarousel :items="content.items.slice(0,4)" id="epg" :grid="content.grid" :cols="4"/>
+            <ProCarousel :items="content.items" id="epg" :grid="content.grid" :cols="4"/>
             <div class="b1">
               <img src="../assets/temp/b-horizontal.png">
             </div>
