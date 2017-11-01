@@ -51,7 +51,7 @@
                 <div v-else>
                   <h5 class="title clearfix">{{ item.title | truncateOnWord(40) }}</h5>
                 </div>
-                <div v-if="synopsis" class="synopsis-container">
+                <div v-if="item.synopsis" class="synopsis-container">
                   <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }}</p>
                 </div>
 
