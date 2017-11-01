@@ -168,6 +168,11 @@ export default {
   font-weight: 300px;
 }
 
+.text >>> a {
+  /*color: #487bec;*/
+  color: white;
+}
+
 .blocks {
   padding-bottom: 20px;
   overflow: auto;
