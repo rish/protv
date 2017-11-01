@@ -28,6 +28,11 @@ export default {
   },
   filters: {
     duration
+  },
+  watch: {
+    item () {
+      this.playClicked = false
+    }
   }
 }
 </script>
