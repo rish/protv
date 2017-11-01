@@ -4,39 +4,27 @@
     <Banner type="horizontal" padding="20"/>
     <div class="main">
 
-      <img class="img-responsive" src="../assets/temp/article/main.jpg">
+      <img class="img-responsive" :src="content.items[0].poster">
 
-      <h3 class="title" v-html="mock.title"></h3>
+      <h3 class="title" v-html="content.title"></h3>
       <h4 class="subheading" v-html="mock.subheading"></h4>
       <Share />
-      <div class="text" v-html="mock.text"></div>
-
-      <img class="img-responsive article" src="../assets/temp/article/second.jpg">
-      <div class="text">
-        Antrenorii vor ramane maine fara cuvinte in fata unui concurent cu o voce formidabila. ”Esti tare... esti foarte tare. Cred ca este unul dintre momentele alea de la Vocea Romaniei in care-i spui unui moment ca e cat o finala. Ai fost stare de la un cap la altul.”, ii va spune Tudor, vizibil emotionat..
-      </div>
-
-      <img class="img-responsive article" src="../assets/temp/article/third.jpg">
-      <div class="text">
-        "Eu am apasat butonul, m-am intors, si in momentul ala mi-am dat seama ca am uitat tot ce as fi vrut sa-ti spun in momentul in care te-am vazut. Dar daca Tudor a spus despre tine ca esti o scorpie... acum mi-e putin frica.”, ii va spune Despot unei concurente, in timp ce Smiley, uimit de o alta reprezentatie, va spune: ”Eram siderat!!! Ba, esti prost?! Serios??? Heeei, hei, sunt si eu aici! Nici nu m-a vazut! Am zis sa nu ma bag peste momentul asta emotionant. M-am emotionat si eu, m-am emotionat serios. Si n-am mai apucat sa zic nimic.".
-      </div>
-
-      <h4 class="subheading">Incepand de VINERI, dam sunetul mai tare in sezonul sapte Vocea Romaniei!</h4>
+      <div class="text" v-html="content.items[0].content"></div>
 
     </div>
     <!-- .main -->
     <div class="sidebar">
       <h3 class="heading">Video Recommended</h3>
 
-      <MediaPlayerRelated :videoItems="items" limit=5 barebones="true" />
+      <MediaPlayerRelated :videoItems="home[0].items" limit=5 barebones="true" />
 
       <Banner type="square" padding="30"/>
 
-      <MediaPlayerRelated :videoItems="items" limit=5 barebones="true" />
+      <MediaPlayerRelated :videoItems="home[0].items" limit=5 barebones="true" />
 
       <Banner type="vertical-large" padding="30"/>
 
-      <MediaPlayerRelated :videoItems="items" limit=5 barebones="true" />
+      <MediaPlayerRelated :videoItems="home[0].items" limit=5 barebones="true" />
     </div>
   </div>
 
@@ -95,14 +83,14 @@ export default {
   },
   methods: {
     getData () {
-      const url = 'http://protv.vidnt.com/page/voice_home/'
+      const url = 'http://protv.vidnt.com/itempage/article/' + this.$route.params.id + '/'
       const home = 'http://protv.vidnt.com/page/home/'
 
       // Get show context
       axios.get(url).then((response) => {
-        // console.log('Show', JSON.parse(JSON.stringify(response.data)))
+        console.log('Article', JSON.parse(JSON.stringify(response.data)))
         this.content = response.data.content.areas[0]
-        this.items = this.content.items
+        // this.items = this.content.items
         // console.log('Show content', this.content)
         this.head = response.data.head
         this.video = this.content.items[0]

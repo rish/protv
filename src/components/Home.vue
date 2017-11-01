@@ -11,10 +11,14 @@
                 <div class="content">
                   <h2 class="title">{{ content.items[0].title }}</h2>
                   <h3 class="subheading">Emisiunea Fort Boyard vine la ProTV.</h3>
-                  <p>{{ content.items[0].description }}</p>
-                  <a class="more-videos-btn" href="#">Mai multe video-uri</a>
+                  <p>{{ content.items[0].description | truncateOnWord(200) }}</p>
+                  <router-link :to="'/video/' + content.items[0].id">
+                    <a class="more-videos-btn" href="#">Mai multe video-uri</a>
+                  </router-link>
                 </div>
-                <div class="play-btn"></div>
+                <router-link :to="'/video/' + content.items[0].id">
+                  <div class="play-btn"></div>
+                </router-link>
               </div>
             </div>
           </div>
@@ -79,6 +83,7 @@
 import ProCarousel from '@/components/ProCarousel'
 import Articles from '@/components/Articles'
 import Plugs from '@/components/Plugs'
+import { duration, truncateOnWord } from '@/filters'
 /* global axios */
 export default {
   name: 'Home',
@@ -91,6 +96,10 @@ export default {
     return {
       contents: []
     }
+  },
+  filters: {
+    duration,
+    truncateOnWord
   },
   mounted () {
     this.getData()

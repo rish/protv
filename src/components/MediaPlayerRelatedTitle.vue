@@ -22,9 +22,10 @@ export default {
   color: #3a3a3a;
   font-weight: 300;
   padding-right: 10px;
+  text-decoration: none;
 }
 
-.title:hover {
+.title:hover, .title:active {
   color: black;
   text-decoration: none;
 }

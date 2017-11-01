@@ -6,7 +6,7 @@
     <div class="carousel slide" :id="carouselId" data-ride="carousel" data-interval="5000">
       <div class="carousel-inner">
         <div class="item" v-for="i in Math.ceil(items.length / (columns * rows))" :class="{ active: (i === 1) }">
-          <div v-for="item in items.slice((i - 1) * (columns * rows), i * (columns * rows))">
+          <div v-for="(item, index) in items.slice((i - 1) * (columns * rows), i * (columns * rows))">
             <router-link class="link" :to="'/video/' + item.id">
             <div :class="{
               'col-md-4': columns % 3 === 0,
@@ -21,9 +21,12 @@
                 }"
                 >
                 <div v-if="columns === 4">
-                  <div class="timestamp">
+                  <div v-if="index !== 0" class="timestamp">
                     <img src="../assets/icons/clock.png" width="9.5">
                     <span>{{ item.duration | duration }}</span>
+                  </div>
+                  <div v-else class="now-playing">
+                    <span>Now Playing</span>
                   </div>
                 </div>
                 <div v-else>
@@ -225,6 +228,15 @@ export default {
 .wide .title {
   font-size: 22px;
   font-weight: 400;
+}
+
+.now-playing {
+  color: white;
+  font-size: 10px;
+  background: rgba(31, 85, 255, 0.5);
+  position: absolute;
+  bottom: 0;
+  padding: 5px 10px;
 }
 
 .timestamp {

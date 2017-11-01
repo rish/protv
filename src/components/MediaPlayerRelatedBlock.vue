@@ -7,7 +7,7 @@
   </router-link>
 </div>
 <div v-else class="block">
-  <router-link to="/show-extended/voice_home">
+  <router-link :to="'/video/' + item.id">
     <MediaPlayerRelatedThumb :image="item.thumbnail" :item="item" />
     <MediaPlayerRelatedTitle :title="item.title"/>
   </router-link>
@@ -30,7 +30,7 @@ export default {
 }
 </script>
 <style scoped>
-a:hover, a:active {
+a:hover, a:active, a:focus {
   text-decoration: none;
 }
 .block a {
