@@ -165,6 +165,7 @@ export default {
   list-style-type: none;
   display: inline-block;
   margin: 0;
+  height: 66px;
 }
 
 .bottom li a {
