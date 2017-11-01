@@ -37,27 +37,27 @@
           <li><router-link to="/show/voice_home">Jocuri de celebritate</router-link></li>
         </ul>
         <ul v-else>
-          <li>
+          <li class="channel-pro-tv">
             <router-link to="/channel">
               <img src="../assets/logos/pro-tv.png">
             </router-link>
           </li>
-          <li>
+          <li class="channel-pro-2">
             <router-link to="/channel">
               <img src="../assets/logos/pro-2.png">
             </router-link>
           </li>
-          <li>
+          <li class="channel-pro-x">
             <router-link to="/channel">
               <img src="../assets/logos/pro-x-yellow.png">
             </router-link>
           </li>
-          <li>
+          <li class="channel-pro-gold">
             <router-link to="/channel">
               <img src="../assets/logos/pro-gold.png">
             </router-link>
           </li>
-          <li>
+          <li class="channel-pro-cinema">
             <router-link to="/channel">
               <img src="../assets/logos/pro-cinema.png">
             </router-link>
@@ -176,6 +176,26 @@ export default {
 
 .bottom li:hover {
   background: #f22061;
+}
+
+li.channel-pro-tv:hover {
+  background: #2556fd;
+}
+
+li.channel-pro-2:hover {
+  background: #f12160;
+}
+
+li.channel-pro-x:hover {
+  background: #000000;
+}
+
+li.channel-pro-gold:hover {
+  background: #cba635;
+}
+
+li.channel-pro-cinema:hover {
+  background: #7d287d;
 }
 
 .bottom .shows {
