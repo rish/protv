@@ -6,7 +6,7 @@
       <div class="media-player-container">
         <MediaPlayer
         :items="items"
-        :related-count=12
+        :related-count=11
         :tags="tags"
         showSponsored="false"
         :extended="true"

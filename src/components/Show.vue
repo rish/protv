@@ -5,7 +5,7 @@
       <div class="media-player-container">
         <MediaPlayer
         :items="items"
-        related-count="5"
+        related-count="6"
         :tags="tags"
         />
       </div>
