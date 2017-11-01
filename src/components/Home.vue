@@ -287,7 +287,6 @@ a {
 .articles-container {
   background: #131313;
   overflow: auto;
-  padding: 60px 0;
 }
 
 .bpad {
