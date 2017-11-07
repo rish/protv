@@ -1,104 +1,102 @@
 <template>
-  <div class="row component-container" :class="{'grid-carousel': rows === '2'}">
+  <div class="row component-container" :class="{'grid-carousel': rows === 2}" v-if="items.length">
     <div v-if="title">
       <h2 class="section-title">{{ title }}</h2>
     </div>
-    <div class="carousel slide" :id="carouselId" data-ride="carousel" data-interval="5000">
-      <div class="carousel-inner">
-        <div class="item" v-for="i in Math.ceil(items.length / (columns * rows))" :class="{ active: (i === 1) }">
-          <div v-for="(item, index) in items.slice((i - 1) * (columns * rows), i * (columns * rows))">
-            <router-link class="link" :to="'/video/' + item.id">
-            <div :class="{
-              'col-md-4': columns % 3 === 0,
-              'col-md-3': columns % 4 === 0,
-              'grid-thumbs': rows ==='2'
-              }">
-              <div class="thumb"
-                :style="{
-                'background-image': 'url(' + item.poster + ')',
-                'height': (columns === '3' || rows === '2') ? '150px' : '96px',
-                'width': (columns === '3' || rows === '2') ? '267px' : '170px'
-                }"
-                >
-                <div v-if="columns === 4">
-                  <div v-if="index !== 0" class="timestamp">
-                    <img src="../assets/icons/clock.png" width="9.5">
-                    <span>{{ item.duration | duration }}</span>
-                  </div>
-                  <div v-else class="now-playing">
-                    <span>Now Playing</span>
-                  </div>
-                </div>
-                <div v-else>
-                  <div class="play-icon">
-                    <img src="../assets/icons/thumbnail-play.png">
-                  </div>
-                </div>
-              </div>
-              <div :class="widthClass">
-                <div v-if="meta" class="meta row">
-                  <div class="remind pull-left">
-                    <img src="../assets/icons/remind.png">
-                  </div>
-                  <div class="views pull-right">
-                    <img src="../assets/icons/views.png">
-                    {{ item.views }} views
-                  </div>
-                </div>
-                <div v-if="columns === '3' || rows === '2'">
-                  <h5 class="title clearfix">{{ item.title | truncateOnWord(20) }}</h5>
-                </div>
-                <div v-else>
-                  <h5 class="title clearfix">{{ item.title | truncateOnWord(40) }}</h5>
-                </div>
-                <div v-if="item.synopsis" class="synopsis-container">
-                  <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }}</p>
-                </div>
-
-              </div>
+    <slick ref="slick" :options="slickOptions" :class="{ 'grid-container': rows >= 2 }">
+    <div class="slick-item" v-for="(item, index) in items" :key="item.id">
+        <div class="thumb"
+          :style="{
+            'background-image': 'url(' + item.poster + ')'
+          }"
+          >
+          <div v-if="item.duration" class="duration">
+            <img src="../assets/icons/clock.png" width="9.5">
+            <span>{{ item.duration | duration }}</span>
+          </div>
+          <div class="play-icon">
+            <img src="../assets/icons/thumbnail-play.png">
+          </div>
+        </div>
+        <div :class="widthClass">
+          <div v-if="meta" class="meta row">
+            <div class="remind pull-left">
+              <img src="../assets/icons/remind.png">
             </div>
-            </router-link>
+            <div class="views pull-right">
+              <img src="../assets/icons/views.png">
+              {{ item.views }} views
+            </div>
+          </div>
+          <div v-if="columns === 3 || rows === 2">
+            <h5 class="title clearfix">{{ item.title | truncateOnWord(20) }}</h5>
+          </div>
+          <div v-else>
+            <h5 class="title clearfix">{{ item.title | truncateOnWord(40) }}</h5>
+          </div>
+          <div v-if="item.synopsis" class="synopsis-container">
+            <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }}</p>
           </div>
         </div>
       </div>
-
-      <nav class="carousel-controls" :class="{ tall: columns === '3' }">
-        <ul class="control-box pager">
-          <li class="left pull-left"><a data-slide="prev" :href="carouselIdRef" v-on:click.prevent><img src="../assets/left-arrow.png"></a></li>
-          <li class="right pull-right"><a data-slide="next" :href="carouselIdRef" v-on:click.prevent><img src="../assets/right-arrow.png"></a></li>
-        </ul>
-      </nav>
-
+    </slick>
+    <div class="controls">
+      <a class="left" v-on:click="prevSlide"><img src="../assets/left-arrow.png"></a>
+      <a class="right" v-on:click="nextSlide"><img src="../assets/right-arrow.png"></a>
     </div>
   </div>
 </template>
 <script>
-/* globals $ */
-
+import {$} from 'jquery'
+import Slick from 'vue-slick'
 import { duration } from '@/filters'
+
 export default {
   name: 'ProCarousel',
+  components: {
+    Slick
+  },
   props: ['title', 'items', 'id', 'grid', 'cols', 'meta', 'playIcon', 'synopsis'],
   data () {
     const gridConfig = this.grid.split('_')
-    console.log(gridConfig)
+    console.log(this.title, gridConfig)
     const carouselId = 'carousel-' + this.id
+    const autoplay = gridConfig[3] === 'auto'
+    const rows = parseInt(gridConfig[0])
+    const columns = parseInt(gridConfig[1])
+    const step = parseInt(gridConfig[2])
+    console.log('Step', step)
     return {
       carouselId: carouselId,
       carouselIdRef: '#' + carouselId,
-      rows: gridConfig[0],
-      columns: this.cols || gridConfig[1],
-      next: gridConfig[2],
-      autoplay: gridConfig[3] === 'auto'
+      rows: rows,
+      columns: columns,
+      next: step,
+      autoplay: autoplay,
+      slickOptions: {
+        autoplay: autoplay,
+        slidesToShow: rows > 1 ? rows : columns,
+        slidesToScroll: step,
+        rows: rows,
+        variableWidth: true,
+        arrows: false
+      }
     }
   },
   mounted () {
-    // console.log('ProCarousel mounted', this)
     $(this.carouselIdRef).carousel()
+  },
+  methods: {
+    nextSlide () {
+      this.$refs.slick.next()
+    },
+    prevSlide () {
+      this.$refs.slick.prev()
+    }
   },
   computed: {
     widthClass () {
-      return this.columns % 3 === 0 || this.rows === '2' ? 'wide' : 'narrow'
+      return this.columns % 3 === 0 || this.rows === 2 ? 'wide' : 'narrow'
     },
     truncate (text, length) {
       return text.substring(0, length) + ' ...'
@@ -123,6 +121,56 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+  @import "../../node_modules/slick-carousel/slick/slick.scss";
+  .slick-list {
+    width: 850px;
+    margin: 0 auto;
+  }
+  .slick-slide {
+    width: 267px;
+    margin-right: 25px;
+  }
+  .slick-slide.slick-current.slick-active {
+  }
+  .grid-carousel {
+    padding: 0 100px;
+    margin-left: 110px;
+    margin-right: 40px;
+  }
+  .grid-carousel .controls {
+    top: 165px;
+    width: 680px;
+    left: -40px;
+  }
+  .grid-carousel .slick-list {
+    width: 550px;
+  }
+  .grid-carousel .slick-item {
+    padding-bottom: 20px;
+  }
+  .controls {
+    position: absolute;
+    top: 50px;
+    width: 1000px;
+    height: auto;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .controls a {
+    display: inline-block;
+    position: absolute;
+    padding: 20px;
+  }
+  .controls a:hover {
+    cursor: pointer;
+  }
+  .controls .right {
+    right: 0;
+  }
+
+</style>
 <style scoped>
 
 .section-title {
@@ -139,17 +187,7 @@ export default {
 
 .row.component-container {
   padding-bottom: 30px;
-}
-
-.grid-carousel {
-  width: 800px;
-  padding: 0;
-  padding-left: 70px;
-}
-.grid-thumbs {
-  width: 280px;
-  float: left;
-  margin-bottom: 20px;
+  position: relative;
 }
 
 .grid-carousel .carousel-controls .left {
@@ -199,7 +237,7 @@ export default {
 
 .thumb {
   width: 100%;
-  height: 150px;
+  height: 151px;
   background-size: cover;
   background-position: 50% 25%;
   background-repeat: no-repeat;
@@ -239,7 +277,7 @@ export default {
   padding: 5px 10px;
 }
 
-.timestamp {
+.timestamp, .duration {
   position: absolute;
   bottom: 0;
   padding: 5px 10px;
@@ -247,7 +285,7 @@ export default {
   background: #7f7f7f;
 }
 
-.timestamp img {
+.timestamp img, .duration img {
   display: inline-block;
   position: relative;
   left: -3px;
@@ -267,6 +305,10 @@ export default {
 .views img {
   display: inline-block;
   margin-right: 5px;
+}
+
+.remind img {
+  margin-top: 5px;
 }
 
 .synopsis-container {
