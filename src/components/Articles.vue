@@ -30,30 +30,46 @@
       </div>
     </article>
     <div class="text-center">
-      <a href="#" class="articles-btn">Mai multe stiri</a>
+      <a href="#" class="articles-btn" v-on:click.prevent="loadMore(loadMoreUrl)">Mai multe stiri</a>
     </div>
   </div>
 </div>
 </template>
 <script>
+/* global axios */
 export default {
   name: 'Articles',
-  props: ['articles'],
+  props: ['articles', 'loadMoreLink'],
   data () {
     return {
-      items: []
+      items: [],
+      loadMoreUrl: this.loadMoreLink
     }
   },
   methods: {
     processData (items) {
       let itemsOrder = items.slice(0, 6)
       itemsOrder = [items[1], items[0], items[3], items[2], items[5], items[6]]
-      console.log('Items unordered', items)
-      console.log('Items ordered', items)
+      // console.log('Items unordered', items)
+      // console.log('Items ordered', items)
       itemsOrder[1].featured = true
       itemsOrder[2].featured = true
       itemsOrder[2].highlight = true
       return itemsOrder
+    },
+    loadMore (url) {
+      console.log(this.loadMoreUrl)
+      const apiUrl = 'http://protv.vidnt.com' + url
+      console.log(url)
+      let _this = this
+      axios.get(apiUrl).then((response) => {
+        console.log(JSON.parse(JSON.stringify(response.data)))
+        _this.loadMoreUrl = response.data.head.link
+        let articles = _this.items
+        articles = articles.concat(_this.processData(response.data.items))
+        _this.items = articles
+        console.log(articles)
+      })
     }
   },
   mounted () {

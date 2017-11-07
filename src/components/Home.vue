@@ -61,7 +61,7 @@
         v-if="content.box && content.box === 'articles'"
         class="articles-container"
       >
-        <Articles :articles="content.items"/>
+        <Articles :articles="content.items" :loadMoreLink="content.link"/>
       </div>
       <!-- /articles -->
       <div class="b1 bpad" v-if="index === 8">
