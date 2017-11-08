@@ -38,6 +38,9 @@ import Plugs from '@/components/Plugs'
 
 export default {
   name: 'Home',
+  props: [
+    'context'
+  ],
   components: {
     VOD,
     ProCarousel,

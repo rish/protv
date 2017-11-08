@@ -95,25 +95,10 @@
 </template>
 <script>
 export default {
-/* global axios */
   name: 'Footer',
-  data () {
-    return {
-      context: {}
-    }
-  },
-  mounted () {
-    this.getData()
-  },
-  methods: {
-    getData () {
-      const url = 'http://protv.vidnt.com/context/home/'
-      axios.get(url).then((response) => {
-        // console.log(JSON.parse(JSON.stringify(response.data)))
-        this.context = response.data.context
-      })
-    }
-  }
+  props: [
+    'context'
+  ]
 }
 </script>
 <style scoped>

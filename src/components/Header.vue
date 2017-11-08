@@ -69,26 +69,17 @@
 </template>
 <script>
 export default {
-/* global axios */
   name: 'Header',
+  props: [
+    'context'
+  ],
   data () {
     return {
-      context: {},
       activeMenu: 0,
       displayMenu: false
     }
   },
-  mounted () {
-    this.getData()
-  },
   methods: {
-    getData () {
-      const url = 'http://protv.vidnt.com/context/home/'
-      axios.get(url).then((response) => {
-        console.log(JSON.parse(JSON.stringify(response.data)))
-        this.context = response.data.context
-      })
-    },
     setActiveMenu (id) {
       // console.log('setting', id, 'active')
       this.activeMenu = id

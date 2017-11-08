@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-    <AppHeader/>
+    <AppHeader :context="context"/>
     <div id="content">
-      <router-view/>
+      <router-view :context="context" />
     </div>
-    <AppFooter/>
+    <AppFooter :context="context" />
   </div>
 </template>
 
 <script>
+/* globals axios */
 import AppHeader from '@/components/Header'
 import AppFooter from '@/components/Footer'
 
@@ -17,6 +18,22 @@ export default {
   components: {
     AppHeader,
     AppFooter
+  },
+  data () {
+    return {
+      context: {}
+    }
+  },
+  mounted () {
+    this.getContext()
+  },
+  methods: {
+    getContext () {
+      const url = '/context/home/'
+      axios.get(url).then((response) => {
+        this.context = response.data.context
+      })
+    }
   }
 }
 </script>
