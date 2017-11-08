@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="container-fluid" :style="{ 'background-image': 'url(' + background + ')'}">
+  <div class="container-fluid" :style="{ 'background-image': background ? 'url(' + background + ')' : 'none' }">
     <div class="row heading-container" v-if="title">
         <h2 class="section-title">{{ title }}</h2>
     </div>
@@ -44,13 +44,13 @@
           </router-link>
         </div>
       </slick>
+      <div v-if="banner === 'vertical'" class="b-vertical">
+        <img :src="bannerPlaceholder" width="300" height="600"/>
+      </div>
       <div class="controls">
         <a class="left" v-on:click="prevSlide"><img src="../assets/left-arrow.png"></a>
         <a class="right" v-on:click="nextSlide"><img src="../assets/right-arrow.png"></a>
       </div>
-    </div>
-    <div v-if="banner === 'vertical'" class="b-vertical">
-      <img :src="bannerPlaceholder" width="300" height="600"/>
     </div>
   </div>
 </div>
@@ -148,25 +148,28 @@ export default {
     width: 267px;
     margin-right: 25px;
   }
-  .slick-slide.slick-current.slick-active {
-  }
   .grid-carousel {
-    padding: 0 100px;
-    margin-left: 160px;
-    margin-right: 40px;
+    /* override .row.component-container padding for now */
+    padding-right: 0 !important;
+  }
+  .grid-container {
     float: left;
-    width: 500px;
+    width: 600px;
+    padding-left: 35px;
   }
   .grid-carousel .controls {
     top: 165px;
     width: 680px;
-    left: -40px;
+    left: -300px;
   }
   .grid-carousel .slick-list {
     width: 550px;
   }
   .grid-carousel .slick-item {
     padding-bottom: 20px;
+  }
+  .b-vertical {
+    float: right;
   }
   .controls {
     position: absolute;
@@ -201,7 +204,7 @@ export default {
   font-size: 45px;
   font-weight: 200;
   text-transform: uppercase;
-  padding: 20px 10% 30px 123px;
+  padding: 20px 10% 30px 0px;
 }
 
 .row {
@@ -210,12 +213,19 @@ export default {
 }
 
 .row.heading-container {
-  padding-left: 85px;
+  width: 850px;
+  margin: 0 auto;
+  padding-left: 0px;
 }
 
 .row.component-container {
+  width: 1000px;
+  margin: 0 auto;
   padding-bottom: 30px;
   position: relative;
+}
+
+.row.component-container.grid-carousel {
 }
 
 .grid-carousel .carousel-controls .left {
