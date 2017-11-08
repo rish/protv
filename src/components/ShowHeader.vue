@@ -25,7 +25,7 @@
         </div>
         <ul>
           <li v-for="item in menu">
-            <router-link :to="item.route">{{ item.title }}</router-link>
+            <router-link :to="item.route" :class="{active: item.route === $route.path}">{{ item.title }}</router-link>
           </li>
           <!-- TODO: Map active and highlight
           <li class="active">Home</li>
@@ -174,7 +174,7 @@ li a {
   color: #434343;
 }
 
-li.active {
+li a.active {
   color: black;
   font-weight: 500;
   text-transform: uppercase;
