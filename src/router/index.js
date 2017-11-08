@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
+// import Home from '@/components/Home'
+import HomeContainer from '@/views/HomeContainer'
 import Show from '@/components/Show'
 import Video from '@/components/Video'
 import Channel from '@/components/Channel'
@@ -17,7 +18,7 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: HomeContainer
     },
     {
       path: '/show/:name',

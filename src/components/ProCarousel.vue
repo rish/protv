@@ -1,57 +1,62 @@
 <template>
 <div>
-  <div class="row heading-container" v-if="title" :style="{'padding-left': fullWidth ? '35px' : null }">
-      <h2 class="section-title">{{ title }}</h2>
-  </div>
-  <div class="row component-container" :class="{'grid-carousel': rows === 2}" v-if="items.length">
-    <slick ref="slick" :options="slickOptions" :class="{ 'grid-container': rows >= 2 }">
-      <div class="slick-item" v-for="(item, index) in items" :key="item.id">
-        <router-link :to="'/video/' + item.id" class="link">
-        <div class="thumb"
-          :style="{
-            'background-image': 'url(' + item.poster + ')'
-          }"
-          >
-          <div v-if="item.duration" class="duration">
-            <img src="../assets/icons/clock.png" width="9.5">
-            <span>{{ item.duration | duration }}</span>
-          </div>
-          <div class="play-icon">
-            <img src="../assets/icons/thumbnail-play.png">
-          </div>
-        </div>
-        <div :class="widthClass">
-          <div v-if="meta" class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
+  <div class="container-fluid" :style="{ 'background-image': 'url(' + background + ')'}">
+    <div class="row heading-container" v-if="title">
+        <h2 class="section-title">{{ title }}</h2>
+    </div>
+    <div class="row component-container" :class="{'grid-carousel': rows === 2}" v-if="items.length">
+      <slick ref="slick" :options="slickOptions" :class="{ 'grid-container': rows >= 2 }">
+        <div class="slick-item" v-for="(item, index) in items" :key="item.id">
+          <router-link :to="'/video/' + item.id" class="link">
+          <div class="thumb"
+            :style="{
+              'background-image': 'url(' + item.poster + ')'
+            }"
+            >
+            <div v-if="item.duration" class="duration">
+              <img src="../assets/icons/clock.png" width="9.5">
+              <span>{{ item.duration | duration }}</span>
             </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              {{ item.views }} views
+            <div class="play-icon">
+              <img src="../assets/icons/thumbnail-play.png">
             </div>
           </div>
-          <div v-if="columns === 3 || rows === 2">
-            <h5 class="title clearfix">{{ item.title | truncateOnWord(20) }}</h5>
+          <div :class="widthClass">
+            <div v-if="meta" class="meta row">
+              <div class="remind pull-left">
+                <img src="../assets/icons/remind.png">
+              </div>
+              <div class="views pull-right">
+                <img src="../assets/icons/views.png">
+                {{ item.views }} views
+              </div>
+            </div>
+            <div v-if="columns === 3 || rows === 2">
+              <h5 class="title clearfix">{{ item.title | truncateOnWord(20) }}</h5>
+            </div>
+            <div v-else>
+              <h5 class="title clearfix">{{ item.title | truncateOnWord(40) }}</h5>
+            </div>
+            <div v-if="item.synopsis" class="synopsis-container">
+              <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }}</p>
+            </div>
           </div>
-          <div v-else>
-            <h5 class="title clearfix">{{ item.title | truncateOnWord(40) }}</h5>
-          </div>
-          <div v-if="item.synopsis" class="synopsis-container">
-            <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }}</p>
-          </div>
+          </router-link>
         </div>
-        </router-link>
+      </slick>
+      <div class="controls">
+        <a class="left" v-on:click="prevSlide"><img src="../assets/left-arrow.png"></a>
+        <a class="right" v-on:click="nextSlide"><img src="../assets/right-arrow.png"></a>
       </div>
-    </slick>
-    <div class="controls">
-      <a class="left" v-on:click="prevSlide"><img src="../assets/left-arrow.png"></a>
-      <a class="right" v-on:click="nextSlide"><img src="../assets/right-arrow.png"></a>
+    </div>
+    <div v-if="banner === 'vertical'" class="b-vertical">
+      <img :src="bannerPlaceholder" width="300" height="600"/>
     </div>
   </div>
 </div>
 </template>
 <script>
-import {$} from 'jquery'
+// import {$} from 'jquery'
 import Slick from 'vue-slick'
 import { duration } from '@/filters'
 
@@ -60,16 +65,24 @@ export default {
   components: {
     Slick
   },
-  props: ['title', 'items', 'id', 'grid', 'cols', 'meta', 'playIcon', 'synopsis', 'fullWidth'],
+  props: [
+    'title',
+    'items',
+    'grid',
+    'meta',
+    'playIcon',
+    'synopsis',
+    'background',
+    'banner',
+    'bannerPlaceholder'
+  ],
   data () {
     const gridConfig = this.grid.split('_')
-    console.log(this.title, gridConfig)
     const carouselId = 'carousel-' + this.id
     const autoplay = gridConfig[3] === 'auto'
     const rows = parseInt(gridConfig[0])
     const columns = parseInt(gridConfig[1])
     const step = parseInt(gridConfig[2])
-    console.log('Step', step)
     return {
       carouselId: carouselId,
       carouselIdRef: '#' + carouselId,
@@ -88,7 +101,7 @@ export default {
     }
   },
   mounted () {
-    $(this.carouselIdRef).carousel()
+    // Placeholder
   },
   methods: {
     nextSlide () {
@@ -139,8 +152,10 @@ export default {
   }
   .grid-carousel {
     padding: 0 100px;
-    margin-left: 110px;
+    margin-left: 160px;
     margin-right: 40px;
+    float: left;
+    width: 500px;
   }
   .grid-carousel .controls {
     top: 165px;
@@ -176,6 +191,11 @@ export default {
 
 </style>
 <style scoped>
+.container-fluid {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 
 .section-title {
   font-size: 45px;
