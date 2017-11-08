@@ -1,6 +1,6 @@
-# protv
+# Portalo
 
-> A Vue.js project
+> The ProTV Portal project
 
 ## Build Setup
 
@@ -27,4 +27,16 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Another API server while developing
+
+The default API server is `http://protv.vidnt.com`. To use another API server
+while developing, set the `API_HOST` environment variable.
+
+```
+API_HOST=http://localhost:8080 npm run dev
+```
+
+
+For a detailed explanation on how things work, check out the
+[guide](http://vuejs-templates.github.io/webpack/) and
+[docs for vue-loader](http://vuejs.github.io/vue-loader).
