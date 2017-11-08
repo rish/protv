@@ -38,7 +38,7 @@ export default {
   },
   mounted () {
     this.items = this.processData(this.plugs.items)
-    console.log('Plugs', JSON.parse(JSON.stringify(this.plugs)))
+    // console.log('Plugs', JSON.parse(JSON.stringify(this.plugs)))
   },
   filters: {
     truncateOnWord (str, limit) {
