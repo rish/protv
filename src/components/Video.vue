@@ -33,7 +33,7 @@
     :style="{'background-image': 'url(' + require('../assets/bg2.jpg') + ')'}"
     >
     <div class="container" v-if="home.length">
-      <ProCarousel title="Recommended For You" :items="home[6].items" id="recommended" :grid="home[6].grid" meta="true" synopsis="true"/>
+      <ProCarousel title="Recommended For You" :items="home[6].items" id="recommended" :grid="home[6].grid" meta="true" synopsis="true" fullWidth="true" />
     </div>
   </div>
 

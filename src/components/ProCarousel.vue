@@ -1,10 +1,12 @@
 <template>
-  <div class="row component-container" :class="{'grid-carousel': rows === 2}" v-if="items.length">
-    <div v-if="title">
+<div>
+  <div class="row heading-container" v-if="title" :style="{'padding-left': fullWidth ? '35px' : null }">
       <h2 class="section-title">{{ title }}</h2>
-    </div>
+  </div>
+  <div class="row component-container" :class="{'grid-carousel': rows === 2}" v-if="items.length">
     <slick ref="slick" :options="slickOptions" :class="{ 'grid-container': rows >= 2 }">
-    <div class="slick-item" v-for="(item, index) in items" :key="item.id">
+      <div class="slick-item" v-for="(item, index) in items" :key="item.id">
+        <router-link :to="'/video/' + item.id" class="link">
         <div class="thumb"
           :style="{
             'background-image': 'url(' + item.poster + ')'
@@ -38,6 +40,7 @@
             <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }}</p>
           </div>
         </div>
+        </router-link>
       </div>
     </slick>
     <div class="controls">
@@ -45,6 +48,7 @@
       <a class="right" v-on:click="nextSlide"><img src="../assets/right-arrow.png"></a>
     </div>
   </div>
+</div>
 </template>
 <script>
 import {$} from 'jquery'
@@ -56,7 +60,7 @@ export default {
   components: {
     Slick
   },
-  props: ['title', 'items', 'id', 'grid', 'cols', 'meta', 'playIcon', 'synopsis'],
+  props: ['title', 'items', 'id', 'grid', 'cols', 'meta', 'playIcon', 'synopsis', 'fullWidth'],
   data () {
     const gridConfig = this.grid.split('_')
     console.log(this.title, gridConfig)
@@ -183,6 +187,10 @@ export default {
 .row {
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.row.heading-container {
+  padding-left: 85px;
 }
 
 .row.component-container {
