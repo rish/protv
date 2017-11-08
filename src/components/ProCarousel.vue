@@ -106,10 +106,6 @@ export default {
   },
   mounted () {
     // Placeholder
-    console.log(this.title)
-    console.log(this.items)
-    console.log(this.columns)
-    console.log(this.slickOptions)
   },
   methods: {
     nextSlide () {
