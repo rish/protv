@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from '@/components/Home'
 import HomeContainer from '@/views/HomeContainer'
-import Show from '@/components/Show'
+import ShowContainer from '@/views/ShowContainer'
 import Video from '@/components/Video'
 import ChannelContainer from '@/views/ChannelContainer'
 import Episodes from '@/components/Episodes'
@@ -23,7 +23,7 @@ export default new Router({
     {
       path: '/show/:name',
       name: 'Show',
-      component: Show
+      component: ShowContainer
     },
     {
       path: '/video/:id',

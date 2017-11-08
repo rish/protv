@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="context.hasOwnProperty('menu')">
+    <!-- TODO: Get actual DFP units and embed
     <div class="backdrop">
       <div class="top">
         <img src="../assets/temp/backdrop-2/top.jpg">
@@ -11,14 +12,22 @@
         <img src="../assets/temp/backdrop-2/right.jpg">
       </div>
     </div>
+    -->
+    <div v-if="banner" class="backdrop-single">
+      <img :src="banner"/>
+    </div>
     <div class="header"
-      :style="{ 'background-image': 'url(' + poster + ')' }"
+      :style="{ 'background-image': 'url(' + context.media[0] + ')' }"
       >
       <div class="row">
         <div class="thumb">
-          <img src="../assets/temp/logo-square.jpg">
+          <img :src="context.icon" width="100" height="100">
         </div>
         <ul>
+          <li v-for="item in menu">
+            <router-link :to="item.route">{{ item.title }}</router-link>
+          </li>
+          <!-- TODO: Map active and highlight
           <li class="active">Home</li>
           <li>Sezoane</li>
           <li>Best Performance</li>
@@ -27,6 +36,7 @@
           <li>Exclusiv Online</li>
           <li>Stiri</li>
           <li class="highlight">Voteaza</li>
+          -->
         </ul>
       </div>
     </div>
@@ -35,9 +45,42 @@
 <script>
 export default {
   name: 'ShowHeader',
-  props: ['poster'],
+  props: [
+    'context',
+    'banner'
+  ],
+  data () {
+    return {
+      menu: []
+    }
+  },
   mounted () {
-    console.log('ShowHeader', this)
+    this.replacePaths()
+  },
+  methods: {
+    replacePaths () {
+      // Temporary replace paths until fixed in API
+      const menu = this.context.menu
+      this.menu = menu.map((item) => {
+        let route
+        switch (true) {
+          case item.link.includes('_home'):
+            route = item.link.replace('page', 'show')
+            route = route.replace('_home/', '_home')
+            item.route = route
+            break
+          case item.link.includes('_season'):
+            route = item.link.replace('page', 'show')
+            route = route.replace('_season', '/episodes')
+            item.route = route
+            break
+          default:
+            item.route = '/'
+        }
+        console.log('mounted item', item)
+        return item
+      })
+    }
   }
 }
 </script>
@@ -46,10 +89,21 @@ export default {
   width: 1235px;
   padding: 0;
   margin-top: -18px;
+  position: relative;
+  outline: 1px solid green;
 }
-.backdrop {
+.backdrop, .backdrop-single {
   position: relative;
   height: 740px;
+}
+
+.backdrop-single {
+  outline: 1px solid red;
+  width: 100%;
+}
+
+.backdrop-single img {
+  width: 100%;
 }
 
 .top, .left, .right {
@@ -105,12 +159,15 @@ ul {
 }
 
 li {
-  color: #434343;
   display: inline-block;
   font-size: 16px;
   margin-right: 25px;
   font-weight: 300;
   padding-top: 3px;
+}
+
+li a {
+  color: #434343;
 }
 
 li.active {
