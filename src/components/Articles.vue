@@ -58,24 +58,19 @@ export default {
       return itemsOrder
     },
     loadMore (url) {
-      console.log(this.loadMoreUrl)
       const apiUrl = 'http://protv.vidnt.com' + url
-      console.log(url)
       let _this = this
       axios.get(apiUrl).then((response) => {
-        console.log(JSON.parse(JSON.stringify(response.data)))
+        // console.log(JSON.parse(JSON.stringify(response.data)))
         _this.loadMoreUrl = response.data.head.link
         let articles = _this.items
         articles = articles.concat(_this.processData(response.data.items))
         _this.items = articles
-        console.log(articles)
       })
     }
   },
   mounted () {
     this.items = this.processData(this.articles)
-    console.log('Articles', JSON.parse(JSON.stringify(this.items)))
-    console.log(this.$options)
   },
   filters: {
     truncateOnWord (str, limit) {
