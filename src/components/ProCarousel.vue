@@ -2,7 +2,11 @@
 <div>
   <div class="container-fluid" :style="{ 'background-image': background ? 'url(' + background + ')' : 'none' }">
     <div class="row heading-container" v-if="title">
-        <h2 class="section-title">{{ title }}</h2>
+      <img v-if="titleIcon" :src="titleIcon" class="icon" width="50" height="50">
+      <h2 class="section-title" :class="{ [titleColor]: titleColor ? true : null }">{{ title }}</h2>
+      <div class="title-button" v-if="buttonColor">
+        <a class="btn" :class="{ [buttonColor]: buttonColor ? true : null }">Button Text Placeholder</a>
+      </div>
     </div>
     <div class="row component-container" :class="{'grid-carousel': rows === 2}" v-if="items.length">
       <slick ref="slick" :options="slickOptions" :class="{ 'grid-container': rows >= 2 }">
@@ -67,6 +71,8 @@ export default {
   },
   props: [
     'title',
+    'titleColor',
+    'titleIcon',
     'items',
     'grid',
     'meta',
@@ -74,18 +80,16 @@ export default {
     'synopsis',
     'background',
     'banner',
-    'bannerPlaceholder'
+    'bannerPlaceholder',
+    'buttonColor'
   ],
   data () {
     const gridConfig = this.grid.split('_')
-    const carouselId = 'carousel-' + this.id
     const autoplay = gridConfig[3] === 'auto'
     const rows = parseInt(gridConfig[0])
     const columns = parseInt(gridConfig[1])
     const step = parseInt(gridConfig[2])
     return {
-      carouselId: carouselId,
-      carouselIdRef: '#' + carouselId,
       rows: rows,
       columns: columns,
       next: step,
@@ -207,15 +211,45 @@ export default {
   padding: 20px 10% 30px 0px;
 }
 
+.section-title.red {
+  color: #bc0d0d;
+}
+
+.title-button {
+  float: right;
+  display: inline-block;
+  position: absolute;
+  top: 50px;
+  right: 0;
+}
+
+.title-button .btn {
+  border-radius: 0;
+  border: 1px solid white;
+  color: white;
+}
+
+.title-button .btn.red {
+  background: #bc0d0d;
+}
+
 .row {
   padding-left: 30px;
   padding-right: 30px;
 }
 
 .row.heading-container {
+  position: relative;
   width: 850px;
   margin: 0 auto;
   padding-left: 0px;
+}
+
+.heading-container .icon {
+  position: absolute;
+  top: 40px;
+  left: -70px;
+  float: left;
 }
 
 .row.component-container {
