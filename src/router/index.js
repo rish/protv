@@ -3,7 +3,7 @@ import Router from 'vue-router'
 // import Home from '@/components/Home'
 import HomeContainer from '@/views/HomeContainer'
 import ShowContainer from '@/views/ShowContainer'
-import Video from '@/components/Video'
+import VideoContainer from '@/views/VideoContainer'
 import ChannelContainer from '@/views/ChannelContainer'
 import Episodes from '@/components/Episodes'
 import ShowPanel from '@/components/ShowPanel'
@@ -28,7 +28,7 @@ export default new Router({
     {
       path: '/video/:id',
       name: 'Video',
-      component: Video
+      component: VideoContainer
     },
     {
       path: '/channel',
