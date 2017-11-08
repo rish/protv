@@ -1,10 +1,10 @@
 <template>
 <div id="home" v-if="areas.length">
   <div v-for="(area, index) in areas">
-    <div v-if="area.itype === 'item_mov_vod'">
+    <div v-if="area.aclass  === 'video'">
       <VOD :content="area" />
     </div>
-    <div v-if="area.itype === 'section'">
+    <div v-if="area.aclass === 'section' && !area.box">
       <ProCarousel
         :title="area.title"
         :title-color="area.title_color"
@@ -23,6 +23,9 @@
     <div v-if="area.box === 'articles'">
       <Articles :articles="area.items" :loadMoreLink="area.link"/>
     </div>
+    <div class="plugs" v-if="area.aclass === 'section_external'">
+      <Plugs :plugs="area" />
+    </div>
   </div>
 </div>
 </template>
@@ -31,13 +34,15 @@
 import VOD from '@/components/VOD'
 import ProCarousel from '@/components/ProCarousel'
 import Articles from '@/components/Articles'
+import Plugs from '@/components/Plugs'
 
 export default {
   name: 'Home',
   components: {
     VOD,
     ProCarousel,
-    Articles
+    Articles,
+    Plugs
   },
   data () {
     return {
@@ -58,3 +63,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.plugs {
+  padding: 50px 0;
+}
+</style>

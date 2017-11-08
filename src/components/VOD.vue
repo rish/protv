@@ -5,12 +5,16 @@
         <div class="overlay">
           <div class="row">
             <div class="content" v-if="!displayVideo">
-              <h2 class="title">{{ content.items[0].title }}</h2>
-              <h3 class="subheading">Placeholder for subheading</h3>
+              <h2 class="title" v-if="content.items[0].programme">{{ content.items[0].programme }}</h2>
+              <h3 class="subheading">{{ content.items[0].title }}</h3>
               <p>{{ content.items[0].description | truncateOnWord(200) }}</p>
               <router-link :to="'/video/' + content.items[0].id">
               <a class="more-videos-btn" href="#">Placeholder for button text</a>
               </router-link>
+              <p class="duration">
+                <img src="../assets/icons/clock.png" />
+                {{ content.items[0].duration | duration }}
+              </p>
             </div>
             <div class="play-btn" v-on:click="displayVideo = true" v-if="!displayVideo"></div>
             <div class="main-video" v-if="displayVideo">
@@ -182,6 +186,11 @@ export default {
   border: 0;
   width: 992px;
   height: 1100px;
+}
+
+.duration {
+  display: block;
+  margin-top: 30px !important;
 }
 
 </style>

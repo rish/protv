@@ -8,7 +8,7 @@
         <a class="btn" :class="{ [buttonColor]: buttonColor ? true : null }">Button Text Placeholder</a>
       </div>
     </div>
-    <div class="row component-container" :class="{'grid-carousel': rows === 2}" v-if="items.length">
+    <div class="row component-container" :class="{'grid-carousel': rows === 2, 'grid-4': columns === 4}" v-if="items.length">
       <slick ref="slick" :options="slickOptions" :class="{ 'grid-container': rows >= 2 }">
         <div class="slick-item" v-for="(item, index) in items" :key="item.id">
           <router-link :to="'/video/' + item.id" class="link">
@@ -106,6 +106,10 @@ export default {
   },
   mounted () {
     // Placeholder
+    console.log(this.title)
+    console.log(this.items)
+    console.log(this.columns)
+    console.log(this.slickOptions)
   },
   methods: {
     nextSlide () {
@@ -144,6 +148,9 @@ export default {
 </script>
 <style lang="scss">
   @import "../../node_modules/slick-carousel/slick/slick.scss";
+  a:focus {
+    outline: none;
+  }
   .slick-list {
     width: 850px;
     margin: 0 auto;
@@ -151,6 +158,16 @@ export default {
   .slick-slide {
     width: 267px;
     margin-right: 25px;
+  }
+  .grid-4 .slick-slide {
+    width: 171px;
+    margin-right: 60px;
+  }
+  .grid-4 .slick-slide .thumb {
+    height: 96px;
+  }
+  .grid-4 .controls {
+    top: 10px;
   }
   .grid-carousel {
     /* override .row.component-container padding for now */
@@ -324,6 +341,9 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
+}
+.grid-4 .play-icon {
+  top: 25%;
 }
 
 .narrow {
