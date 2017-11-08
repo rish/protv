@@ -35,7 +35,6 @@
 <script>
 import { duration, truncateOnWord } from '@/filters'
 import ProCarousel from '@/components/ProCarousel'
-/* global axios */
 export default {
   name: 'VOD',
   components: {
@@ -52,32 +51,6 @@ export default {
   filters: {
     duration,
     truncateOnWord
-  },
-  mounted () {
-    this.getData()
-  },
-  updated () {
-    // console.log('updated ...')
-    // console.log($('.carousel').carousel())
-  },
-  methods: {
-    getData () {
-      const url = 'http://protv.vidnt.com/page/home/'
-      axios.get(url).then((response) => {
-        console.log(JSON.parse(JSON.stringify(response.data)))
-        this.contents = response.data.content.areas
-      })
-    },
-    generateSlug (text) {
-      return text.toString().toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/[^\w-]+/g, '')
-        .replace(/--+/g, '-')
-        .replace(/^-+/, '')
-        .replace(/-+$/, '')
-    },
-    generateId (slug) {
-    }
   }
 }
 </script>
