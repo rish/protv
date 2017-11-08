@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     getData () {
-      const url = 'http://protv.vidnt.com/page/home/'
+      const url = '/page/home/'
       axios.get(url).then((response) => {
         console.log(response)
         this.areas = response.data.content.areas
