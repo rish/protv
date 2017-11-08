@@ -6,7 +6,10 @@
   />
   <div v-for="(area, index) in areas">
     <div v-if="area.aclass  === 'video_flow'">
-      mediaplayer goes here
+      <MediaPlayer
+      :items="area.items"
+      related-count="6"
+      />
     </div>
     <div v-if="area.aclass === 'section' && !area.box">
       <ProCarousel
@@ -36,6 +39,7 @@
 <script>
 /* global axios */
 import ShowHeader from '@/components/ShowHeader'
+import MediaPlayer from '@/components/MediaPlayer'
 import ProCarousel from '@/components/ProCarousel'
 import Articles from '@/components/Articles'
 
@@ -46,6 +50,7 @@ export default {
   ],
   components: {
     ShowHeader,
+    MediaPlayer,
     ProCarousel,
     Articles
   },

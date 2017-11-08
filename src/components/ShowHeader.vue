@@ -89,16 +89,20 @@ export default {
   width: 1235px;
   padding: 0;
   margin-top: -18px;
+  margin-bottom: -70px;
   position: relative;
-  outline: 1px solid green;
 }
+.backdrop {
+  position: relative;
+  height: 740px;
+}
+
 .backdrop, .backdrop-single {
   position: relative;
   height: 740px;
 }
 
 .backdrop-single {
-  outline: 1px solid red;
   width: 100%;
 }
 
