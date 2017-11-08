@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import HomeContainer from '@/views/HomeContainer'
 import Show from '@/components/Show'
 import Video from '@/components/Video'
-import Channel from '@/components/Channel'
+import ChannelContainer from '@/views/ChannelContainer'
 import Episodes from '@/components/Episodes'
 import ShowPanel from '@/components/ShowPanel'
 import ShowNews from '@/components/ShowNews'
@@ -33,7 +33,7 @@ export default new Router({
     {
       path: '/channel',
       name: 'Channel',
-      component: Channel
+      component: ChannelContainer
     },
     {
       path: '/show/:name/episodes',
