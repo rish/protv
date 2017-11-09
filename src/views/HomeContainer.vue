@@ -23,7 +23,13 @@
         />
     </div>
     <div v-if="area.box === 'articles'">
-      <Articles :articles="area.items" :loadMoreLink="area.link"/>
+      <Articles
+        :context="context"
+        :articles="area.items"
+        :load-more-text="area.more_bt_text"
+        :load-more-color="area.more_bt_color"
+        :load-more-link="area.link"
+      />
     </div>
     <div class="plugs" v-if="area.aclass === 'section_external'">
       <Plugs :plugs="area" />

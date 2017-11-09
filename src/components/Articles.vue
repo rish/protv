@@ -8,7 +8,11 @@
       />
     </div>
     <div class="text-center">
-      <a href="#" class="articles-btn" v-on:click.prevent="loadMore(loadMoreUrl)">Mai multe stiri</a>
+      <a href="#"
+        class="articles-btn"
+        v-on:click.prevent="loadMore(loadMoreUrl)"
+        :style="{ 'background-color': context.conf.colors[loadMoreColor] }"
+        >{{ loadMoreText }}</a>
     </div>
   </div>
 </div>
@@ -20,7 +24,13 @@ import ArticlesBlock from '@/components/ArticlesBlock'
 
 export default {
   name: 'Articles',
-  props: ['articles', 'loadMoreLink'],
+  props: [
+    'context',
+    'articles',
+    'loadMoreText',
+    'loadMoreColor',
+    'loadMoreLink'
+  ],
   components: {
     ArticlesBlock
   },
