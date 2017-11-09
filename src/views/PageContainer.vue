@@ -1,12 +1,31 @@
 <template>
 <div id="page">
+  <div id="site-header" v-if="localContext.hasOwnProperty('site_header')">
+    <SiteHeader
+      :buttons="localContext.site_header.buttons"
+      :icon="localContext.site_header.icon"
+      :media="localContext.site_header.media"
+      :menu="localContext.site_header.menu"
+      :banner="areas[0].banner_placeholder"
+    />
+  </div>
+  <div id="areas" v-if="areas.length">
+    <Areas :areas="areas"/>
+  </div>
 </div>
 </template>
 <script>
 /* global axios */
 
+import SiteHeader from '@/components/SiteHeader'
+import Areas from '@/components/Areas'
+
 export default {
   name: 'PageContainer',
+  components: {
+    SiteHeader,
+    Areas
+  },
   props: [
     'context'
   ],
@@ -29,15 +48,14 @@ export default {
     getData () {
       const url = '/page/' + this.$route.params.name + '/'
       axios.get(url).then((response) => {
-        console.log(response)
-        // this.areas = response.data.content.areas
-        // this.getContext(response.data.head.context)
+        console.log('Page response', response)
+        this.areas = response.data.content.areas
+        this.getContext(response.data.head.context)
       })
     },
     getContext (contextPath) {
       const url = contextPath
       axios.get(url).then((response) => {
-        console.log(response)
         this.localContext = response.data.context
       })
     }
