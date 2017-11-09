@@ -21,3 +21,14 @@ export function rgbToString (rgb) {
   let rgbString = rgb.map(val => val).join(',')
   return rgbString
 }
+
+export function chunkArray (array, chunkSize) {
+  let chunkArray = []
+  let i, j, temparray
+  for (i = 0, j = array.length; i < j; i += chunkSize) {
+    temparray = array.slice(i, i + chunkSize)
+    chunkArray.push(temparray)
+  }
+
+  return chunkArray
+}
