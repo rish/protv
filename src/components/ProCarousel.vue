@@ -30,7 +30,8 @@
               <span>{{ item.duration | duration }}</span>
             </div>
             <div class="play-icon">
-              <img src="../assets/icons/thumbnail-play.png">
+              <img v-if="playButtonColor" :src="require('../assets/icons/thumbnail-play-' + playButtonColor + '.png')">
+              <img v-else src="../assets/icons/thumbnail-play.png">
             </div>
           </div>
           <div :class="widthClass">
