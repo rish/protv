@@ -11,6 +11,15 @@
               <router-link :to="'/video/' + content.items[0].id">
               <a class="more-videos-btn" href="#">Placeholder for button text</a>
               </router-link>
+              <div v-for="button in content.buttons">
+                <ProButton
+                  :target="button.target"
+                  :background="button.background"
+                  :color="button.color"
+                  :text="button.text"
+                  :context="context"
+                  />
+              </div>
               <p class="duration">
                 <img src="../assets/icons/clock.png" />
                 {{ content.items[0].duration | duration }}
@@ -35,13 +44,16 @@
 <script>
 import { duration, truncateOnWord } from '@/filters'
 import ProCarousel from '@/components/ProCarousel'
+import ProButton from '@/components/ProButton'
 export default {
   name: 'VOD',
   components: {
-    ProCarousel
+    ProCarousel,
+    ProButton
   },
   props: [
-    'content'
+    'content',
+    'context'
   ],
   data () {
     return {

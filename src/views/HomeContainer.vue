@@ -2,7 +2,7 @@
 <div id="home" v-if="areas.length">
   <div v-for="(area, index) in areas">
     <div v-if="area.aclass  === 'video'">
-      <VOD :content="area" />
+      <VOD :content="area" :context="context" />
     </div>
     <div v-if="area.aclass === 'section' && !area.box">
       <ProCarousel
