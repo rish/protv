@@ -4,8 +4,16 @@
     <div class="row heading-container" v-if="title">
       <img v-if="titleIcon" :src="titleIcon" class="icon" width="50" height="50">
       <h2 class="section-title" :style="{ color: titleColor ? context.conf.colors[titleColor] : null }">{{ title }}</h2>
-      <div class="title-button" v-if="buttonColor">
-        <a class="btn" :class="{ [buttonColor]: buttonColor ? true : null }">Button Text Placeholder</a>
+      <div class="title-button" v-if="buttons">
+        <div v-for="button in buttons">
+          <ProButton
+            :target="button.target"
+            :background="button.background"
+            :color="button.color"
+            :text="button.text"
+            :context="context"
+            />
+        </div>
       </div>
     </div>
     <div class="row component-container" :class="{'grid-carousel': rows === 2, 'grid-4': columns === 4}" v-if="items.length">
@@ -61,12 +69,14 @@
 </template>
 <script>
 // import {$} from 'jquery'
+import ProButton from '@/components/ProButton'
 import Slick from 'vue-slick'
 import { duration } from '@/filters'
 
 export default {
   name: 'ProCarousel',
   components: {
+    ProButton,
     Slick
   },
   props: [
@@ -82,7 +92,8 @@ export default {
     'background',
     'banner',
     'bannerPlaceholder',
-    'buttonColor'
+    'playButtonColor',
+    'buttons'
   ],
   data () {
     const gridConfig = this.grid.split('_')
