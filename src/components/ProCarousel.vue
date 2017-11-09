@@ -97,7 +97,12 @@ export default {
     'buttons'
   ],
   data () {
-    const gridConfig = this.grid.split('_')
+    let gridConfig
+    if (this.grid) {
+      gridConfig = this.grid.split('_')
+    } else {
+      gridConfig = [1, 3, 1, 'manual']
+    }
     const autoplay = gridConfig[3] === 'auto'
     const rows = parseInt(gridConfig[0])
     const columns = parseInt(gridConfig[1])
