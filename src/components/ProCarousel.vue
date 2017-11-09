@@ -187,6 +187,7 @@ export default {
   }
   .b-vertical {
     float: right;
+    margin-top: -80px;
   }
   .controls {
     position: absolute;
