@@ -32,7 +32,7 @@
 import { truncateOnWord } from '@/filters'
 export default {
   name: 'ArticlesBlock',
-  props: ['articles'],
+  props: ['articles', 'chunkIndex'],
   data () {
     return {
       items: []
@@ -41,12 +41,12 @@ export default {
   methods: {
     processData (items) {
       let itemsOrder = items.slice(0, 6)
-      itemsOrder = [items[1], items[0], items[3], items[2], items[4], items[5]]
+      itemsOrder = [items[1], items[0], items[3], items[2], items[5], items[4]]
       // console.log('Items unordered', items)
       // console.log('Items ordered', items)
       itemsOrder[1].featured = true
       itemsOrder[2].featured = true
-      itemsOrder[2].highlight = true
+      itemsOrder[2].highlight = this.chunkIndex === 1
       return itemsOrder
     }
   },
