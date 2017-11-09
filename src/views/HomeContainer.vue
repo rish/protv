@@ -18,6 +18,7 @@
         meta="true"
         synopsis="true"
         playIcon="true"
+        :context="context"
         />
     </div>
     <div v-if="area.box === 'articles'">

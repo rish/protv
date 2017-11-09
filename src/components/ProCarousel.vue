@@ -3,7 +3,7 @@
   <div class="container-fluid" :style="{ 'background-image': background ? 'url(' + background + ')' : 'none' }">
     <div class="row heading-container" v-if="title">
       <img v-if="titleIcon" :src="titleIcon" class="icon" width="50" height="50">
-      <h2 class="section-title" :class="{ [titleColor]: titleColor ? true : null }">{{ title }}</h2>
+      <h2 class="section-title" :style="{ color: titleColor ? context.conf.colors[titleColor] : null }">{{ title }}</h2>
       <div class="title-button" v-if="buttonColor">
         <a class="btn" :class="{ [buttonColor]: buttonColor ? true : null }">Button Text Placeholder</a>
       </div>
@@ -70,6 +70,7 @@ export default {
     Slick
   },
   props: [
+    'context',
     'title',
     'titleColor',
     'titleIcon',
