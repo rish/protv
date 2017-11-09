@@ -8,9 +8,6 @@
               <h2 class="title" v-if="content.items[0].programme">{{ content.items[0].programme }}</h2>
               <h3 class="subheading">{{ content.items[0].title }}</h3>
               <p>{{ content.items[0].description | truncateOnWord(200) }}</p>
-              <router-link :to="'/video/' + content.items[0].id">
-              <a class="more-videos-btn" href="#">Placeholder for button text</a>
-              </router-link>
               <div v-for="button in content.buttons">
                 <ProButton
                   :target="button.target"
