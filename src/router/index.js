@@ -37,6 +37,11 @@ export default new Router({
       component: VideoContainer
     },
     {
+      path: '/itempage/video/:id',
+      name: 'Video',
+      component: VideoContainer
+    },
+    {
       path: '/channel',
       name: 'Channel',
       component: ChannelContainer
