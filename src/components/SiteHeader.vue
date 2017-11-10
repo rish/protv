@@ -4,7 +4,7 @@
       <img :src="banner"/>
     </div>
     <div class="header"
-      :style="{ 'background-image': 'url(' + media[0] + ')' }"
+      :style="{ 'background-image': media[0].itype === 'item_mov_vod' ? 'url(' + media[0].poster + ')' :'url(' + media[0] + ')' }"
       >
       <div class="row">
         <div class="thumb">
@@ -29,10 +29,7 @@ export default {
     'media',
     'menu',
     'banner'
-  ],
-  mounted () {
-    console.log(this)
-  }
+  ]
 }
 </script>
 <style scoped>

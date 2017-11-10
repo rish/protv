@@ -1,5 +1,5 @@
 <template>
-<div id="page">
+<div id="page" v-if="!loading">
   <div id="site-header" v-if="localContext.hasOwnProperty('site_header')">
     <SiteHeader
       :buttons="localContext.site_header.buttons"
@@ -9,7 +9,7 @@
       :banner="areas[0].banner_placeholder"
     />
   </div>
-  <div id="areas" v-if="areas.length">
+  <div id="areas">
     <Areas :areas="areas" :context="context" />
   </div>
 </div>
@@ -31,16 +31,17 @@ export default {
   ],
   data () {
     return {
+      loading: true,
       areas: [],
       localContext: {}
     }
   },
   mounted () {
-    console.log('page')
     this.getData()
   },
   watch: {
     '$route' (to, from) {
+      this.loading = true
       this.getData()
     }
   },
@@ -48,7 +49,6 @@ export default {
     getData () {
       const url = '/page/' + this.$route.params.name + '/'
       axios.get(url).then((response) => {
-        console.log('Page response', response)
         this.areas = response.data.content.areas
         this.getContext(response.data.head.context)
       })
@@ -57,6 +57,7 @@ export default {
       const url = contextPath
       axios.get(url).then((response) => {
         this.localContext = response.data.context
+        this.loading = false
       })
     }
   }
