@@ -9,6 +9,7 @@
     </div>
     <div v-if="area.aclass === 'section' && !area.box">
       <ProCarousel
+      :context="context"
       :title="area.title"
       :title-color="area.title_color"
       :title-icon="area.icon"
@@ -32,7 +33,10 @@ import ProCarousel from '@/components/ProCarousel'
 
 export default {
   name: 'Areas',
-  props: ['areas'],
+  props: [
+    'context',
+    'areas'
+  ],
   components: {
     MediaPlayer,
     ProCarousel

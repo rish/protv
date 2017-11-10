@@ -10,7 +10,7 @@
     />
   </div>
   <div id="areas" v-if="areas.length">
-    <Areas :areas="areas"/>
+    <Areas :areas="areas" :context="context" />
   </div>
 </div>
 </template>
