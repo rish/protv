@@ -24,43 +24,13 @@
     <div class="bottom" :class="{active: displayMenu }">
       <div class="container" :class="{ 'container-wide': activeMenu === 0 }">
         <ul class="shows" v-if="activeMenu === 1">
-          <li><router-link to="/show/voice_home">Romanii au Telent</router-link></li>
-          <li><router-link to="/show/voice_home">Vocea Romaniei</router-link></li>
-          <li><router-link to="/show/voice_home">Vocea Romaniei Junior</router-link></li>
-          <li><router-link to="/show/voice_home">Gospodar fara pereche</router-link></li>
-          <li><router-link to="/show/voice_home">Masterchef</router-link></li>
-          <li><router-link to="/show/voice_home">Ferma Vedetelor</router-link></li>
-          <li><router-link to="/show/voice_home">Pe bunu?</router-link></li>
-          <li><router-link to="/show/voice_home">Fort Boyard</router-link></li>
-          <li><router-link to="/show/voice_home">Ce spin romanii?</router-link></li>
-          <li><router-link to="/show/voice_home">Visuri la cheie</router-link></li>
-          <li><router-link to="/show/voice_home">Jocuri de celebritate</router-link></li>
+          <li v-for="link in context.header.selectors[activeMenu].links">
+            <router-link :to="link.page">{{ link.title }}</router-link>
+          </li>
         </ul>
         <ul v-else>
-          <li class="channel-pro-tv">
-            <router-link to="/channel">
-              <img src="../assets/logos/pro-tv.png">
-            </router-link>
-          </li>
-          <li class="channel-pro-2">
-            <router-link to="/channel">
-              <img src="../assets/logos/pro-2.png">
-            </router-link>
-          </li>
-          <li class="channel-pro-x">
-            <router-link to="/channel">
-              <img src="../assets/logos/pro-x-yellow.png">
-            </router-link>
-          </li>
-          <li class="channel-pro-gold">
-            <router-link to="/channel">
-              <img src="../assets/logos/pro-gold.png">
-            </router-link>
-          </li>
-          <li class="channel-pro-cinema">
-            <router-link to="/channel">
-              <img src="../assets/logos/pro-cinema.png">
-            </router-link>
+          <li v-for="link in context.header.selectors[activeMenu].links">
+            <router-link :to="link.page">{{ link.title }}</router-link>
           </li>
         </ul>
       </div>
