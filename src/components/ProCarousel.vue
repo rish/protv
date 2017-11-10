@@ -16,8 +16,8 @@
         </div>
       </div>
     </div>
-    <div class="row component-container" :class="{'grid-carousel': rows === 2, 'grid-4': columns === 4}" v-if="items.length">
-      <slick ref="slick" :options="slickOptions" :class="{ 'grid-container': rows >= 2 }">
+    <div class="row component-container" :class="{'grid-container': rows === 2, 'grid-4': columns === 4}" v-if="items.length">
+      <slick ref="slick" :options="slickOptions">
         <div class="slick-item" v-for="(item, index) in items" :key="item.id">
           <router-link :to="'/video/' + item.id" class="link">
           <div class="thumb"
@@ -168,14 +168,21 @@ export default {
   .slick-list {
     width: 850px;
     margin: 0 auto;
+    @include media('<=tablet') {
+      width: 100%;
+    }
   }
   .slick-slide {
     width: 267px;
     margin-right: 25px;
+    @include media('<=tablet') {
+    }
   }
   .grid-4 .slick-slide {
     width: 171px;
     margin-right: 60px;
+    @include media('<=tablet') {
+    }
   }
   .grid-4 .slick-slide .thumb {
     height: 96px;
@@ -183,29 +190,38 @@ export default {
   .grid-4 .controls {
     top: 10px;
   }
-  .grid-carousel {
-    /* override .row.component-container padding for now */
-    padding-right: 0 !important;
-  }
   .grid-container {
     float: left;
     width: 600px;
     padding-left: 35px;
+    padding-right: 0 !important;
+    @include media('<=tablet') {
+      width: 100%;
+    }
   }
-  .grid-carousel .controls {
+  .grid-container .controls {
     top: 165px;
     width: 680px;
     left: -300px;
+    @include media('<=tablet') {
+      width: 100%;
+    }
   }
-  .grid-carousel .slick-list {
+  .grid-container .slick-list {
     width: 550px;
+    @include media('<=tablet') {
+      width: 100%;
+    }
   }
-  .grid-carousel .slick-item {
+  .grid-container .slick-item {
     padding-bottom: 20px;
   }
   .b-vertical {
     float: right;
     margin-top: -80px;
+    @include media('<=tablet') {
+      display: none;
+    }
   }
   .controls {
     position: absolute;
@@ -215,6 +231,12 @@ export default {
     left: 0;
     right: 0;
     margin: auto;
+    @include media('<=tablet') {
+      width: 105%;
+      .left {
+        left: -25px;
+      }
+    }
   }
   .controls a {
     display: inline-block;
@@ -229,7 +251,7 @@ export default {
   }
 
 </style>
-<style scoped>
+<style lang="scss" scoped>
 .container-fluid {
   background-size: cover;
   background-repeat: no-repeat;
@@ -241,6 +263,10 @@ export default {
   font-weight: 200;
   text-transform: uppercase;
   padding: 20px 10% 30px 0px;
+  @include media('<=tablet') {
+    font-size: 30px;
+    padding-left: 30px;
+  }
 }
 
 .section-title.red {
@@ -275,6 +301,9 @@ export default {
   width: 850px;
   margin: 0 auto;
   padding-left: 0px;
+  @include media('<=tablet') {
+    width: 100%;
+  }
 }
 
 .heading-container .icon {
@@ -289,54 +318,9 @@ export default {
   margin: 0 auto;
   padding-bottom: 30px;
   position: relative;
-}
-
-.row.component-container.grid-carousel {
-}
-
-.grid-carousel .carousel-controls .left {
-  left: 10px;
-}
-
-.grid-carousel .carousel-controls {
-  top: 180px;
-}
-
-.carousel-inner .item {
-  padding: 0 10%;
-}
-
-.pager li>a, .pager li>span {
-  background: none;
-  border: none;
-}
-
-.carousel-controls {
-  position: absolute;
-  top: 25px;
-  width: 100%;
-}
-
-.carousel-controls.tall {
-  top: 30px;
-}
-
-.carousel-controls ul {
-  height: 10px;
-  margin: 0;
-  padding: 0;
-}
-
-.carousel-controls .left, .carousel-controls .right {
-  position: absolute;
-}
-
-.carousel-controls .left {
-  left: 50px;
-}
-
-.carousel-controls .right {
-  right: 50px;
+  @include media('<=tablet') {
+    width: 100%;
+  }
 }
 
 .thumb {
@@ -434,4 +418,3 @@ export default {
 }
 
 </style>
-

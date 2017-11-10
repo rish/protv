@@ -176,3 +176,44 @@ export default {
 }
 
 </style>
+
+<style lang="scss" scoped>
+.row {
+  @include media('<=tablet') {
+    margin: 0;
+  }
+}
+#VOD .container.backdrop {
+  @include media('<=tablet') {
+    height: 200px;
+    background-image: none !important;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+}
+.video-container {
+  @include media('<=tablet') {
+    width: 100%;
+    height: 200px;
+    max-height: 200px;
+    min-height: 1px;
+    margin: 0;
+    .overlay {
+      height: 200px;
+      min-height: 1px;
+    }
+    .content {
+      margin-right: 5px;
+      p {
+        font-size: 10px;
+        line-height: 11px;
+        margin-bottom: 10px;
+      }
+      .duration {
+        display: none;
+      }
+    }
+  }
+}
+</style>

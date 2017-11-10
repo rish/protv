@@ -106,6 +106,7 @@ export default {
   background: #000a49 url('../assets/bg-footer.jpg') no-repeat;
   background-size: cover;
   background-position: center center;
+  overflow: hidden;
 }
 
 ul h1 {

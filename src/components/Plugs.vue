@@ -92,3 +92,22 @@ export default {
 }
 
 </style>
+
+<style lang="scss" scoped>
+.container {
+  @include media('<=tablet') {
+    width: 100%;
+    .title {
+      text-align: center;
+    }
+    .thumb-container {
+      float: none;
+      margin: 10px auto;
+      width: 90%;
+      .thumb {
+        width: 100%;
+      }
+    }
+  }
+}
+</style>

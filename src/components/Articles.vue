@@ -80,7 +80,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 
 .articles-container {
   background: #131313;
@@ -90,6 +90,9 @@ export default {
 
 .container {
   width: 976px;
+  @include media('<=tablet') {
+    width: 100%;
+  }
 }
 .articles-btn {
   padding:13px;

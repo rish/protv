@@ -58,10 +58,13 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 article {
-  column-width: 300px;
-  column-gap: 20px;
+  @include media('>tablet') {
+    column-width: 300px;
+    column-gap: 20px;
+  }
+
 }
 
 .section-wrapper {
@@ -72,11 +75,17 @@ article {
 .b {
   margin-top: 15px;
   margin-bottom: 0px;
+  @include media('<=tablet') {
+    display: none;
+  }
 }
 
 .section-container {
   width: 300px;
   margin-bottom: 5px;
+  @include media('<=tablet') {
+    margin: 5px auto;
+  }
 }
 
 .section-wrapper:nth-child(2) {

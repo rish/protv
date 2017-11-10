@@ -46,6 +46,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: white;
   background: black;
+  overflow: auto;
 }
 #content {
   padding-top: 150px;
