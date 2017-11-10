@@ -1,7 +1,7 @@
 <template>
 <article>
 <div class="section-wrapper" v-for="(item, index) in items">
-  <router-link :to="'/article/' + item.id">
+  <router-link :to="item.page">
   <div class="section-container" :class="{
     'shadow-large': item.highlight,
     'shadow-small': !item.highlight && item.featured
