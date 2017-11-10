@@ -24,12 +24,21 @@
       playIcon="true"
       />
     </div>
+    <div v-if="area.box === 'articles'">
+      <Articles
+      :context="context"
+      :articles="area.items"
+      :load-more-text="area.more_bt_text"
+      :load-more-link="area.link"
+      />
+    </div>
   </div>
 </div>
 </template>
 <script>
 import MediaPlayer from '@/components/MediaPlayer'
 import ProCarousel from '@/components/ProCarousel'
+import Articles from '@/components/Articles'
 
 export default {
   name: 'Areas',
@@ -39,7 +48,8 @@ export default {
   ],
   components: {
     MediaPlayer,
-    ProCarousel
+    ProCarousel,
+    Articles
   }
 }
 </script>
