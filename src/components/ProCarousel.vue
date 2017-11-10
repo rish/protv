@@ -19,7 +19,7 @@
     <div class="row component-container" :class="{'grid-container': rows === 2, 'grid-4': columns === 4}" v-if="items.length">
       <slick ref="slick" :options="slickOptions">
         <div class="slick-item" v-for="(item, index) in items" :key="item.id">
-          <router-link :to="'/video/' + item.id" class="link">
+          <router-link :to="item.page" class="link">
           <div class="thumb"
             :style="{
               'background-image': 'url(' + item.poster + ')'
