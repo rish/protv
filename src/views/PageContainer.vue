@@ -1,5 +1,5 @@
 <template>
-<div id="page" v-if="!loading">
+<div id="page">
   <div id="site-header" v-if="localContext.hasOwnProperty('site_header')">
     <SiteHeader
       :buttons="localContext.site_header.buttons"
@@ -9,7 +9,7 @@
       :banner="areas[0].banner_placeholder"
     />
   </div>
-  <div id="areas">
+  <div id="areas" v-if="!loading">
     <Areas :areas="areas" :context="context" />
   </div>
 </div>

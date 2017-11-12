@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="context">
   <div v-for="area in areas">
     <div v-if="area.aclass === 'video_flow'">
       <MediaPlayer
