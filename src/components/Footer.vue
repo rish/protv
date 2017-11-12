@@ -107,6 +107,9 @@ export default {
   background-size: cover;
   background-position: center center;
   overflow: hidden;
+  display: table-row;
+  width: 100%;
+  height: 1px;
 }
 
 ul h1 {

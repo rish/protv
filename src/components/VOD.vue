@@ -1,5 +1,5 @@
 <template>
-  <div id="VOD" v-if="context">
+  <div id="VOD" v-if="context.hasOwnProperty('conf')">
     <div class="container backdrop" :style="{ 'background-image': 'url(' + content.banner_placeholder + ')' }">
       <div class="video-container" :style="{ 'background-image': displayVideo ? null : renderBackgroundImage(content.items[0].poster, 'image') }">
         <div class="overlay">
@@ -32,7 +32,7 @@
     </div>
     <div class="epg" :style="{ 'padding-top': displayVideo ? 0 : 'inherit' }">
       <div class="container">
-        <ProCarousel :items="content.items" :grid="content.grid"/>
+        <ProCarousel :context="context" :items="content.items" :grid="content.grid"/>
       </div>
     </div>
   </div>

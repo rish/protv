@@ -60,8 +60,10 @@ export default {
   color: white;
   background: black;
   overflow: auto;
+  height: 100%;
 }
 #content {
   padding-top: 150px;
+  height: 100%;
 }
 </style>

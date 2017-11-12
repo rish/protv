@@ -51,6 +51,7 @@ export default {
   overflow-x: hidden;
   position: relative;
   background: #131313;
+  width: 100%;
 }
 
 #sidebar {
@@ -76,6 +77,10 @@ export default {
   background: black;
   transition: transform 0.5s;
   transform-style: preserve-3d;
+  height: 100%;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
 }
 
 #pusher.active {

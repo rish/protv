@@ -69,8 +69,16 @@ export default {
 }
 </script>
 <style scoped>
-.loading .v-spinner {
+#page {
+  height: 100%;
+  position: relative;
+}
+.loading {
   text-align: center;
-  padding: 100px;
+  padding: 100px 0;
+  height: 1px;
+  margin: auto;
+  position: relative;
+  top: 0; left: 0; bottom: 0; right: 0;
 }
 </style>
