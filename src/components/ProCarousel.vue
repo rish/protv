@@ -61,8 +61,8 @@
         <img :src="bannerPlaceholder" width="300" height="600"/>
       </div>
       <div class="controls">
-        <a class="left" v-on:click="prevSlide"><img src="../assets/left-arrow.png"></a>
-        <a class="right" v-on:click="nextSlide"><img src="../assets/right-arrow.png"></a>
+        <a class="left" v-on:click="prevSlide"><img src="../assets/left-arrow.svg" ref="arrow"></a>
+        <a class="right" v-on:click="nextSlide"><img src="../assets/right-arrow.svg"></a>
       </div>
     </div>
   </div>
@@ -124,6 +124,8 @@ export default {
   },
   mounted () {
     // Placeholder
+    const arrow = this.$refs
+    console.log(arrow)
   },
   methods: {
     nextSlide () {
@@ -139,6 +141,14 @@ export default {
     },
     truncate (text, length) {
       return text.substring(0, length) + ' ...'
+    },
+    colorizeArrow () {
+      if (!this.playButtonColor) {
+        return
+      }
+      return {
+
+      }
     }
   },
   filters: {
