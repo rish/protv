@@ -34,6 +34,7 @@ export function chunkArray (array, chunkSize) {
 }
 
 export function replaceCDNImagePath (url, domain, format) {
+  if (!url) return
   // Returns the correct CDN image path if image is from the same domain
   if (url.includes(domain)) {
     const matches = url.split((/[.,.]/))
