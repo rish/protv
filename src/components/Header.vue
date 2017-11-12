@@ -216,6 +216,7 @@ li.channel-pro-cinema:hover {
   background-repeat: no-repeat;
   background-position: 15px center;
   color: black;
+  border: 0;
 }
 
 .search input::placeholder {
