@@ -29,8 +29,10 @@
           </li>
         </ul>
         <ul v-else>
-          <li v-for="link in context.header.selectors[activeMenu].links">
-            <router-link :to="link.page">{{ link.title }}</router-link>
+          <li v-for="link in context.header.selectors[activeMenu].links" :style="link.title === channelHover.title ? channelHoverUpdate : null" v-on:mouseenter="handleChannelHover(link)">
+            <router-link :to="link.page">
+              <img :src="link.icon" />
+            </router-link>
           </li>
         </ul>
       </div>
@@ -46,7 +48,8 @@ export default {
   data () {
     return {
       activeMenu: 0,
-      displayMenu: false
+      displayMenu: false,
+      channelHover: {}
     }
   },
   methods: {
@@ -60,6 +63,16 @@ export default {
       setTimeout(function () {
         _this.displayMenu = false
       }, 15000)
+    },
+    handleChannelHover (link) {
+      this.channelHover = link
+    }
+  },
+  computed: {
+    channelHoverUpdate () {
+      return {
+        backgroundColor: this.channelHover.hover_clr
+      }
     }
   }
 }
@@ -136,6 +149,8 @@ export default {
   font-size: 18px;
 }
 
+/*
+
 .bottom li:hover {
   background: #f22061;
 }
@@ -159,6 +174,7 @@ li.channel-pro-gold:hover {
 li.channel-pro-cinema:hover {
   background: #7d287d;
 }
+*/
 
 .bottom .shows {
   margin-bottom: 10px;
