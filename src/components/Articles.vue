@@ -54,7 +54,7 @@ export default {
 
         let articles = this.items
         articles = articles.concat(response.data.items)
-        this.items = articles
+        this.items = this.filterMissingAttrs(articles)
         this.chunks = chunkArray(this.items, this.chunkSize)
 
         this.updateLoadMoreUrl()
@@ -65,11 +65,27 @@ export default {
       const incrementCount = this.loadMoreCount + this.loadMoreIncrement
       this.loadMoreUrl = this.loadMoreUrl.replace('start=' + this.loadMoreCount, 'start=' + incrementCount)
       this.loadMoreCount += this.loadMoreIncrement
+    },
+    filterMissingAttrs (arr) {
+      // If the API is missing attributes needed lets filter them out for now
+      let filteredArr = arr.filter(article => {
+        if (article.title === null) {
+          return false
+        }
+        if (article.synopsis === null) {
+          return false
+        }
+        if (article.poster === null) {
+          return false
+        }
+        return true
+      })
+      return filteredArr
     }
   },
   mounted () {
-    this.items = this.articles
-    this.chunks = chunkArray(this.articles, this.chunkSize)
+    this.items = this.filterMissingAttrs(this.articles)
+    this.chunks = chunkArray(this.items, this.chunkSize)
 
     this.updateLoadMoreUrl()
   },
