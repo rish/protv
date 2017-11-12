@@ -1,10 +1,17 @@
 <template>
   <div id="app">
-    <AppHeader :context="context"/>
-    <div id="content">
-      <router-view :context="context" />
-    </div>
-    <AppFooter :context="context" />
+    <SidebarNav :active="sidebarNavActive"
+      :context="context"
+      v-on:toggleSidebar="toggleActive"
+    >
+      <AppHeader :context="context"
+        v-on:toggleSidebar="toggleActive"
+      />
+      <div id="content">
+        <router-view :context="context" />
+      </div>
+      <AppFooter :context="context" />
+    </SidebarNav>
   </div>
 </template>
 
@@ -12,16 +19,19 @@
 /* globals axios */
 import AppHeader from '@/components/Header'
 import AppFooter from '@/components/Footer'
+import SidebarNav from '@/components/SidebarNav'
 
 export default {
   name: 'app',
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    SidebarNav
   },
   data () {
     return {
-      context: {}
+      context: {},
+      sidebarNavActive: false
     }
   },
   mounted () {
@@ -33,6 +43,9 @@ export default {
       axios.get(url).then((response) => {
         this.context = response.data.context
       })
+    },
+    toggleActive () {
+      this.sidebarNavActive = !this.sidebarNavActive
     }
   }
 }

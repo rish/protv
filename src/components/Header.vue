@@ -2,7 +2,9 @@
   <div id="header" v-if="context.header" v-on:mouseleave="displayMenu = false">
     <div class="container">
       <div class="top">
-        <i class="glyphicon glyphicon-menu-hamburger pull-left"></i>
+        <i class="glyphicon glyphicon-menu-hamburger pull-left"
+          v-on:click="enableSidebar"
+          ></i>
         <router-link to="/">
           <img class="logo pull-left" src="../assets/logo.png">
         </router-link>
@@ -66,6 +68,9 @@ export default {
     },
     handleChannelHover (link) {
       this.channelHover = link
+    },
+    enableSidebar () {
+      this.$emit('toggleSidebar')
     }
   },
   computed: {
@@ -274,4 +279,6 @@ a {
 .social img {
   margin: 0px 7.5px;
 }
+
+.top i:hover { cursor: pointer; }
 </style>
