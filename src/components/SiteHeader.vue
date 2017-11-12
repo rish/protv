@@ -58,7 +58,7 @@ export default {
   left: 0;
   right: 0;
   margin: 0 auto;
-  margin-bottom: 500px;
+  margin-bottom: 200px;
   top: 150px;
   background-repeat: no-repeat;
   background-size: cover;

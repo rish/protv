@@ -1,5 +1,5 @@
 <template>
-<div id="page">
+<div id="page" v-if="context">
   <div id="site-header" v-if="localContext.hasOwnProperty('site_header')">
     <SiteHeader
       :buttons="localContext.site_header.buttons"
@@ -12,10 +12,14 @@
   <div id="areas" v-if="!loading">
     <Areas :areas="areas" :context="context" />
   </div>
+  <div v-if="loading && context.hasOwnProperty('conf')" class="loading">
+    <pulse-loader :loading="loading" :color="context.conf.colors.blue" size="15px"></pulse-loader>
+  </div>
 </div>
 </template>
 <script>
 /* global axios */
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 import SiteHeader from '@/components/SiteHeader'
 import Areas from '@/components/Areas'
@@ -24,7 +28,8 @@ export default {
   name: 'PageContainer',
   components: {
     SiteHeader,
-    Areas
+    Areas,
+    PulseLoader
   },
   props: [
     'context'
@@ -64,4 +69,8 @@ export default {
 }
 </script>
 <style scoped>
+.loading .v-spinner {
+  text-align: center;
+  padding: 100px;
+}
 </style>
