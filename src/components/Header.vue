@@ -1,5 +1,5 @@
 <template>
-  <div id="header" v-if="context.header" v-on:mouseleave="displayMenu = false">
+  <div id="header" v-if="context.header" v-on:mouseleave="hideMenu" v-on:mouseenter="cancelHideMenu">
     <div class="container">
       <div class="top">
         <i class="glyphicon glyphicon-menu-hamburger pull-left"
@@ -23,22 +23,24 @@
         </div>
       </div>
     </div>
-    <div class="bottom" :class="{active: displayMenu }">
-      <div class="container" :class="{ 'container-wide': activeMenu === 0 }">
-        <ul class="shows" v-if="activeMenu === 1">
-          <li v-for="link in context.header.selectors[activeMenu].links">
-            <router-link :to="link.page">{{ link.title }}</router-link>
-          </li>
-        </ul>
-        <ul v-else>
-          <li v-for="link in context.header.selectors[activeMenu].links" :style="link.title === channelHover.title ? channelHoverUpdate : null" v-on:mouseenter="handleChannelHover(link)">
-            <router-link :to="link.page">
-              <img :src="link.icon" />
-            </router-link>
-          </li>
-        </ul>
+    <transition name="slide-fade" mode="out-in">
+      <div class="bottom" :class="{active: displayMenu }" v-if="displayMenu">
+        <div class="container" :class="{ 'container-wide': activeMenu === 0 }">
+            <ul class="shows" v-if="activeMenu === 1">
+              <li v-for="link in context.header.selectors[activeMenu].links">
+                <router-link :to="link.page">{{ link.title }}</router-link>
+              </li>
+            </ul>
+            <ul v-else>
+              <li v-for="link in context.header.selectors[activeMenu].links" :style="link.title === channelHover.title ? channelHoverUpdate : null" v-on:mouseenter="handleChannelHover(link)">
+                <router-link :to="link.page">
+                  <img :src="link.icon" />
+                </router-link>
+              </li>
+            </ul>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -51,6 +53,9 @@ export default {
     return {
       activeMenu: 0,
       displayMenu: false,
+      hideMenuPending: false,
+      hideMenuTimeout: null,
+      hideMenuDelayDuration: 3000,
       channelHover: {}
     }
   },
@@ -61,10 +66,23 @@ export default {
       this.displayMenu = true
 
       // Disable hiding menu delay for now
-      let _this = this
-      setTimeout(function () {
-        _this.displayMenu = false
-      }, 15000)
+      // let _this = this
+      // setTimeout(function () {
+      //   _this.displayMenu = false
+      // }, 15000)
+    },
+    hideMenu () {
+      let self = this
+      this.hideMenuPending = true
+      this.hideMenuTimeout = setTimeout(function () {
+        self.displayMenu = false
+        self.hideMenuPending = false
+      }, self.hideMenuDelayDuration)
+    },
+    cancelHideMenu () {
+      if (this.hideMenuPending) {
+        clearTimeout(this.hideMenuTimeout)
+      }
     },
     handleChannelHover (link) {
       this.channelHover = link
@@ -283,4 +301,18 @@ a {
 }
 
 .top i:hover { cursor: pointer; }
+
+/* A N I M A T I O N S */
+.slide-fade-enter-active {
+  transition: all .2s ease;
+}
+.slide-fade-leave-active {
+  transition: all .1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
 </style>
