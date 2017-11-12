@@ -22,7 +22,7 @@
           <router-link :to="item.page" class="link">
           <div class="thumb"
             :style="{
-              'background-image': 'url(' + item.poster + ')'
+              'background-image': renderBackgroundImage(item.poster)
             }"
             >
             <div v-if="item.duration" class="duration">
@@ -73,6 +73,7 @@
 import ProButton from '@/components/ProButton'
 import Slick from 'vue-slick'
 import { duration } from '@/filters'
+import { renderBackgroundImage } from '@/utils'
 
 export default {
   name: 'ProCarousel',
@@ -124,8 +125,8 @@ export default {
   },
   mounted () {
     // Placeholder
-    const arrow = this.$refs
-    console.log(arrow)
+    // const arrow = this.$refs
+    // console.log(arrow)
   },
   methods: {
     nextSlide () {
@@ -133,7 +134,8 @@ export default {
     },
     prevSlide () {
       this.$refs.slick.prev()
-    }
+    },
+    renderBackgroundImage
   },
   computed: {
     widthClass () {

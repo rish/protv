@@ -1,5 +1,5 @@
 <template>
-  <div id="VOD">
+  <div id="VOD" v-if="context">
     <div class="container backdrop" :style="{ 'background-image': 'url(' + content.banner_placeholder + ')' }">
       <div class="video-container" :style="{ 'background-image': displayVideo ? null : renderBackgroundImage(content.items[0].poster, 'image') }">
         <div class="overlay">
@@ -40,7 +40,7 @@
 
 <script>
 import { duration, truncateOnWord } from '@/filters'
-import { replaceCDNImagePath } from '@/utils'
+import { renderBackgroundImage } from '@/utils'
 import ProCarousel from '@/components/ProCarousel'
 import ProButton from '@/components/ProButton'
 export default {
@@ -63,14 +63,7 @@ export default {
     truncateOnWord
   },
   methods: {
-    renderBackgroundImage (str, type) {
-      const domain = this.context.conf.images_domain
-      let format
-      type === 'image' ? format = 'image_resolution' : format = 'thumbnail_resolution'
-      const formatType = this.context.conf[format]
-      let backgroundStr = `url(${replaceCDNImagePath(str, domain, formatType)})`
-      return backgroundStr
-    }
+    renderBackgroundImage
   }
 }
 </script>

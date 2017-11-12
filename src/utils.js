@@ -34,10 +34,33 @@ export function chunkArray (array, chunkSize) {
 }
 
 export function replaceCDNImagePath (url, domain, format) {
-  if (url.includes(url)) {
+  // Returns the correct CDN image path if image is from the same domain
+  if (url.includes(domain)) {
     const matches = url.split((/[.,.]/))
     const original = matches.reverse()[1]
     const formattedUrl = url.replace(original, format)
     return formattedUrl
+  } else {
+    return url
   }
+}
+
+export function renderImagePath (str, type, context) {
+  // Render an image path based on the type
+  // type if 'image' will fetch the conf value for it
+  // thumb will be the other type but can be null for now
+  const self = context || this
+  // Set the context for this if we use renderBackgroundImage
+  const domain = self.context.conf.images_domain
+  let format
+  type === 'image' ? format = 'image_resolution' : format = 'thumbnail_resolution'
+  const formatType = self.context.conf[format]
+  const imagePath = replaceCDNImagePath(str, domain, formatType)
+  return imagePath
+}
+
+export function renderBackgroundImage (str, type) {
+  // Send this from Vue because it is not available in the renderImagePath func
+  const backgroundStr = `url(${renderImagePath(str, type, this)})`
+  return backgroundStr
 }
