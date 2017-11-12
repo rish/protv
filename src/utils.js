@@ -32,3 +32,12 @@ export function chunkArray (array, chunkSize) {
 
   return chunkArray
 }
+
+export function replaceCDNImagePath (url, domain, format) {
+  if (url.includes(url)) {
+    const matches = url.split((/[.,.]/))
+    const original = matches.reverse()[1]
+    const formattedUrl = url.replace(original, format)
+    return formattedUrl
+  }
+}
