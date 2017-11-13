@@ -58,7 +58,11 @@
       />
     </div>
     <div v-if="area.aclass === 'epg'">
-      <LiveEPG />
+      <LiveEPG
+      :context="context"
+      :items="area.items"
+      :title="area.title"
+      />
     </div>
   </div>
 </div>
