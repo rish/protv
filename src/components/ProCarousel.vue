@@ -16,47 +16,49 @@
         </div>
       </div>
     </div>
-    <div class="row component-container" :class="{'grid-container': rows === 2, 'grid-4': columns === 4}" v-if="items.length">
-      <slick ref="slick" :options="slickOptions">
-        <div class="slick-item" v-for="(item, index) in items" :key="item.id">
-          <router-link :to="item.page" class="link">
-          <div class="thumb"
-            :style="{
-              'background-image': renderBackgroundImage(item.poster)
-            }"
-            >
-            <div v-if="item.duration" class="duration">
-              <img src="../assets/icons/clock.png" width="9.5">
-              <span>{{ item.duration | duration }}</span>
-            </div>
-            <div class="play-icon">
-              <img v-if="playButtonColor" :src="require('../assets/icons/thumbnail-play-' + playButtonColor + '.png')">
-              <img v-else src="../assets/icons/thumbnail-play.png">
-            </div>
-          </div>
-          <div :class="widthClass">
-            <div v-if="meta" class="meta row">
-              <div class="remind pull-left">
-                <img src="../assets/icons/remind.png">
+    <div class="row component-container" :class="{'grid-4': columns === 4, 'grid-2x2': columns === 2 && rows === 2}" v-if="items.length">
+      <div :class="{'grid-container': rows === 2}">
+        <slick ref="slick" :options="slickOptions">
+          <div class="slick-item" v-for="(item, index) in items" :key="item.id">
+            <router-link :to="item.page" class="link">
+            <div class="thumb"
+              :style="{
+                'background-image': renderBackgroundImage(item.poster)
+              }"
+              >
+              <div v-if="item.duration" class="duration">
+                <img src="../assets/icons/clock.png" width="9.5">
+                <span>{{ item.duration | duration }}</span>
               </div>
-              <div class="views pull-right">
-                <img src="../assets/icons/views.png">
-                {{ item.views }} views
+              <div class="play-icon">
+                <img v-if="playButtonColor" :src="require('../assets/icons/thumbnail-play-' + playButtonColor + '.png')">
+                <img v-else src="../assets/icons/thumbnail-play.png">
               </div>
             </div>
-            <div v-if="columns === 3 || rows === 2">
-              <h5 class="title clearfix">{{ item.title | truncateOnWord(20) }}</h5>
+            <div :class="widthClass">
+              <div v-if="meta" class="meta row">
+                <div class="remind pull-left">
+                  <img src="../assets/icons/remind.png">
+                </div>
+                <div class="views pull-right">
+                  <img src="../assets/icons/views.png">
+                  {{ item.views }} views
+                </div>
+              </div>
+              <div v-if="columns === 3 || rows === 2">
+                <h5 class="title clearfix">{{ item.title | truncateOnWord(20) }}</h5>
+              </div>
+              <div v-else>
+                <h5 class="title clearfix">{{ item.title | truncateOnWord(40) }}</h5>
+              </div>
+              <div v-if="item.synopsis" class="synopsis-container">
+                <p class="synopsis">{{ item.synopsis | truncateOnWord(80) | stripHTML }}</p>
+              </div>
             </div>
-            <div v-else>
-              <h5 class="title clearfix">{{ item.title | truncateOnWord(40) }}</h5>
-            </div>
-            <div v-if="item.synopsis" class="synopsis-container">
-              <p class="synopsis">{{ item.synopsis | truncateOnWord(80) | stripHTML }}</p>
-            </div>
+            </router-link>
           </div>
-          </router-link>
-        </div>
-      </slick>
+        </slick>
+      </div>
       <div v-if="banner === 'vertical'" class="b-vertical">
         <img :src="bannerPlaceholder" width="300" height="600"/>
       </div>
@@ -202,6 +204,11 @@ export default {
   }
   .grid-4 .controls {
     top: 10px;
+  }
+  .grid-2x2 .controls {
+    top: 160px;
+    width: 680px;
+    margin-left: 0;
   }
   .grid-container {
     float: left;
@@ -365,6 +372,7 @@ export default {
 
 .wide {
   width: 267px;
+  height: 90px;
 }
 
 .wide .title {
