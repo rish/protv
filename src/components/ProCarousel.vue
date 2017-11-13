@@ -51,7 +51,7 @@
               <h5 class="title clearfix">{{ item.title | truncateOnWord(40) }}</h5>
             </div>
             <div v-if="item.synopsis" class="synopsis-container">
-              <p class="synopsis">{{ item.synopsis | truncateOnWord(80) }}</p>
+              <p class="synopsis">{{ item.synopsis | truncateOnWord(80) | stripHTML }}</p>
             </div>
           </div>
           </router-link>
@@ -72,7 +72,7 @@
 // import {$} from 'jquery'
 import ProButton from '@/components/ProButton'
 import Slick from 'vue-slick'
-import { duration } from '@/filters'
+import { duration, stripHTML } from '@/filters'
 import { renderBackgroundImage } from '@/utils'
 
 export default {
@@ -155,6 +155,7 @@ export default {
   },
   filters: {
     duration,
+    stripHTML,
     truncateOnWord (str, limit) {
       var trimmable = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u2028\u2029\u3000\uFEFF'
       var reg = new RegExp('(?=[' + trimmable + '])')

@@ -21,3 +21,10 @@ export function truncateOnWord (str, limit) {
   }
   return returnWords
 }
+
+export function stripHTML (value) {
+  let div = document.createElement('div')
+  div.innerHTML = value
+  const text = div.textContent || div.innerText || ''
+  return text
+}
