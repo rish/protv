@@ -64,6 +64,13 @@
       :title="area.title"
       />
     </div>
+    <div v-if="area.aclass === 'section_promo'">
+      <Promo
+      :context="context"
+      :items="area.items"
+      :title="area.title"
+      />
+    </div>
   </div>
 </div>
 </template>
@@ -75,6 +82,7 @@ import About from '@/components/About'
 import News from '@/components/News'
 import NewsBlocks from '@/components/NewsBlocks'
 import LiveEPG from '@/components/LiveEPG'
+import Promo from '@/components/Promo'
 
 export default {
   name: 'Areas',
@@ -89,7 +97,8 @@ export default {
     About,
     News,
     NewsBlocks,
-    LiveEPG
+    LiveEPG,
+    Promo
   }
 }
 </script>

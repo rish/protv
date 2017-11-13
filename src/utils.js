@@ -65,3 +65,26 @@ export function renderBackgroundImage (str, type) {
   const backgroundStr = `url(${renderImagePath(str, type, this)})`
   return backgroundStr
 }
+
+export function replaceArrowFill (el, color) {
+  const encoded = el.src.substring(26)
+  const decoded = atob(encoded)
+
+  let wrapper = document.createElement('div')
+  wrapper.innerHTML = decoded
+  let newSvg = wrapper.firstChild
+  let innerPath = newSvg.getElementsByTagName('path')[0]
+  innerPath.setAttribute('stroke', color)
+  el.parentNode.replaceChild(newSvg, el)
+}
+
+export function calculateArrowColorization (refs, color, context) {
+  const self = context || this
+  const uiHex = self.context.conf.colors[color] || color.startsWith('#')
+  if (uiHex) {
+    refs.map(ref => {
+      const target = self.$refs[ref]
+      replaceArrowFill(target, color)
+    })
+  }
+}
