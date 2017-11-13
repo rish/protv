@@ -40,6 +40,15 @@
       :banner="area.banner_placeholder"
       />
     </div>
+    <div v-if="area.aclass === 'news'">
+      <News
+      :context="context"
+      :title="area.title"
+      :item="area.items[0]"
+      :banner-placement="area.banner"
+      :banner="area.banner_placeholder"
+      />
+    </div>
   </div>
 </div>
 </template>
@@ -48,6 +57,7 @@ import MediaPlayer from '@/components/MediaPlayer'
 import ProCarousel from '@/components/ProCarousel'
 import Articles from '@/components/Articles'
 import About from '@/components/About'
+import News from '@/components/News'
 
 export default {
   name: 'Areas',
@@ -59,7 +69,8 @@ export default {
     MediaPlayer,
     ProCarousel,
     Articles,
-    About
+    About,
+    News
   }
 }
 </script>
