@@ -32,6 +32,14 @@
       :load-more-link="area.link"
       />
     </div>
+    <div v-if="area.aclass === 'about'">
+      <About
+      :context="context"
+      :item="area.items[0]"
+      :banner-placement="area.banner"
+      :banner="area.banner_placeholder"
+      />
+    </div>
   </div>
 </div>
 </template>
@@ -39,6 +47,7 @@
 import MediaPlayer from '@/components/MediaPlayer'
 import ProCarousel from '@/components/ProCarousel'
 import Articles from '@/components/Articles'
+import About from '@/components/About'
 
 export default {
   name: 'Areas',
@@ -49,7 +58,8 @@ export default {
   components: {
     MediaPlayer,
     ProCarousel,
-    Articles
+    Articles,
+    About
   }
 }
 </script>
