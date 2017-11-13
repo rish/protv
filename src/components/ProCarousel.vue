@@ -165,7 +165,7 @@ export default {
       innerPath.setAttribute('stroke', color)
 
       // Show modified image
-      document.body.appendChild(newSvg)
+      // document.body.appendChild(newSvg)
       el.parentNode.replaceChild(newSvg, el)
     }
   },
