@@ -75,6 +75,7 @@ export function replaceArrowFill (el, color) {
   let newSvg = wrapper.firstChild
   let innerPath = newSvg.getElementsByTagName('path')[0]
   innerPath.setAttribute('stroke', color)
+  // TODO: Change this back to an image tag to prevent highlight click bug
   el.parentNode.replaceChild(newSvg, el)
 }
 
