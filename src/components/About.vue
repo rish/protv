@@ -31,6 +31,5 @@ export default {
 .b.top img {
   width: 1000px;
   height: 120px;
-  margin-top: 50px;
 }
 </style>
