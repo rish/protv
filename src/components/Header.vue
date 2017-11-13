@@ -72,6 +72,7 @@ export default {
       // }, 15000)
     },
     hideMenu () {
+      this.channelHover = {}
       let self = this
       this.hideMenuPending = true
       this.hideMenuTimeout = setTimeout(function () {
