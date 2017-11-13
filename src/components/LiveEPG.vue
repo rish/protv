@@ -73,6 +73,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
+    margin-bottom: 40px;
   }
   .container {
     width: 1000px;

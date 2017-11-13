@@ -87,7 +87,7 @@ export default {
 .container {
   width: 1000px;
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 60px;
 }
 
 .block {
@@ -116,7 +116,7 @@ export default {
   width: 90px;
   height: 50px;
   position: absolute;
-  bottom: -210px;
+  bottom: -250px;
   img {
     width: 15px;
   }
