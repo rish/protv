@@ -57,6 +57,9 @@
       :items="area.items"
       />
     </div>
+    <div v-if="area.aclass === 'epg'">
+      <LiveEPG />
+    </div>
   </div>
 </div>
 </template>
@@ -67,6 +70,7 @@ import Articles from '@/components/Articles'
 import About from '@/components/About'
 import News from '@/components/News'
 import NewsBlocks from '@/components/NewsBlocks'
+import LiveEPG from '@/components/LiveEPG'
 
 export default {
   name: 'Areas',
@@ -80,7 +84,8 @@ export default {
     Articles,
     About,
     News,
-    NewsBlocks
+    NewsBlocks,
+    LiveEPG
   }
 }
 </script>
