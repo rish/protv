@@ -94,6 +94,12 @@ export default {
   margin: 0 auto;
 }
 
+#pusher.active #header,
+#pusher.active #content,
+#pusher.active #footer {
+  pointer-events: none;
+}
+
 ul {
   margin: 0;
   padding: 0;
