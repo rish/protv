@@ -1,23 +1,28 @@
 <template>
-  <div class="container">
-    <div v-if="banner" class="backdrop-single">
-      <img :src="banner"/>
-    </div>
-    <div class="header"
-      :style="{ 'background-image': media[0].itype === 'item_mov_vod' ? 'url(' + media[0].poster + ')' :'url(' + media[0] + ')' }"
-      >
-      <div class="row">
-        <div class="thumb">
-          <img :src="icon" width="100" height="100">
-        </div>
-        <ul>
-          <li v-for="item in menu">
-            <router-link :to="item.link" :class="{active: item.link === $route.path}">{{ item.title }}</router-link>
-          </li>
-        </ul>
+<div class="container"
+  :class="{
+  'b-inline': bannerPlacement === 'inline',
+  ['page-' + type]: true
+  }">
+  <div v-if="bannerPlacement === 'inline'" class="backdrop-single" :class="{ inline: bannerPlacement === 'inline'}">
+    <img :src="banner"/>
+  </div>
+  <div class="header"
+    :style="{ 'background-image': media[0].itype === 'item_mov_vod' ? 'url(' + media[0].poster + ')' :'url(' + media[0] + ')' }"
+    >
+    <div class="menu row">
+      <div class="thumb">
+        <img v-if="type === 'show'" :src="icon" width="100" height="100">
+        <img v-else :src="icon" width="200" height="200">
       </div>
+      <ul>
+        <li v-for="item in menu">
+          <router-link :to="item.link" :class="{active: item.link === $route.path}">{{ item.title }}</router-link>
+        </li>
+      </ul>
     </div>
   </div>
+</div>
 </template>
 <script>
 export default {
@@ -28,8 +33,13 @@ export default {
     'icon',
     'media',
     'menu',
-    'banner'
-  ]
+    'banner',
+    'banner-placement',
+    'type'
+  ],
+  mounted () {
+    console.log('site header', this)
+  }
 }
 </script>
 <style scoped>
@@ -40,7 +50,7 @@ export default {
   margin: 0 auto;
 }
 
-.backdrop-single {
+.b-inline .backdrop-single {
   width: 100%;
   position: absolute;
   height: 740px;
@@ -54,15 +64,21 @@ export default {
 .header {
   position: relative;
   width: 975px;
-  height: 385px;
+  height: 400px;
+  top: 30px;
   left: 0;
   right: 0;
   margin: 0 auto;
-  margin-bottom: 200px;
-  top: 150px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  margin-bottom: 80px;
+}
+
+.b-inline .header {
+  margin-bottom: 200px;
+  top: 150px;
+  height: 385px;
 }
 
 .row {
@@ -81,6 +97,10 @@ export default {
   left: 80px;
   top: -25px;
   margin-right: 100px;
+}
+
+.page-channel .thumb {
+  top: -180px;
 }
 
 ul {

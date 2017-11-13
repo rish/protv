@@ -1,12 +1,17 @@
 <template>
-<div id="page" v-if="context">
+<div id="page" v-if="localContext.hasOwnProperty('conf')">
+  <div class="b top" v-if="areas[0].banner === 'top'">
+    <img :src="areas[0].banner_placeholder" width="1000" height="120">
+  </div>
   <div id="site-header" v-if="localContext.hasOwnProperty('site_header')">
     <SiteHeader
       :buttons="localContext.site_header.buttons"
       :icon="localContext.site_header.icon"
       :media="localContext.site_header.media"
       :menu="localContext.site_header.menu"
+      :banner-placement="areas[0].banner"
       :banner="areas[0].banner_placeholder"
+      :type="headerPageType"
     />
   </div>
   <div id="areas" v-if="!loading">
@@ -38,6 +43,7 @@ export default {
     return {
       loading: true,
       areas: [],
+      head: {},
       localContext: {}
     }
   },
@@ -55,6 +61,7 @@ export default {
       const url = '/page/' + this.$route.params.name + '/'
       axios.get(url).then((response) => {
         this.areas = response.data.content.areas
+        this.head = response.data.head
         this.getContext(response.data.head.context)
       })
     },
@@ -64,6 +71,15 @@ export default {
         this.localContext = response.data.context
         this.loading = false
       })
+    }
+  },
+  computed: {
+    headerPageType () {
+      if (this.head.template.includes('channel')) {
+        return 'channel'
+      } else {
+        return 'show'
+      }
     }
   }
 }
@@ -80,5 +96,10 @@ export default {
   margin: auto;
   position: relative;
   top: 0; left: 0; bottom: 0; right: 0;
+}
+
+/* BANNERS */
+.b {
+  text-align: center;
 }
 </style>
