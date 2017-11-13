@@ -72,11 +72,11 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  margin-bottom: 80px;
+  margin-bottom: 120px;
 }
 
 .b-inline .header {
-  margin-bottom: 200px;
+  margin-bottom: 260px;
   top: 150px;
   height: 385px;
 }
@@ -123,6 +123,10 @@ li a.active {
   color: black;
   font-weight: 500;
   text-transform: uppercase;
+}
+
+li a:focus {
+  text-decoration: none;
 }
 
 li.highlight {
