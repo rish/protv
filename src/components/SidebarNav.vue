@@ -71,6 +71,7 @@ export default {
 
 #sidebar.active {
   transform: translate3d(0, 0, 0);
+  box-shadow: 4px 4px 4px rgba(0,0,0,0.3);
 }
 
 #pusher {
