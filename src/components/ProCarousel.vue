@@ -63,8 +63,8 @@
         <img :src="bannerPlaceholder" width="300" height="600"/>
       </div>
       <div class="controls">
-        <a class="left" v-on:click="prevSlide"><img src="../assets/left-arrow.svg" ref="arrow"></a>
-        <a class="right" v-on:click="nextSlide"><img src="../assets/right-arrow.svg"></a>
+        <a class="left" v-on:click="prevSlide"><img src="../assets/left-arrow.svg" ref="arrowLeft"></a>
+        <a class="right" v-on:click="nextSlide"><img src="../assets/right-arrow.svg" ref="arrowRight"></a>
       </div>
     </div>
   </div>
@@ -126,9 +126,7 @@ export default {
     }
   },
   mounted () {
-    // Placeholder
-    // const arrow = this.$refs
-    // console.log(arrow)
+    this.calculateArrowColorization()
   },
   methods: {
     nextSlide () {
@@ -137,7 +135,39 @@ export default {
     prevSlide () {
       this.$refs.slick.prev()
     },
-    renderBackgroundImage
+    renderBackgroundImage,
+    calculateArrowColorization () {
+      const uiHex = this.context.conf.colors[this.playButtonColor]
+      if (uiHex) {
+        const arrowLeft = this.$refs.arrowLeft
+        const arrowRight = this.$refs.arrowRight
+        this.replaceArrowFill(arrowLeft, uiHex)
+        this.replaceArrowFill(arrowRight, uiHex)
+      }
+    },
+    replaceArrowFill (el, color) {
+      // Quick and dirty way to replace svg stroke path
+      // Strip "data:image/svg+xml;base64," to get encoded SVG
+      const encoded = el.src.substring(26)
+
+      // Decode base64
+      var decoded = atob(encoded)
+
+      // Create an HTML element from decoded SVG
+      let wrapper = document.createElement('div')
+      wrapper.innerHTML = decoded
+      let newSvg = wrapper.firstChild
+
+      // Lookup the <path> and get a ref
+      let innerPath = newSvg.getElementsByTagName('path')[0]
+
+      // Set up new color
+      innerPath.setAttribute('stroke', color)
+
+      // Show modified image
+      document.body.appendChild(newSvg)
+      el.parentNode.replaceChild(newSvg, el)
+    }
   },
   computed: {
     widthClass () {
