@@ -5,24 +5,28 @@
       <img :src="banner" width="1000" height="120">
     </div>
 
-    <img :src="item.poster">
-
     <div class="main">
       <h3 class="title" v-html="title"></h3>
-      <div class="text" v-html="item.content"></div>
+    </div>
+
+
+    <div class="blocks">
+      <div class="block" v-for="item in items">
+        <img :src="item.poster">
+        <h3 class="title">{{ item.title }}</h3>
+      </div>
     </div>
 
   </div>
-
 </div>
 </template>
 <script>
 export default {
-  name: 'News',
+  name: 'NewsBlocks',
   props: [
     'context',
     'title',
-    'item',
+    'items',
     'bannerPlacement',
     'banner'
   ]

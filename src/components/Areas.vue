@@ -49,6 +49,14 @@
       :banner="area.banner_placeholder"
       />
     </div>
+    <div v-if="area.aclass == 'section_articles'">
+      <NewsBlocks
+      :context="context"
+      :banner-placement="area.banner"
+      :banner="area.banner_placeholder"
+      :items="area.items"
+      />
+    </div>
   </div>
 </div>
 </template>
@@ -58,6 +66,7 @@ import ProCarousel from '@/components/ProCarousel'
 import Articles from '@/components/Articles'
 import About from '@/components/About'
 import News from '@/components/News'
+import NewsBlocks from '@/components/NewsBlocks'
 
 export default {
   name: 'Areas',
@@ -70,7 +79,8 @@ export default {
     ProCarousel,
     Articles,
     About,
-    News
+    News,
+    NewsBlocks
   }
 }
 </script>
