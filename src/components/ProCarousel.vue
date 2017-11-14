@@ -1,6 +1,12 @@
 <template>
 <div id="pro-carousel">
+  <div v-if="banner === 'top'" class="b-top">
+    <img :src="bannerPlaceholder" width="1000" height="120"/>
+  </div>
   <div class="container-fluid" :style="{ 'background-image': background ? 'url(' + background + ')' : 'none' }">
+      <div v-if="banner === 'vertical'" class="b-vertical">
+        <img :src="bannerPlaceholder" width="300" height="600"/>
+      </div>
     <div class="row heading-container" v-if="title">
       <img v-if="titleIcon" :src="titleIcon" class="icon" width="50" height="50">
       <h2 class="section-title" :style="{ color: titleColor ? context.conf.colors[titleColor] : null }">{{ title }}</h2>
@@ -468,6 +474,11 @@ export default {
 .link, .link:hover {
   color: inherit;
   text-decoration: none;
+}
+
+.b-top {
+  text-align: center;
+  padding-top: 40px;
 }
 
 </style>
