@@ -9,7 +9,7 @@
             <a v-if="isExternalLink(link.link)" :href="link.link">
               {{ link.title }}
             </a>
-            <router-link :to="link.link" v-else>
+            <router-link :to="link.link" v-else v-on:click.native="disableSidebar">
               {{ link.title }}
             </router-link>
           </li>
@@ -36,10 +36,11 @@ export default {
       }
     },
     isExternalLink (url) {
-      if (!/^(f|ht)tps?:\/\//i.test(url)) {
-        url = 'http://' + url
+      if (/^(f|ht)tps?:\/\//i.test(url)) {
+        return true
+      } else {
+        return false
       }
-      return url
     }
   }
 }
