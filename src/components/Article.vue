@@ -1,6 +1,9 @@
 <template>
 <div id="article" v-if="context">
   <div class="container">
+    <div class="b top">
+      <img :src="bannerTop" width="1000" height="120">
+    </div>
     <div class="main">
       <img class="img-responsive" :src="content.poster">
       <h3 class="title" v-html="content.title"></h3>
@@ -15,19 +18,9 @@
         :items="sidebarItems"
         :title="sidebarTitle"
       />
-      <!--
-      <h3 class="heading">Video Recommended</h3>
-
-      <MediaPlayerRelated :videoItems="home[0].items" limit=5 barebones="true" />
-
-      <Banner type="square" padding="30"/>
-
-      <MediaPlayerRelated :videoItems="home[0].items" limit=5 barebones="true" />
-
-      <Banner type="vertical-large" padding="30"/>
-
-      <MediaPlayerRelated :videoItems="home[0].items" limit=5 barebones="true" />
-      -->
+    </div>
+    <div class="b bottom">
+      <img :src="bannerBottom" width="970" height="250">
     </div>
   </div>
 </div>
@@ -48,7 +41,9 @@ export default {
     'bannerPlacement',
     'banner',
     'sidebarItems',
-    'sidebarTitle'
+    'sidebarTitle',
+    'bannerTop',
+    'bannerBottom'
   ],
   data () {
     return {

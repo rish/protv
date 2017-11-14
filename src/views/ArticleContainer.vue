@@ -6,6 +6,8 @@
       :content="areas[0].items[0]"
       :sidebar-items="areas[1].items"
       :sidebar-title="areas[1].title"
+      :banner-top="areas[0].banner_placeholder"
+      :banner-bottom="areas[1].banner_placeholder"
     />
   </div>
   <div v-if="loading && context.hasOwnProperty('conf')" class="loading">
