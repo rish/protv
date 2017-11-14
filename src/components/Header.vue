@@ -9,7 +9,7 @@
           <img class="logo pull-left" src="../assets/logo.png">
         </router-link>
         <div class="search pull-left">
-          <input type="text" placeholder="Search">
+          <input type="text" placeholder="Search" v-model="searchValue" v-on:keyup.enter="submitSearch">
         </div>
         <div class="drop-down-menus pull-left">
           <ul v-for="(menus, index) in context.header.selectors">
@@ -56,7 +56,8 @@ export default {
       hideMenuPending: false,
       hideMenuTimeout: null,
       hideMenuDelayDuration: 3000,
-      channelHover: {}
+      channelHover: {},
+      searchValue: null
     }
   },
   methods: {
@@ -90,6 +91,15 @@ export default {
     },
     enableSidebar () {
       this.$emit('toggleSidebar')
+    },
+    submitSearch () {
+      this.$router.push({
+        path: '/search',
+        query: {
+          q: this.searchValue
+        }
+      })
+      this.searchValue = null
     }
   },
   computed: {

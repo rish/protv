@@ -1,347 +1,100 @@
 <template>
-<div id="show" v-if="home.length">
+<div id="show" v-if="areas">
   <div class="container">
-    <Banner type="horizontal" padding="20"/>
-
-    <div class="video-blocks">
-
-      <div class="video-block">
-        <div class="thumb">
-          <img class="play-icon" src="../assets/icons/thumbnail-play.png">
-        </div>
-        <div class="info">
-          <div class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
-            </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              467 views
-            </div>
-          </div>
-          <div>
-            <h5 class="title clearfix">{{ mock.videoTitle }}</h5>
-          </div>
-          <div>
-            <p class="description">{{ mock.videoText }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="video-block">
-        <div class="thumb">
-          <img class="play-icon" src="../assets/icons/thumbnail-play.png">
-        </div>
-        <div class="info">
-          <div class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
-            </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              467 views
-            </div>
-          </div>
-          <div>
-            <h5 class="title clearfix">{{ mock.videoTitle }}</h5>
-          </div>
-          <div>
-            <p class="description">{{ mock.videoText }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="video-block">
-        <div class="thumb">
-          <img class="play-icon" src="../assets/icons/thumbnail-play.png">
-        </div>
-        <div class="info">
-          <div class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
-            </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              467 views
-            </div>
-          </div>
-          <div>
-            <h5 class="title clearfix">{{ mock.videoTitle }}</h5>
-          </div>
-          <div>
-            <p class="description">{{ mock.videoText }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="video-block">
-        <div class="thumb">
-          <img class="play-icon" src="../assets/icons/thumbnail-play.png">
-        </div>
-        <div class="info">
-          <div class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
-            </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              467 views
-            </div>
-          </div>
-          <div>
-            <h5 class="title clearfix">{{ mock.videoTitle }}</h5>
-          </div>
-          <div>
-            <p class="description">{{ mock.videoText }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="video-block">
-        <div class="thumb">
-          <img class="play-icon" src="../assets/icons/thumbnail-play.png">
-        </div>
-        <div class="info">
-          <div class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
-            </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              467 views
-            </div>
-          </div>
-          <div>
-            <h5 class="title clearfix">{{ mock.videoTitle }}</h5>
-          </div>
-          <div>
-            <p class="description">{{ mock.videoText }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="video-block">
-        <div class="thumb">
-          <img class="play-icon" src="../assets/icons/thumbnail-play.png">
-        </div>
-        <div class="info">
-          <div class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
-            </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              467 views
-            </div>
-          </div>
-          <div>
-            <h5 class="title clearfix">{{ mock.videoTitle }}</h5>
-          </div>
-          <div>
-            <p class="description">{{ mock.videoText }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="video-block">
-        <div class="thumb">
-          <img class="play-icon" src="../assets/icons/thumbnail-play.png">
-        </div>
-        <div class="info">
-          <div class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
-            </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              467 views
-            </div>
-          </div>
-          <div>
-            <h5 class="title clearfix">{{ mock.videoTitle }}</h5>
-          </div>
-          <div>
-            <p class="description">{{ mock.videoText }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="video-block">
-        <div class="thumb">
-          <img class="play-icon" src="../assets/icons/thumbnail-play.png">
-        </div>
-        <div class="info">
-          <div class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
-            </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              467 views
-            </div>
-          </div>
-          <div>
-            <h5 class="title clearfix">{{ mock.videoTitle }}</h5>
-          </div>
-          <div>
-            <p class="description">{{ mock.videoText }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="video-block">
-        <div class="thumb">
-          <img class="play-icon" src="../assets/icons/thumbnail-play.png">
-        </div>
-        <div class="info">
-          <div class="meta row">
-            <div class="remind pull-left">
-              <img src="../assets/icons/remind.png">
-            </div>
-            <div class="views pull-right">
-              <img src="../assets/icons/views.png">
-              467 views
-            </div>
-          </div>
-          <div>
-            <h5 class="title clearfix">{{ mock.videoTitle }}</h5>
-          </div>
-          <div>
-            <p class="description">{{ mock.videoText }}</p>
-          </div>
-        </div>
-      </div>
-
+    <div class="filter">
+      <h2>Search for: {{ searchQuery }}</h2>
+      <h3>Results for:</h3>
+      <label><input type="checkbox" v-model="displayVideos"> Video</label>
+      <label><input type="checkbox" v-model="displayArticles"> Articles</label>
     </div>
-
-    <Banner type="large" padding="30"/>
-
-    <div class="blocks">
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
+    <div v-for="area in areas">
+      <div class="b top"
+        :class="area.aclass"
+        v-if="area.banner === 'top'">
+        <img :src="area.banner_placeholder">
       </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
+      <div class="video-blocks" v-if="area.aclass === 'section_video' && displayVideos">
+        <div class="video-block" v-for="item in area.items">
+          <router-link :to="item.page">
+          <div class="thumb"
+            :style="{'background-image': renderBackgroundImage(item.poster)}"
+            >
+            <img class="play-icon" src="../assets/icons/thumbnail-play.png">
+          </div>
+          <div class="info">
+            <div class="meta row">
+              <div class="remind pull-left">
+                <img src="../assets/icons/remind.png">
+              </div>
+              <div class="views pull-right">
+                <img src="../assets/icons/views.png">
+                {{ item.views }} views
+              </div>
+            </div>
+            <div>
+              <h5 class="title clearfix">{{ item.title }}</h5>
+            </div>
+            <div>
+              <p class="description">{{ item.synopsis }}</p>
+            </div>
+          </div>
+          </router-link>
+        </div>
       </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
-      </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
-      </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
-      </div>
-      <div class="block no-bg">
-        <Banner type="square"/>
-      </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
-      </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
-      </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
-      </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
-      </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
-      </div>
-      <div class="block">
-        <img src="../assets/temp/show/news-thumb.jpg">
-        <h3 class="title">{{ mock.thumbText }}</h3>
+      <div class="blocks" v-if="area.aclass === 'section_articles' && displayArticles">
+        <div class="block" v-for="item in area.items">
+          <router-link :to="item.page">
+          <div class="thumb"
+            :style="{'background-image': renderBackgroundImage(item.poster) }"
+            ></div>
+          <h3 class="title">{{ item.title }}</h3>
+          </router-link>
+        </div>
       </div>
     </div>
-
   </div>
-
 </div>
 </template>
 <script>
-import Home from './Home'
-import ShowHeader from './ShowHeader'
-import MediaPlayer from './MediaPlayer'
-import Banner from './Banner'
-import ProCarousel from '@/components/ProCarousel'
-import Articles from '@/components/Articles'
+import { renderBackgroundImage } from '@/utils'
 
 export default {
 /* global axios */
 
   name: 'Search',
+  props: [
+    'context'
+  ],
   components: {
-    ShowHeader,
-    MediaPlayer,
-    Home,
-    Banner,
-    ProCarousel,
-    Articles
   },
   data () {
     return {
-      content: {},
-      items: [],
-      head: {},
-      header: {},
-      video: {},
-      home: [],
-      mock: {
-        videoTitle: 'Scena te asteapta!',
-        videoText: 'Vino la Preselectiile Vocea Romaniei de la Hotelul Ibis Gara de Nord din Bucuresti pe ...',
-        title: 'Tudor, Smiley, Lori si Despot incep in pasi de dans sezonul sapte Vocea Romaniei! Vineri, de la 20:30, la PROTV!',
-        text: [
-          '<p>De la 20:30, telespectatorii vor urmari prima editie a celei mai tari competitii a vocilor si se vor bucura de un spectacol fascinant. Concurentii sunt pregatiti sa impresioneze si nu se tem sa dea totul pe scena, iar Tudor, Smiley, Lori si Despot danseaza, inspirati fiind de melodia cantata de unul dintre participanti. Ei vor realiza vineri un moment electrizant, plin de energie si foarte mult umor</p>',
-          '<p>Nu va lipsi nici iubirea din prima editie Vocea Romaniei. Un concurent indragostit va fi incurajat de catre iubita lui intr-un mod special atat in culise, cat si pe scena. Cei doi isi vor face declaratii pline de patos, iar antrenorii le vor urma exemplul si vor incepe un sir de imbratisari. ”Am inteles de ce canti atat de bine, pentru ca ai o muza.”, ii va spune Lori baiatului la finalul reprezentatiei acestuia.</p>'
-        ].join(''),
-        thumbText: 'Deea Ibacka, Roxana Vancea, Razvan Fodor, Ionut Iftimoaie si Jorge sunt pregatiti pentru experienta Fort Boyard!'
-      }
+      areas: null,
+      searchQuery: this.$router.currentRoute.query.q,
+      displayVideos: true,
+      displayArticles: true
     }
   },
   mounted () {
     this.getData()
   },
   methods: {
+    renderBackgroundImage,
     getData () {
-      const url = 'http://protv.vidnt.com/page/' + this.$route.params.name + '/'
-      const home = 'http://protv.vidnt.com/page/home/'
-
-      // Get show context
-      axios.get(url).then((response) => {
-        // console.log('Show', JSON.parse(JSON.stringify(response.data)))
-        this.content = response.data.content.areas[0]
-        this.items = this.content.items
-        // console.log('Show content', this.content)
-        this.head = response.data.head
-        this.video = this.content.items[0]
-
-        this.getContext()
-      })
-
-      // Get home context
-      axios.get(home).then((response) => {
-        this.home = response.data.content.areas
+      const query = this.$router.currentRoute.query.q
+      const searchUrl = '/page/search/?term=' + query
+      axios.get(searchUrl).then(response => {
+        this.areas = response.data.content.areas
+        this.searchQuery = query
       })
     },
-    getContext () {
-      const url = 'http://protv.vidnt.com' + this.head.context
-      axios.get(url).then((response) => {
-        // console.log('Context response', response)
-        this.header = response.data
-        // console.log('HEADER', this)
-      })
+    toggleDisplay (type) {
+      this[type] = !this[type]
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.getData()
     }
   }
 }
@@ -349,8 +102,29 @@ export default {
 <style scoped>
 #search > .container {
   margin-bottom: 10px;
-  width: 999px;
+  width: 1299px;
   padding: 0;
+}
+
+.filter {
+  width: 950px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.filter label {
+  text-transform: uppercase;
+  margin-right: 20px;
+}
+input[type="checkbox"]{
+  /*
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  /*
+  -webkit-appearance: none;
+  appearance: none;
+  */
 }
 
 .container-wide {
@@ -381,11 +155,19 @@ export default {
 }
 
 .video-block .thumb {
-  background-image: url('../assets/temp/video-thumb.jpg');
   background-size: cover;
   background-position: center center;
   width: 267px;
   height: 151px;
+  position: relative;
+}
+
+.block .thumb {
+  background-image: url('../assets/default-placeholder.png');
+  background-size: cover;
+  background-position: center center;
+  width: 300px;
+  height: 164px;
   position: relative;
 }
 
@@ -424,7 +206,7 @@ export default {
 .blocks {
   padding-bottom: 20px;
   overflow: auto;
-  width: 960px;
+  width: 1020px;
   margin: 0 auto;
 }
 
@@ -432,7 +214,7 @@ export default {
   width: 300px;
   float: left;
   background: #131313;
-  margin: 10px;
+  margin: 20px;
   height: 280px;
 }
 
@@ -444,5 +226,28 @@ export default {
 
 .no-bg {
   background: none;
+}
+
+a, a:active, a:focus {
+  color: white;
+  text-decoration: none;
+}
+
+.b {
+  text-align: center;
+}
+
+.b img {
+  margin-bottom: 30px;
+}
+
+.b.section_video img {
+  width: 1000px;
+  height: 120px;
+}
+
+.b.section_video img {
+  width: 970px;
+  height: 250px;
 }
 </style>

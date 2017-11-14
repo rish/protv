@@ -61,7 +61,10 @@ export function renderImagePath (str, type, context) {
 }
 
 export function renderBackgroundImage (str, type) {
-  // Send this from Vue because it is not available in the renderImagePath func
+  if (!str) {
+    return null
+  }
+  // Send `this` from Vue because it is not available in the renderImagePath func
   const backgroundStr = `url(${renderImagePath(str, type, this)})`
   return backgroundStr
 }
