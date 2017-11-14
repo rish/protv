@@ -1,23 +1,25 @@
 <template>
-<div id="page" v-if="localContext.hasOwnProperty('conf')">
-  <div class="b top" v-if="areas[0].banner === 'top'">
-    <img :src="areas[0].banner_placeholder" width="1000" height="120">
+<div id="page">
+  <div v-if="context.hasOwnProperty('conf')">
+    <div class="b top" v-if="areas[0].banner === 'top'">
+      <img :src="areas[0].banner_placeholder" width="1000" height="120">
+    </div>
+    <div id="site-header" v-if="localContext.hasOwnProperty('site_header')">
+      <SiteHeader
+        :buttons="localContext.site_header.buttons"
+        :icon="localContext.site_header.icon"
+        :media="localContext.site_header.media"
+        :menu="localContext.site_header.menu"
+        :banner-placement="areas[0].banner"
+        :banner="areas[0].banner_placeholder"
+        :type="headerPageType"
+      />
+    </div>
+    <div id="areas" v-if="!loading">
+      <Areas :areas="areas" :context="context" />
+    </div>
   </div>
-  <div id="site-header" v-if="localContext.hasOwnProperty('site_header')">
-    <SiteHeader
-      :buttons="localContext.site_header.buttons"
-      :icon="localContext.site_header.icon"
-      :media="localContext.site_header.media"
-      :menu="localContext.site_header.menu"
-      :banner-placement="areas[0].banner"
-      :banner="areas[0].banner_placeholder"
-      :type="headerPageType"
-    />
-  </div>
-  <div id="areas" v-if="!loading">
-    <Areas :areas="areas" :context="context" />
-  </div>
-  <div v-if="loading && context.hasOwnProperty('conf')" class="loading">
+  <div v-if="loading" class="loading">
     <pulse-loader :loading="loading" :color="context.conf.colors.blue" size="15px"></pulse-loader>
   </div>
 </div>
