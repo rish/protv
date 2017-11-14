@@ -24,7 +24,7 @@
       playIcon="true"
       />
     </div>
-    <div v-if="area.box === 'articles'">
+    <div v-if="area.box === 'articles' || area.aclass === 'section_articles'">
       <Articles
       :context="context"
       :articles="area.items"
@@ -47,14 +47,6 @@
       :item="area.items[0]"
       :banner-placement="area.banner"
       :banner="area.banner_placeholder"
-      />
-    </div>
-    <div v-if="area.aclass == 'section_articles'">
-      <NewsBlocks
-      :context="context"
-      :banner-placement="area.banner"
-      :banner="area.banner_placeholder"
-      :items="area.items"
       />
     </div>
     <div v-if="area.aclass === 'epg'">
