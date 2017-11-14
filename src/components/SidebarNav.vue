@@ -48,7 +48,9 @@ export default {
 #sidebar-nav {
   height: 100%;
   min-height: 100%;
+  /* Disable because scrollto is not working for now
   overflow-x: hidden;
+  */
   position: relative;
   background: #131313;
   width: 100%;

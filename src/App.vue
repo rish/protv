@@ -59,7 +59,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: white;
   background: black;
+  /* Disable because scrollto is not working for now
   overflow: auto;
+  */
   height: 100%;
 }
 #content {
