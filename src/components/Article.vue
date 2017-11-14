@@ -13,6 +13,7 @@
       <ArticleSidebar
         :context="context"
         :items="sidebarItems"
+        :title="sidebarTitle"
       />
       <!--
       <h3 class="heading">Video Recommended</h3>
@@ -46,7 +47,8 @@ export default {
     'title',
     'bannerPlacement',
     'banner',
-    'sidebarItems'
+    'sidebarItems',
+    'sidebarTitle'
   ],
   data () {
     return {

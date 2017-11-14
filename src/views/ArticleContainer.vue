@@ -5,6 +5,7 @@
       :context="context"
       :content="areas[0].items[0]"
       :sidebar-items="areas[1].items"
+      :sidebar-title="areas[1].title"
     />
   </div>
   <div v-if="loading && context.hasOwnProperty('conf')" class="loading">

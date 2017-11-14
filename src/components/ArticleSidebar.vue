@@ -1,30 +1,46 @@
 <template>
 <div id="article-sidebar" v-if="items">
+  <h3 class="heading">{{ title }}</h3>
+
   <MediaPlayerRelated
   :videoItems="chunks[0]"
   barebones="true"
   :context="context"
   />
 
+  <Banner type="square" padding="30"/>
+
   <MediaPlayerRelated
   :videoItems="chunks[1]"
   barebones="true"
   :context="context"
   />
+
+  <Banner type="vertical-large" padding="30"/>
+
+  <MediaPlayerRelated
+  :videoItems="chunks[1]"
+  barebones="true"
+  :context="context"
+  />
+
 </div>
 </template>
 <script>
+import Banner from '@/components/Banner'
 import MediaPlayerRelated from '@/components/MediaPlayerRelated'
 import { chunkArray } from '@/utils'
 
 export default {
   name: 'ArticleSidebar',
   components: {
-    MediaPlayerRelated
+    MediaPlayerRelated,
+    Banner
   },
   props: [
     'context',
-    'items'
+    'items',
+    'title'
   ],
   data () {
     return {
