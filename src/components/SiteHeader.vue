@@ -101,6 +101,7 @@ export default {
 
 .page-channel .thumb {
   top: -180px;
+  background: white;
 }
 
 ul {
