@@ -5,6 +5,7 @@ import HomeContainer from '@/views/HomeContainer'
 import PageContainer from '@/views/PageContainer'
 import ShowContainer from '@/views/ShowContainer'
 import VideoContainer from '@/views/VideoContainer'
+import ArticleContainer from '@/views/ArticleContainer'
 import ChannelContainer from '@/views/ChannelContainer'
 import Episodes from '@/components/Episodes'
 import ShowPanel from '@/components/ShowPanel'
@@ -40,6 +41,11 @@ export default new Router({
       path: '/itempage/video/:id',
       name: 'VideoPage',
       component: VideoContainer
+    },
+    {
+      path: '/itempage/article/:id',
+      name: 'ArticlePage',
+      component: ArticleContainer
     },
     {
       path: '/channel',

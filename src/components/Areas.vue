@@ -70,6 +70,15 @@
       :title="area.title"
       />
     </div>
+    <div v-if="area.aclass === 'article'">
+      <ArticleView
+      :context="context"
+      :items="area.items"
+      :title="area.title"
+      :banner-placement="area.banner"
+      :banner="area.banner_placeholder"
+      />
+    </div>
   </div>
 </div>
 </template>
@@ -83,6 +92,7 @@ import NewsBlocks from '@/components/NewsBlocks'
 import LiveEPG from '@/components/LiveEPG'
 import Promo from '@/components/Promo'
 import SocialBar from '@/components/SocialBar'
+import ArticleView from '@/components/Article'
 
 export default {
   name: 'Areas',
@@ -99,7 +109,8 @@ export default {
     NewsBlocks,
     LiveEPG,
     Promo,
-    SocialBar
+    SocialBar,
+    ArticleView
   }
 }
 </script>
