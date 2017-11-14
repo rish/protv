@@ -12,7 +12,9 @@
 
     <div class="blocks">
       <div class="block" v-for="item in items">
-        <img :src="item.poster">
+        <div class="thumb"
+          :style="{'background-image': renderBackgroundImage(item.poster)}"
+          ></div>
         <h3 class="title">{{ item.title }}</h3>
       </div>
     </div>
@@ -21,6 +23,7 @@
 </div>
 </template>
 <script>
+import { renderBackgroundImage } from '@/utils'
 export default {
   name: 'NewsBlocks',
   props: [
@@ -29,7 +32,10 @@ export default {
     'items',
     'bannerPlacement',
     'banner'
-  ]
+  ],
+  methods: {
+    renderBackgroundImage
+  }
 }
 </script>
 <style scoped>
@@ -68,6 +74,11 @@ export default {
   background: #131313;
   margin: 10px;
   height: 280px;
+}
+
+.thumb {
+  width: 100%;
+  height: 200px;
 }
 
 .block .title {
