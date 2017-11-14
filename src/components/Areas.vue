@@ -79,6 +79,16 @@
       :banner="area.banner_placeholder"
       />
     </div>
+    <div v-if="area.aclass === 'section_pepole'">
+      <!-- Typo from backend change when fixed -->
+      <People
+      :context="context"
+      :items="area.items"
+      :title="area.title"
+      :banner-placement="area.banner"
+      :banner="area.banner_placeholder"
+      />
+    </div>
   </div>
 </div>
 </template>
@@ -93,6 +103,7 @@ import LiveEPG from '@/components/LiveEPG'
 import Promo from '@/components/Promo'
 import SocialBar from '@/components/SocialBar'
 import ArticleView from '@/components/Article'
+import People from '@/components/People'
 
 export default {
   name: 'Areas',
@@ -110,7 +121,8 @@ export default {
     LiveEPG,
     Promo,
     SocialBar,
-    ArticleView
+    ArticleView,
+    People
   }
 }
 </script>
