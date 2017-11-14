@@ -5,6 +5,7 @@
       <MediaPlayer
       :items="area.items"
       related-count="6"
+      :context="context"
       />
     </div>
     <div v-if="area.aclass === 'section' && !area.box && type != 'article'">
