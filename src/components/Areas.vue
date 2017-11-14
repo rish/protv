@@ -71,6 +71,13 @@
       :title="area.title"
       />
     </div>
+    <div v-if="area.aclass === 'section_social'">
+      <SocialBar
+      :context="context"
+      :items="area.items"
+      :title="area.title"
+      />
+    </div>
   </div>
 </div>
 </template>
@@ -83,6 +90,7 @@ import News from '@/components/News'
 import NewsBlocks from '@/components/NewsBlocks'
 import LiveEPG from '@/components/LiveEPG'
 import Promo from '@/components/Promo'
+import SocialBar from '@/components/SocialBar'
 
 export default {
   name: 'Areas',
@@ -98,7 +106,8 @@ export default {
     News,
     NewsBlocks,
     LiveEPG,
-    Promo
+    Promo,
+    SocialBar
   }
 }
 </script>
