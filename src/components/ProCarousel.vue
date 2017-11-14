@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="pro-carousel">
   <div class="container-fluid" :style="{ 'background-image': background ? 'url(' + background + ')' : 'none' }">
     <div class="row heading-container" v-if="title">
       <img v-if="titleIcon" :src="titleIcon" class="icon" width="50" height="50">
@@ -206,7 +206,8 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import "../../node_modules/slick-carousel/slick/slick.scss";
+@import "../../node_modules/slick-carousel/slick/slick.scss";
+#pro-carousel {
   a:focus {
     outline: none;
   }
@@ -299,6 +300,7 @@ export default {
   .controls .right {
     right: 0;
   }
+}
 
 </style>
 <style lang="scss" scoped>

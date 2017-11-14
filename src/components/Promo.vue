@@ -81,6 +81,20 @@ export default {
     width: 980px;
   }
   .controls {
+    bottom: 0;
+    width: 100px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    user-select: none;
+    a {
+      display: inline-block;
+      margin: 0 10px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
 </style>
