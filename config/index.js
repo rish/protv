@@ -45,6 +45,10 @@ module.exports = {
         target: API_HOST,
         changeOrigin: true
       },
+      '/play': {
+        target: API_HOST,
+        changeOrigin: true
+      },
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

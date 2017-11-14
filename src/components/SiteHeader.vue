@@ -10,6 +10,11 @@
   <div class="header"
     :style="{ 'background-image': media[0].itype === 'item_mov_vod' ? 'url(' + media[0].poster + ')' :'url(' + media[0] + ')' }"
     >
+    <div class="header-video" v-if="headerVideo">
+      <video muted autoplay loop>
+        <source :src="headerVideo" type="video/mp4">
+      </video>
+    </div>
     <div class="menu row">
       <div class="thumb">
         <img v-if="type === 'show'" :src="icon" width="100" height="100">
@@ -25,6 +30,7 @@
 </div>
 </template>
 <script>
+/* global axios */
 export default {
   name: 'SiteHeader',
   props: [
@@ -37,8 +43,23 @@ export default {
     'banner-placement',
     'type'
   ],
+  data () {
+    return {
+      headerVideo: null
+    }
+  },
   mounted () {
-    console.log('site header', this)
+    this.getVideoUrl()
+  },
+  methods: {
+    getVideoUrl () {
+      if (this.media[0].hasOwnProperty('media')) {
+        const url = this.media[0].media + '?sid=test_udid'
+        axios.get(url).then(response => {
+          this.headerVideo = response.data.media[0].link
+        })
+      }
+    }
   }
 }
 </script>
@@ -60,7 +81,6 @@ export default {
   width: 100%;
 }
 
-
 .header {
   position: relative;
   width: 975px;
@@ -73,6 +93,22 @@ export default {
   background-size: cover;
   background-position: center center;
   margin-bottom: 120px;
+}
+
+.header-video {
+  width: 975px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.header-video video {
+  outline: 1px solid red;
+  width: 100%;
+  height: 140%;
+  margin-top: -10%;
+  position: absolute;
+  left: 0;
 }
 
 .b-inline .header {
