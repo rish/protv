@@ -11,6 +11,7 @@
     </div>
     <div v-if="area.aclass === 'section' && !area.box">
       <ProCarousel
+        :context="context"
         :title="area.title"
         :title-color="area.title_color"
         :title-icon="area.icon"
@@ -60,7 +61,6 @@ export default {
     getData () {
       const url = '/itempage/video/' + this.$route.params.id + '/'
       axios.get(url).then((response) => {
-        console.log(response)
         this.areas = response.data.content.areas
         this.getContext(response.data.head.context)
       })
@@ -68,7 +68,6 @@ export default {
     getContext (contextPath) {
       const url = contextPath
       axios.get(url).then((response) => {
-        console.log(response)
         this.localContext = response.data.context
       })
     }
