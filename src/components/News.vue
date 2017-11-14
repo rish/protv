@@ -8,7 +8,7 @@
     <img :src="item.poster">
 
     <div class="main">
-      <h3 class="title" v-html="title"></h3>
+      <h3 class="title" v-html="item.title"></h3>
       <div class="text" v-html="item.content"></div>
     </div>
 
