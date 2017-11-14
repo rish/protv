@@ -56,8 +56,25 @@ export default {
       if (this.media[0].hasOwnProperty('media')) {
         const url = this.media[0].media + '?sid=test_udid'
         axios.get(url).then(response => {
-          this.headerVideo = response.data.media[0].link
+          if (response.data.media[0].link) {
+            this.headerVideo = response.data.media[0].link
+          } else {
+            this.headerVideo = null
+          }
         })
+      }
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      // This will instantly remove the header video
+      // this.headerVideo = null
+    },
+    media (newValue) {
+      // This will give a delay untill the parent API request has finished
+      this.headerVideo = null
+      if (newValue[0].hasOwnProperty('link')) {
+        this.getVideoUrl()
       }
     }
   }
