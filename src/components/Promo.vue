@@ -72,6 +72,7 @@ export default {
 <style lang="scss">
 @import "../../node_modules/slick-carousel/slick/slick.scss";
 #promo {
+  padding-top: 100px;
   .slick-slide {
     width: 232px;
     margin-right: 15px;
