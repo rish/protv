@@ -1,7 +1,7 @@
 <template>
 <div
   class="thumb"
-  :style="{ 'background-image': 'url(' + image + ')'}"
+  :style="{'background-image': renderBackgroundImage(image)}"
   >
   <div v-if="!item.active" class="duration">
     <img class="clock-icon" src="../assets/icons/clock.png">
@@ -16,14 +16,20 @@
 </template>
 <script>
 import { duration } from '../filters'
+import { renderBackgroundImage } from '@/utils'
+
 export default {
   name: 'MediaPlayerRelatedThumb',
   props: [
     'image',
-    'item'
+    'item',
+    'context'
   ],
   filters: {
     duration
+  },
+  methods: {
+    renderBackgroundImage
   }
 }
 </script>

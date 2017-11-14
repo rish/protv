@@ -7,6 +7,7 @@
       :related-count=11
       showSponsored="false"
       :extended="true"
+      :context="context"
       />
     </div>
     <div v-if="area.aclass === 'section' && !area.box">

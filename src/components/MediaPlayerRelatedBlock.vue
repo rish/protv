@@ -1,14 +1,14 @@
 <template>
 <div v-if="!barebones" class="block" :class="{active: item.active, sponsored: item.sponsored}">
-  <router-link :to="'/video/' + item.id">
-    <MediaPlayerRelatedThumb :image="item.thumbnail" :item="item" :active="item.active" />
+  <router-link :to="item.page">
+    <MediaPlayerRelatedThumb :image="item.thumbnail" :item="item" :active="item.active" :context="context"/>
     <MediaPlayerRelatedTitle :title="item.title" :active="item.active"/>
     <img v-if="item.sponsored" class="logo" src="../assets/temp/sponsored-logo.png">
   </router-link>
 </div>
 <div v-else class="block">
-  <router-link :to="'/video/' + item.id">
-    <MediaPlayerRelatedThumb :image="item.thumbnail" :item="item" />
+  <router-link :to="item.page">
+    <MediaPlayerRelatedThumb :image="item.poster" :item="item" :context="context" />
     <MediaPlayerRelatedTitle :title="item.title"/>
   </router-link>
 </div>
@@ -25,7 +25,8 @@ export default {
   },
   props: [
     'item',
-    'barebones'
+    'barebones',
+    'context'
   ]
 }
 </script>

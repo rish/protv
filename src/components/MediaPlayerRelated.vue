@@ -1,7 +1,7 @@
 <template>
   <div id="related">
     <div v-for="item in items.slice(0,limitCount())">
-      <MediaPlayerRelatedBlock :item="item" :barebones="barebones"/>
+      <MediaPlayerRelatedBlock :item="item" :barebones="barebones" :context="context"/>
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@ export default {
     }
   },
   props: [
+    'context',
     'videoItems',
     'limit',
     'barebones'

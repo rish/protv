@@ -1,56 +1,34 @@
 <template>
-<div id="article" v-if="context">
-  <div class="container">
-    <div class="main">
-      <img class="img-responsive" :src="content.poster">
-      <h3 class="title" v-html="content.title"></h3>
-      <!-- There is no subheading in the API
-      <h4 class="subheading" v-html="mock.subheading"></h4>
-      -->
-      <div class="text" v-html="content.content"></div>
-    </div>
-    <div class="sidebar">
-      <ArticleSidebar
-        :context="context"
-        :items="sidebarItems"
-      />
-      <!--
-      <h3 class="heading">Video Recommended</h3>
+<div id="article-sidebar" v-if="items">
+  <MediaPlayerRelated
+  :videoItems="chunks[0]"
+  barebones="true"
+  :context="context"
+  />
 
-      <MediaPlayerRelated :videoItems="home[0].items" limit=5 barebones="true" />
-
-      <Banner type="square" padding="30"/>
-
-      <MediaPlayerRelated :videoItems="home[0].items" limit=5 barebones="true" />
-
-      <Banner type="vertical-large" padding="30"/>
-
-      <MediaPlayerRelated :videoItems="home[0].items" limit=5 barebones="true" />
-      -->
-    </div>
-  </div>
+  <MediaPlayerRelated
+  :videoItems="chunks[1]"
+  barebones="true"
+  :context="context"
+  />
 </div>
 </template>
 <script>
-import ArticleSidebar from '@/components/ArticleSidebar'
+import MediaPlayerRelated from '@/components/MediaPlayerRelated'
 import { chunkArray } from '@/utils'
 
 export default {
-  name: 'ArticleView',
+  name: 'ArticleSidebar',
   components: {
-    ArticleSidebar
+    MediaPlayerRelated
   },
   props: [
     'context',
-    'content',
-    'title',
-    'bannerPlacement',
-    'banner',
-    'sidebarItems'
+    'items'
   ],
   data () {
     return {
-      // content: this.items[0],
+      chunks: chunkArray(this.items, 4)
       // sidebar_content: this.items[1]
     }
   },

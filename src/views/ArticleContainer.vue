@@ -4,6 +4,7 @@
     <ArticleView
       :context="context"
       :content="areas[0].items[0]"
+      :sidebar-items="areas[1].items"
     />
   </div>
   <div v-if="loading && context.hasOwnProperty('conf')" class="loading">

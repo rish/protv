@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="sidebar">
-      <MediaPlayerRelated :videoItems="items" :limit="relatedCount"/>
+      <MediaPlayerRelated :context="context" :videoItems="items" :limit="relatedCount"/>
     </div>
   </div>
 </template>
@@ -48,6 +48,7 @@ export default {
     MediaPlayerRelated
   },
   props: [
+    'context',
     'items',
     'related-count',
     'tags',
