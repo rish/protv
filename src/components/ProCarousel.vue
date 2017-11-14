@@ -6,7 +6,7 @@
   <div class="container-fluid" :style="{ 'background-image': background ? 'url(' + background + ')' : 'none' }">
     <div class="row heading-container" v-if="title">
       <img v-if="titleIcon" :src="titleIcon" class="icon" width="50" height="50">
-      <h2 class="section-title" :style="{ color: titleColor ? context.conf.colors[titleColor] : null }">{{ title }}</h2>
+      <h2 class="section-title" :style="{ color: mainColor ? context.conf.colors[mainColor] : null }">{{ title }}</h2>
       <div class="title-button" v-if="buttons">
         <div v-for="button in buttons">
           <ProButton
@@ -89,7 +89,7 @@ export default {
   props: [
     'context',
     'title',
-    'titleColor',
+    'mainColor',
     'titleIcon',
     'items',
     'grid',

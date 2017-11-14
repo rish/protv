@@ -11,7 +11,7 @@
       <ProCarousel
       :context="context"
       :title="area.title"
-      :title-color="area.title_color"
+      :main-color="area.main_color"
       :title-icon="area.icon"
       :items="area.items"
       :grid="area.grid"

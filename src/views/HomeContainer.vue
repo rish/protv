@@ -8,7 +8,7 @@
       <div v-if="area.aclass === 'section' && !area.box">
         <ProCarousel
           :title="area.title"
-          :title-color="area.title_color"
+          :main-color="area.main_color"
           :title-icon="area.icon"
           :items="area.items"
           :grid="area.grid"
