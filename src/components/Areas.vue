@@ -7,7 +7,7 @@
       related-count="6"
       />
     </div>
-    <div v-if="area.aclass === 'section' && !area.box">
+    <div v-if="area.aclass === 'section' && !area.box && type != 'article'">
       <ProCarousel
       :context="context"
       :title="area.title"
@@ -109,7 +109,8 @@ export default {
   name: 'Areas',
   props: [
     'context',
-    'areas'
+    'areas',
+    'type'
   ],
   components: {
     MediaPlayer,
