@@ -1,11 +1,11 @@
 <template>
-<div id="social-bar">
+<div id="social-bar" v-if="items">
   <div class="container-fluid">
     <div class="container">
       <p>
         <span class="title">{{ title }}: </span>
         <span class="link" v-for="(item, key) in items">
-          <a :href="item">{{ key }}</a>
+          <a :href="item"><img :src="require('../assets/icons/small/' + formatKey(key) + '.png')"></a>
         </span>
       </p>
     </div>
@@ -19,7 +19,13 @@ export default {
     'context',
     'title',
     'items'
-  ]
+  ],
+  methods: {
+    formatKey (key) {
+      key = key.toLowerCase()
+      return key
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -38,10 +44,9 @@ export default {
   }
   .link a {
     display: inline-block;
-    padding: 5px 10px;
-    border: 1px solid white;
+    padding: 5px;
     border-radius: 5px;
-    margin: 0 5px;
+    margin: 0 3px;
   }
 }
 </style>
