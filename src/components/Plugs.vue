@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <h3 class="title" :style="{color: colors[plugs.title_color] }">{{ plugs.title }}</h3>
+    <h3 class="title" :style="{color: colors[plugs.main_color] }">{{ plugs.title }}</h3>
     <div class="thumbs">
       <div class="thumb-container" v-for="item in items">
         <div class="thumb"
           :style="{
           'background-image': 'url(' + item.poster + ')',
-          'border-bottom': '2px solid ' + colors[plugs.title_color]
+          'border-bottom': '2px solid ' + colors[plugs.main_color]
           }"
           >
         </div>
