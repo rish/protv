@@ -24,7 +24,7 @@
             </div>
             <div class="play-btn" v-on:click="displayVideo = true" v-if="!displayVideo"></div>
             <div class="main-video" v-if="displayVideo">
-              <iframe class="video-player" src="http://st-rr-d.vidnt.com/player/?account=ipbc&width=100%&font_size=10&fullScreen=false&showEmbedded&qualityChange=true&&autoplay=true&playerType=videojs&videojsVersion=0.4.1.4&playback_url=http%3A%2F%2Fprotvstgmms.vidnt.com%2Fcontent%2Fprotvstg-SJ25C1-LO.1264-854x480.mp4" allowfullscreen></iframe>
+              <MediaPlayerVideo :item="content.items[0]" :itype="content.itype" :autoplay="true" :context="context" />
             </div>
           </div>
         </div>
@@ -43,11 +43,13 @@ import { duration, truncateOnWord } from '@/filters'
 import { renderBackgroundImage } from '@/utils'
 import ProCarousel from '@/components/ProCarousel'
 import ProButton from '@/components/ProButton'
+import MediaPlayerVideo from '@/components/MediaPlayerVideo'
 export default {
   name: 'VOD',
   components: {
     ProCarousel,
-    ProButton
+    ProButton,
+    MediaPlayerVideo
   },
   props: [
     'content',

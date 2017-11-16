@@ -1,7 +1,7 @@
 <template>
   <div v-if="items.length" class="container">
     <div class="main">
-      <MediaPlayerVideo :item="items.slice(0,1)[0]"/>
+      <MediaPlayerVideo :item="items.slice(0,1)[0]" :context="context" />
       <div class="pull-left">
         <MediaPlayerTags :tags="tags"/>
       </div>
