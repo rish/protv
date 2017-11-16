@@ -8,13 +8,15 @@
   </div>
   <div v-if="playClicked">
     <div class="video-player-container">
-      <iframe class="video-player" src="http://st-rr-d.vidnt.com/player/?account=ipbc&width=100%&font_size=10&fullScreen=false&showEmbedded&qualityChange=true&&autoplay=true&playerType=videojs&videojsVersion=0.4.1.4&playback_url=http%3A%2F%2Fprotvstgmms.vidnt.com%2Fcontent%2Fprotvstg-SJ25C1-LO.1264-854x480.mp4" allowfullscreen>
-      </iframe>
+      <video autoplay>
+        <source :src="videoUrl">
+      </video>
     </div>
   </div>
 </div>
 </template>
 <script>
+/* global axios */
 import { duration } from '../filters'
 export default {
   name: 'MediaPlayerVideo',
@@ -23,15 +25,35 @@ export default {
   ],
   data () {
     return {
-      playClicked: false
+      playClicked: false,
+      videoUrl: null
     }
   },
   filters: {
     duration
   },
+  mounted () {
+    this.getVideoUrl()
+  },
+  methods: {
+    getVideoUrl () {
+      if (this.item) {
+        const url = this.item.media + '?sid=test_udid'
+        axios.get(url).then(response => {
+          if (response.data.error) {
+            alert(response.data.error)
+          } else {
+            this.videoUrl = response.data.media[0].link
+          }
+        })
+      }
+    }
+  },
   watch: {
-    item () {
+    item (val) {
       this.playClicked = false
+      this.videoUrl = null
+      this.getVideoUrl()
     }
   }
 }
