@@ -8,7 +8,9 @@
         v-on:toggleSidebar="toggleActive"
       />
       <div id="content">
-        <router-view :context="context" />
+        <div class="inner">
+          <router-view :context="context" />
+        </div>
       </div>
       <AppFooter :context="context" />
     </SidebarNav>
@@ -65,6 +67,12 @@ export default {
   height: 100%;
 }
 #content {
+  height: 100%;
+  display: table-row;
+  background: black;
+}
+
+.inner {
   padding-top: 150px;
   height: 100%;
 }

@@ -17,8 +17,8 @@
       </li>
     </ul>
   </div>
+  <slot id="push-content"></slot>
   <div id="pusher" :class="{ active: active }" v-on:click="disableSidebar">
-    <slot id="push-content"></slot>
   </div>
 </div>
 </template>
@@ -55,6 +55,7 @@ export default {
   position: relative;
   background: #131313;
   width: 100%;
+  display: table;
 }
 
 #sidebar {
@@ -62,7 +63,7 @@ export default {
   background: #1c4de6;
   height: 100%;
   position: fixed;
-  top: 0;
+  top: 85px;
   left: 0;
   bottom: 0;
   overflow-y: auto;

@@ -85,9 +85,16 @@ export default {
 }
 </script>
 <style scoped>
+#home {
+  height: 100%;
+}
+
 .loading {
   text-align: center;
   padding: 100px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .plugs {
   padding: 50px 0;

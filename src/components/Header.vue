@@ -123,6 +123,7 @@ export default {
   width: 100%;
   z-index: 999;
   display: table-row;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.55);
 }
 
 .logo {
