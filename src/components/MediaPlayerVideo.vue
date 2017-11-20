@@ -9,7 +9,7 @@
   </div>
   <div v-if="playClicked">
     <div class="video-player-container">
-      <video id="video-player" ref="videoPlayer" :width="options.width" :height="options.height" controls autoplay class="video-js vjs-default-skin"
+      <video id="video-player" ref="videoPlayer" :width="options.width" :height="options.height" controls class="video-js vjs-default-skin"
       :poster="item.poster"
       >
         <source :src="videoUrl" :type="type">
@@ -94,6 +94,8 @@ export default {
     },
     playVideo () {
       this.playClicked = true
+      // Wait until the video player is mounted propery in the dom
+      // Probably worthwhile seperating this logic out into seperate components
       if (!this.player &&
         this.$refs.hasOwnProperty('videoPlayer') &&
         this.$refs.videoPlayer) {
@@ -117,8 +119,10 @@ export default {
     }
   },
   destroyed () {
-    this.player.dispose()
-    this.player = null
+    if (this.player) {
+      this.player.dispose()
+      this.player = null
+    }
   },
   updated () {
     this.$nextTick(() => {
@@ -185,5 +189,17 @@ export default {
 }
 .video-js.vjs-default-skin.vjs-ended .vjs-poster {
   display:none !important;
+}
+.video-js.vjs-default-skin .vjs-big-play-button {
+  display: none !important;
+}
+.video-js.vjs-default-skin .vjs-control-bar {
+  background: rgba(26, 77, 204, 0.71) !important;
+}
+.video-js.vjs-defualt-skin .vjs-play-progress.vjs-slider-bar {
+  background: black !important;
+}
+.video-js.vjs-default-skin .vjs-slider {
+  background: white !important;
 }
 </style>
