@@ -38,12 +38,12 @@ export default new Router({
       component: VideoContainer
     },
     {
-      path: '/itempage/video/:id',
+      path: '/itempage/video/:id/:slug',
       name: 'VideoPage',
       component: VideoContainer
     },
     {
-      path: '/itempage/article/:id',
+      path: '/itempage/article/:id/:slug',
       name: 'ArticlePage',
       component: ArticleContainer
     },

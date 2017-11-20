@@ -48,7 +48,8 @@ export default {
   },
   methods: {
     getData () {
-      const url = '/itempage/article/' + this.$route.params.id + '/'
+      let slug = this.$route.params.hasOwnProperty('slug') ? this.$route.params.slug : null
+      const url = '/itempage/article/' + this.$route.params.id + '/' + (slug ? slug + '/' : null)
       axios.get(url).then((response) => {
         this.areas = response.data.content.areas
         this.head = response.data.head

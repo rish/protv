@@ -60,7 +60,12 @@ export default {
   },
   methods: {
     getData () {
-      const url = '/itempage/video/' + this.$route.params.id + '/'
+      console.log(this.$route.params)
+      let slug = null
+      if (this.$route.params.hasOwnProperty('slug')) {
+        slug = this.$route.params.slug
+      }
+      const url = '/itempage/video/' + this.$route.params.id + '/' + (slug ? slug + '/' : null)
       axios.get(url).then((response) => {
         this.areas = response.data.content.areas
         this.getContext(response.data.head.context)
